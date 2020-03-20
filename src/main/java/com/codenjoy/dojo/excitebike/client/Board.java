@@ -54,7 +54,7 @@ public class Board extends AbstractBoard<CharElements> {
                 Arrays.stream(SpringboardElementType.values()),
                 Arrays.stream(BikeType.values())
         ).flatMap(Function.identity())
-                .filter(e -> e.ch() == ch)
+                .filter(e -> ((CharElements)e).ch() == ch)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("No such element for " + ch));
     }
