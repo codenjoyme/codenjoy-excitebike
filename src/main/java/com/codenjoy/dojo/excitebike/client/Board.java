@@ -32,10 +32,9 @@ import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.printer.CharElements;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Класс, обрабатывающий строковое представление доски.
@@ -49,12 +48,12 @@ public class Board extends AbstractBoard<CharElements> {
 
     @Override
     public CharElements valueOf(char ch) {
-        return Stream.of(
-                Arrays.stream(GameElementType.values()),
-                Arrays.stream(SpringboardElementType.values()),
-                Arrays.stream(BikeType.values())
-        ).flatMap(Function.identity())
-                .filter(e -> ((CharElements)e).ch() == ch)
+        return new LinkedList<CharElements>(){{
+            addAll(Arrays.asList(GameElementType.values()));
+            addAll(Arrays.asList(SpringboardElementType.values()));
+            addAll(Arrays.asList(BikeType.values()));
+        }}.stream()
+                .filter(e -> e.ch() == ch)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("No such element for " + ch));
     }
