@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.excitebike.ai;
+package com.codenjoy.dojo.excitebike.client.ai;
 
 /*-
  * #%L
