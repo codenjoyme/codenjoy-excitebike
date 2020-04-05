@@ -46,7 +46,7 @@ window.onload = function(){
     let injectCssWithUiMods = function() {
         let divCanvas = document.getElementsByClassName('player-canvas');
         if(divCanvas!=null && document.getElementsByTagName('canvas').length>1){
-            let canvasElement = document.getElementById(game.playerName);
+            let canvasElement = document.getElementById(game.playerId);
             if(canvasElement==null){
                 canvasElement = document.getElementsByTagName('canvas')[0];
             }

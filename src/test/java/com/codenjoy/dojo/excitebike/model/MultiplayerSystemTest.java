@@ -70,13 +70,13 @@ public class MultiplayerSystemTest {
         field = new GameFieldImpl(mapParser, dice, new SettingsHandler());
         PrinterFactory factory = new PrinterFactoryImpl();
 
-        game1 = new Single(new Player(eventListenerSpy1, "player1"), factory);
+        game1 = new Single(new Player(eventListenerSpy1), factory);
         game1.on(field);
 
-        game2 = new Single(new Player(eventListenerSpy2, "player2"), factory);
+        game2 = new Single(new Player(eventListenerSpy2), factory);
         game2.on(field);
 
-        game3 = new Single(new Player(eventListenerSpy3, "player3"), factory);
+        game3 = new Single(new Player(eventListenerSpy3), factory);
         game3.on(field);
 
         game1.newGame();
@@ -92,21 +92,24 @@ public class MultiplayerSystemTest {
         init();
 
         //then
-        assertThat(game1.getBoardAsString(), is("■■■■■■■\n" +
+        assertThat(game1.getBoardAsString(), is(
+                "■■■■■■■\n" +
                 "Ḃ      \n" +
                 "       \n" +
                 "Ḃ      \n" +
                 "       \n" +
                 "B      \n" +
                 "■■■■■■■\n"));
-        assertThat(game2.getBoardAsString(), is("■■■■■■■\n" +
+        assertThat(game2.getBoardAsString(), is(
+                "■■■■■■■\n" +
                 "Ḃ      \n" +
                 "       \n" +
                 "B      \n" +
                 "       \n" +
                 "Ḃ      \n" +
                 "■■■■■■■\n"));
-        assertThat(game3.getBoardAsString(), is("■■■■■■■\n" +
+        assertThat(game3.getBoardAsString(), is(
+                "■■■■■■■\n" +
                 "B      \n" +
                 "       \n" +
                 "Ḃ      \n" +
@@ -129,7 +132,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "ḟ■■■■■■\n" +
+        String expected =
+                "ḟ■■■■■■\n" +
                 "       \n" +
                 "       \n" +
                 "Ḃ      \n" +
@@ -150,7 +154,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "       \n" +
                 "Ḃ      \n" +
@@ -173,7 +178,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "Ḃ      \n" +
                 "       \n" +
                 "       \n" +
@@ -206,7 +212,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "Ḱ      \n" +
                 "B      \n" +
@@ -235,7 +242,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "Ḃ      \n" +
                 "       \n" +
                 "       \n" +
@@ -268,7 +276,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "Ḃ      \n" +
                 "Ḃ      \n" +
@@ -303,7 +312,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "Ḃ      \n" +
                 "Ḃ      \n" +
@@ -335,7 +345,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "Ḃ      \n" +
                 "B      \n" +
@@ -367,7 +378,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "B      \n" +
                 "Ḃ      \n" +
@@ -400,7 +412,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "Ḃ      \n" +
                 "Ḃ      \n" +
@@ -432,7 +445,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╔═╗■■■■\n" +
+        String expected =
+                "╔═╗■■■■\n" +
                 "/═\\    \n" +
                 "/Ḃ\\    \n" +
                 "/Ḃ\\    \n" +
@@ -466,7 +480,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■╔═╗■■\n" +
+        String expected =
+                "■■╔═╗■■\n" +
                 "  /═\\  \n" +
                 " Ḃ/═\\  \n" +
                 "  /═\\  \n" +
@@ -496,7 +511,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "═╗■■■■■\n" +
+        String expected =
+                "═╗■■■■■\n" +
                 "═\\     \n" +
                 "Ḃ\\     \n" +
                 "═\\     \n" +
@@ -529,7 +545,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╔═╗■■■■\n" +
+        String expected =
+                "╔═╗■■■■\n" +
                 "/═\\    \n" +
                 "/Ḃ\\    \n" +
                 "/Ḃ\\    \n" +
@@ -568,7 +585,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╔═╗■■■■\n" +
+        String expected =
+                "╔═╗■■■■\n" +
                 "/═\\    \n" +
                 "/Ḃ\\    \n" +
                 "/K\\    \n" +
@@ -609,7 +627,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "═╗■■■■■\n" +
+        String expected =
+                "═╗■■■■■\n" +
                 "═\\     \n" +
                 "═\\     \n" +
                 "ḃŘ     \n" +
@@ -648,7 +667,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "═╗■■■■■\n" +
+        String expected =
+                "═╗■■■■■\n" +
                 "═\\     \n" +
                 "═\\     \n" +
                 "═Ř     \n" +
@@ -688,7 +708,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "═╗■■■■■\n" +
+        String expected =
+                "═╗■■■■■\n" +
                 "═\\     \n" +
                 "═\\     \n" +
                 "═R     \n" +
@@ -723,7 +744,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "═╗■■■■■\n" +
+        String expected =
+                "═╗■■■■■\n" +
                 "═\\     \n" +
                 "═\\     \n" +
                 "═R     \n" +
@@ -759,7 +781,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "═╗■■■■■\n" +
+        String expected =
+                "═╗■■■■■\n" +
                 "═\\     \n" +
                 "═\\     \n" +
                 "═R     \n" +
@@ -794,7 +817,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "═╗■■■■■\n" +
+        String expected =
+                "═╗■■■■■\n" +
                 "═Ř     \n" +
                 "═Ř     \n" +
                 "═R     \n" +
@@ -829,7 +853,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╔Ḃ╗■■■■\n" +
+        String expected =
+                "╔Ḃ╗■■■■\n" +
                 "/═\\    \n" +
                 "/═\\    \n" +
                 "/B\\    \n" +
@@ -871,7 +896,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╗ḟ■■■■■\n" +
+        String expected =
+                "╗ḟ■■■■■\n" +
                 "\\      \n" +
                 "\\Ḃ     \n" +
                 "\\B     \n" +
@@ -910,7 +936,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╔╗■■■■■\n" +
+        String expected =
+                "╔╗■■■■■\n" +
                 "/\\     \n" +
                 "/\\     \n" +
                 "/Ř     \n" +
@@ -945,7 +972,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╔╗■■■■■\n" +
+        String expected =
+                "╔╗■■■■■\n" +
                 "/\\     \n" +
                 "/\\     \n" +
                 "/Ř     \n" +
@@ -980,7 +1008,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╔╗■■■■■\n" +
+        String expected =
+                "╔╗■■■■■\n" +
                 "/Ř     \n" +
                 "/Ř     \n" +
                 "/R     \n" +
@@ -1015,7 +1044,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■ḟ╔╗■■■\n" +
+        String expected =
+                "■ḟ╔╗■■■\n" +
                 "  /\\   \n" +
                 " K/\\   \n" +
                 "  /\\   \n" +
@@ -1049,7 +1079,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "       \n" +
                 "    BḂ|\n" +
@@ -1077,7 +1108,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "       \n" +
                 "    Bō \n" +
@@ -1111,7 +1143,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "       \n" +
                 "    o  \n" +
@@ -1150,7 +1183,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╗■■■■■■\n" +
+        String expected =
+                "╗■■■■■■\n" +
                 "\\      \n" +
                 "\\      \n" +
                 "ŘḂ     \n" +
@@ -1183,7 +1217,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╗■■■■■■\n" +
+        String expected =
+                "╗■■■■■■\n" +
                 "\\      \n" +
                 "\\      \n" +
                 "Ř      \n" +
@@ -1216,7 +1251,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "╗■■■■■■\n" +
+        String expected =
+                "╗■■■■■■\n" +
                 "Ř      \n" +
                 "\\      \n" +
                 "Ř      \n" +
@@ -1250,7 +1286,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "════╗■■\n" +
+        String expected =
+                "════╗■■\n" +
                 "═Ḃ══\\  \n" +
                 "Ḃ═══\\  \n" +
                 "════\\  \n" +
@@ -1279,7 +1316,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "K      \n" +
                 "       \n" +
@@ -1302,7 +1340,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "Ḱ      \n" +
                 "       \n" +
@@ -1329,7 +1368,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "Ḃ      \n" +
                 "K      \n" +
@@ -1359,7 +1399,8 @@ public class MultiplayerSystemTest {
         field.tick();
 
         //then
-        String expected = "■■■■■■■\n" +
+        String expected =
+                "■■■■■■■\n" +
                 "       \n" +
                 "       \n" +
                 "K      \n" +

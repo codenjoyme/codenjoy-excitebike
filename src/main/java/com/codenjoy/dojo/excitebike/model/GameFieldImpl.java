@@ -189,8 +189,10 @@ public class GameFieldImpl implements GameField {
     public Optional<Bike> getEnemyBike(int x, int y, Player player) {
         return player != null ?
                 players.parallelStream()
+                        .filter(p -> p.getHero() != null
+                                && !p.equals(player)
+                                && p.getHero().itsMe(x, y))
                         .map(Player::getHero)
-                        .filter(bike -> bike != null && !bike.getPlayerName().equals(player.getHero().getPlayerName()) && bike.itsMe(x, y))
                         .findFirst()
                 : Optional.empty();
     }
@@ -316,7 +318,7 @@ public class GameFieldImpl implements GameField {
     @Override
     public Player getPlayerOfBike(Bike bike) {
         return players.parallelStream()
-                .filter(p -> p.getHero() != null && p.getHero().getPlayerName().equals(bike.getPlayerName()))
+                .filter(p -> p.getHero() == bike)
                 .findFirst()
                 .orElse(null);
     }

@@ -58,11 +58,7 @@ public class TestUtils {
     }
 
     private static Bike newDefaultBike(Point point) {
-        return new Bike(point, getPlayerName());
-    }
-
-    private static String getPlayerName() {
-        return "player" + new Random().nextLong();
+        return new Bike(point);
     }
 
     private static <T> List<T> parseAndConvertElements(String map, int xSize, Function<Point, T> elementConstructor, CharElements... elements) {
@@ -84,7 +80,7 @@ public class TestUtils {
     }
 
     public static Player getPlayer(Bike bike) {
-        Player player = new Player(mock(EventListener.class), getPlayerName());
+        Player player = new Player(mock(EventListener.class));
         player.setHero(bike);
         return player;
     }

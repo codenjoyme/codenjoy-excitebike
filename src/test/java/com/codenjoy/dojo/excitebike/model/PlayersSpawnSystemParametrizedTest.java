@@ -335,7 +335,7 @@ public class PlayersSpawnSystemParametrizedTest {
     }
 
     private Game createNewGame(GameField field, PrinterFactory factory) {
-        Game game = new Single(new Player(mock(EventListener.class), "player" + new Random().nextInt()), factory);
+        Game game = new Single(new Player(mock(EventListener.class)), factory);
         game.on(field);
         game.newGame();
         return game;
