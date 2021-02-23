@@ -41,7 +41,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GameFieldImplSystemTest {
+public class GameTest {
 
     private GameFieldImpl game;
     private Bike bike;

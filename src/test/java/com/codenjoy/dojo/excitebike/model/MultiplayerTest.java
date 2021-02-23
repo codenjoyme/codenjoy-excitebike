@@ -46,7 +46,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class MultiplayerSystemTest {
+public class MultiplayerTest {
 
     private Game game1;
     private EventListener eventListenerSpy1 = spy(EventListener.class);

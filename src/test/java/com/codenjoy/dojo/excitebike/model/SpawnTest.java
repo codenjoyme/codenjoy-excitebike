@@ -50,13 +50,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
-public class PlayersSpawnSystemParametrizedTest {
+public class SpawnTest {
 
     private String init;
     private String expected;
     private int newPlayerNumberAfterInit;
 
-    public PlayersSpawnSystemParametrizedTest(String name, int newPlayerNumberAfterInit, String init, String expected) {
+    public SpawnTest(String name, int newPlayerNumberAfterInit, String init, String expected) {
         this.newPlayerNumberAfterInit = newPlayerNumberAfterInit;
         this.init = init;
         this.expected = expected;

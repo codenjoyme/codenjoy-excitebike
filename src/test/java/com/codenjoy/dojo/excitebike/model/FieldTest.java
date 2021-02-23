@@ -45,7 +45,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GameFieldImplTest {
+public class FieldTest {
 
     private GameField gameField;
     private MapParser mapParser;
