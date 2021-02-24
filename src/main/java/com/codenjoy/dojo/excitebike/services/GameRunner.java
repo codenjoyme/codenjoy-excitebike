@@ -48,7 +48,7 @@ import com.google.common.collect.ObjectArrays;
 
 import static com.codenjoy.dojo.services.settings.SimpleParameter.v;
 
-public class GameRunner extends AbstractGameType implements GameType {
+public class GameRunner extends AbstractGameType<GameSettings> {
 
     //-----------------------------------
     // Don't forget to adjust excitebike.js if you change those x/y parameters:
@@ -56,7 +56,11 @@ public class GameRunner extends AbstractGameType implements GameType {
     private static final int Y_SIZE = 12;
     //-----------------------------------
     private final MapParser mapParser;
-    private SettingsHandler settingsHandler;
+
+    @Override
+    public GameSettings getSettings() {
+        return new GameSettings();
+    }
 
     public GameRunner() {
         mapParser = new MapParserImpl(getMap(), X_SIZE);
@@ -79,23 +83,17 @@ public class GameRunner extends AbstractGameType implements GameType {
     }
 
     @Override
-    public PlayerScores getPlayerScores(Object score) {
-        return new Scores((Integer) score, settingsHandler);
+    public PlayerScores getPlayerScores(Object score, GameSettings settings) {
+        return new Scores((Integer) score, settings);
     }
 
     @Override
-    public GameField createGame(int levelNumber) {
-        return new GameFieldImpl(mapParser, getDice(), settingsHandler);
+    public GameField createGame(int levelNumber, GameSettings settings) {
+        return new GameFieldImpl(mapParser, getDice(), settings);
     }
 
     @Override
-    protected SettingsImpl createSettings() {
-        settingsHandler = new SettingsHandler();
-        return settingsHandler.getSettings();
-    }
-
-    @Override
-    public Parameter<Integer> getBoardSize() {
+    public Parameter<Integer> getBoardSize(GameSettings settings) {
         return v(X_SIZE);
     }
 
@@ -122,12 +120,12 @@ public class GameRunner extends AbstractGameType implements GameType {
     }
 
     @Override
-    public MultiplayerType getMultiplayerType() {
+    public MultiplayerType getMultiplayerType(GameSettings settings) {
         return MultiplayerType.MULTIPLE;
     }
 
     @Override
-    public GamePlayer createPlayer(EventListener listener, String playerId) {
-        return new Player(listener);
+    public GamePlayer createPlayer(EventListener listener, String playerId, GameSettings settings) {
+        return new Player(listener, settings);
     }
 }

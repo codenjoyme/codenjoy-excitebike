@@ -25,7 +25,7 @@ package com.codenjoy.dojo.excitebike.model;
 
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.Events;
-import com.codenjoy.dojo.excitebike.services.SettingsHandler;
+import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.excitebike.services.parse.MapParserImpl;
 import com.codenjoy.dojo.services.Dice;
@@ -39,7 +39,7 @@ import org.junit.Test;
 import static com.codenjoy.dojo.excitebike.TestUtils.ticks;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
@@ -58,7 +58,8 @@ public class MultiplayerTest {
     private GameFieldImpl field;
 
     private void init() {
-        MapParser mapParser = new MapParserImpl("■■■■■■■" +
+        MapParser mapParser = new MapParserImpl(
+                "■■■■■■■" +
                 "       " +
                 "       " +
                 "       " +
@@ -67,16 +68,17 @@ public class MultiplayerTest {
                 "■■■■■■■", 7);
 
         dice = mock(Dice.class);
-        field = new GameFieldImpl(mapParser, dice, new SettingsHandler());
+        GameSettings settings = new GameSettings();
+        field = new GameFieldImpl(mapParser, dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
 
-        game1 = new Single(new Player(eventListenerSpy1), factory);
+        game1 = new Single(new Player(eventListenerSpy1, settings), factory);
         game1.on(field);
 
-        game2 = new Single(new Player(eventListenerSpy2), factory);
+        game2 = new Single(new Player(eventListenerSpy2, settings), factory);
         game2.on(field);
 
-        game3 = new Single(new Player(eventListenerSpy3), factory);
+        game3 = new Single(new Player(eventListenerSpy3, settings), factory);
         game3.on(field);
 
         game1.newGame();

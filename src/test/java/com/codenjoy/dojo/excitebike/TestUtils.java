@@ -27,6 +27,7 @@ import com.codenjoy.dojo.excitebike.model.GameFieldImpl;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.model.elements.BikeType;
+import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
@@ -79,8 +80,8 @@ public class TestUtils {
         return (String) new PrinterFactoryImpl().getPrinter(gameField.reader(), player).print();
     }
 
-    public static Player getPlayer(Bike bike) {
-        Player player = new Player(mock(EventListener.class));
+    public static Player getPlayer(Bike bike, GameSettings settings) {
+        Player player = new Player(mock(EventListener.class), settings);
         player.setHero(bike);
         return player;
     }

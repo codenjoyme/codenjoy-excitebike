@@ -25,15 +25,18 @@ package com.codenjoy.dojo.excitebike.services;
 
 import com.codenjoy.dojo.services.PlayerScores;
 
+import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.LOOSE_PENALTY;
+import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.WIN_SCORE;
+
 public class Scores implements PlayerScores {
 
-    private final SettingsHandler settingsHandler;
+    private GameSettings settings;
 
     private volatile int score;
 
-    public Scores(int startScore, SettingsHandler settingsHandler) {
+    public Scores(int startScore, GameSettings settings) {
         this.score = startScore;
-        this.settingsHandler = settingsHandler;
+        this.settings = settings;
     }
 
     @Override
@@ -49,10 +52,10 @@ public class Scores implements PlayerScores {
     @Override
     public void event(Object event) {
         if (event.equals(Events.WIN)) {
-            score += settingsHandler.getWinScore();
+            score += settings.integer(WIN_SCORE);
         }
         if (event.equals(Events.LOSE)) {
-            score -= settingsHandler.getLoseScore();
+            score -= settings.integer(LOOSE_PENALTY);
         }
         score = Math.max(0, score);
     }

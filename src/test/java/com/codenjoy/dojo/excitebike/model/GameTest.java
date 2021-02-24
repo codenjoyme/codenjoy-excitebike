@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.model;
 
 
 import com.codenjoy.dojo.excitebike.model.items.Bike;
-import com.codenjoy.dojo.excitebike.services.SettingsHandler;
+import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParserImpl;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
@@ -47,16 +47,18 @@ public class GameTest {
     private Bike bike;
     private Dice dice;
     private Player player;
+    private GameSettings settings;
 
     @Before
     public void setup() {
         dice = mock(Dice.class);
+        settings = new GameSettings();
     }
 
     private void init(String board, int xSize) {
         Bike bike = parseBikes(board, xSize).get(0);
-        game = new GameFieldImpl(new MapParserImpl(board, xSize), dice, new SettingsHandler());
-        player = new Player(mock(EventListener.class));
+        game = new GameFieldImpl(new MapParserImpl(board, xSize), dice, settings);
+        player = new Player(mock(EventListener.class), settings);
         game.newGame(player);
         player.setHero(bike);
         bike.init(game);

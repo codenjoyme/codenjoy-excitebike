@@ -26,7 +26,7 @@ package com.codenjoy.dojo.excitebike.model;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.model.items.Fence;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.excitebike.services.SettingsHandler;
+import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.generation.GenerationOption;
 import com.codenjoy.dojo.excitebike.services.generation.TrackStepGenerator;
 import com.codenjoy.dojo.excitebike.services.generation.WeightedRandomBag;
@@ -38,27 +38,11 @@ import com.codenjoy.dojo.services.Tickable;
 import com.codenjoy.dojo.services.printer.BoardReader;
 import com.codenjoy.dojo.services.printer.CharElements;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.ACCELERATOR;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.INHIBITOR;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.LINE_CHANGER_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.OBSTACLE;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_TOP;
+import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.*;
+import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 import static java.util.stream.Collectors.toList;
 
@@ -70,12 +54,12 @@ public class GameFieldImpl implements GameField {
     private final List<Player> players = new LinkedList<>();
     private final List<Fence> fences;
     private final TrackStepGenerator trackStepGenerator;
-    private final SettingsHandler settingsHandler;
+    private final GameSettings settings;
     private final Dice dice;
 
-    public GameFieldImpl(MapParser mapParser, Dice dice, SettingsHandler settingsHandler) {
+    public GameFieldImpl(MapParser mapParser, Dice dice, GameSettings settings) {
         this.mapParser = mapParser;
-        this.settingsHandler = settingsHandler;
+        this.settings = settings;
         this.dice = dice;
 
         fences = mapParser.getFences();
@@ -304,7 +288,7 @@ public class GameFieldImpl implements GameField {
     }
 
     private void generateNewTrackStep() {
-        WeightedRandomBag<GenerationOption> weightedRandomBag = settingsHandler.getWeightedRandomBag();
+        WeightedRandomBag<GenerationOption> weightedRandomBag = settings.getWeightedRandomBag();
         Map<? extends CharElements, List<Shiftable>> generated = trackStepGenerator.generate(weightedRandomBag);
         if (generated != null) {
             generated.forEach((key, elements) -> allShiftableElements.merge(key, elements, (currentElements, newElements) -> {
@@ -326,5 +310,10 @@ public class GameFieldImpl implements GameField {
     @Override
     public void removeFallenBike(Bike bike) {
         allShiftableElements.get(BIKE_FALLEN).remove(bike);
+    }
+
+    @Override
+    public GameSettings settings() {
+        return settings;
     }
 }

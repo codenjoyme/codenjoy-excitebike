@@ -27,6 +27,7 @@ import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.services.Events;
 import com.codenjoy.dojo.excitebike.model.elements.BikeType;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
+import com.codenjoy.dojo.excitebike.services.GameSettings;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,6 +42,7 @@ public class BikeTest {
 
     private Bike bike;
     private GameField gameField;
+    private GameSettings settings;
 
     @Before
     public void init() {
@@ -48,6 +50,7 @@ public class BikeTest {
         gameField = mock(GameField.class);
         when(gameField.xSize()).thenReturn(10);
         bike.init(gameField);
+        settings = new GameSettings();
     }
 
     @Test
@@ -95,7 +98,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(6));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_FALLEN_AT_FENCE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_FALLEN_AT_FENCE));
     }
 
     @Test
@@ -116,7 +119,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(6));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_KILLED_BIKE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_KILLED_BIKE));
     }
 
     @Test
@@ -150,7 +153,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(0));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_FALLEN_AT_FENCE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_FALLEN_AT_FENCE));
     }
 
     @Test
@@ -171,7 +174,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(4));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_KILLED_BIKE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_KILLED_BIKE));
     }
 
     @Test
@@ -186,7 +189,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(5));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_ACCELERATOR));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_ACCELERATOR));
     }
 
     @Test
@@ -202,7 +205,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(5));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_ACCELERATOR));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_ACCELERATOR));
     }
 
     @Test
@@ -216,7 +219,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(5));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_INHIBITOR));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_INHIBITOR));
     }
 
     @Test
@@ -231,7 +234,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(4));
         assertThat(bike.getY(), is(5));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_INHIBITOR));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_INHIBITOR));
     }
 
     @Test
@@ -247,7 +250,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(4));
         assertThat(bike.getY(), is(5));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE));
     }
 
     @Test
@@ -276,7 +279,7 @@ public class BikeTest {
         bike.tick();
 
         //then
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_FALLEN_AT_OBSTACLE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_FALLEN_AT_OBSTACLE));
     }
 
     @Test
@@ -323,7 +326,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(5));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_LINE_CHANGER_UP));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_LINE_CHANGER_UP));
     }
 
     @Test
@@ -342,7 +345,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(6));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_FALLEN_AT_FENCE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_FALLEN_AT_FENCE));
     }
 
     @Test
@@ -432,7 +435,7 @@ public class BikeTest {
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(4));
         assertThat(bike.isAlive(), is(false));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_FALLEN_AT_FENCE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_FALLEN_AT_FENCE));
     }
 
     @Test
@@ -451,7 +454,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(5));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_LINE_CHANGER_DOWN));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_LINE_CHANGER_DOWN));
     }
 
     @Test
@@ -472,7 +475,7 @@ public class BikeTest {
         //then
         assertThat(bike.getX(), is(5));
         assertThat(bike.getY(), is(4));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_KILLED_BIKE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_KILLED_BIKE));
     }
 
     @Test
@@ -517,7 +520,7 @@ public class BikeTest {
         assertThat(bike.getY(), is(4));
         assertThat(enemy.getX(), is(5));
         assertThat(enemy.getY(), is(4));
-        assertThat(bike.state(getPlayer(bike)), is(BikeType.BIKE_AT_KILLED_BIKE));
+        assertThat(bike.state(getPlayer(bike, settings)), is(BikeType.BIKE_AT_KILLED_BIKE));
     }
 
     @Test
@@ -540,8 +543,8 @@ public class BikeTest {
         assertThat(bike.getX(), is(6));
         assertThat(bike.getY(), is(5));
         assertThat(bike.isAlive(), is(false));
-        assertThat(enemy.state(getPlayer(bike)), is(BikeType.OTHER_BIKE_AT_KILLED_BIKE));
-        assertThat(enemy.state(getPlayer(enemy)), is(BikeType.BIKE_AT_KILLED_BIKE));
+        assertThat(enemy.state(getPlayer(bike, settings)), is(BikeType.OTHER_BIKE_AT_KILLED_BIKE));
+        assertThat(enemy.state(getPlayer(enemy, settings)), is(BikeType.BIKE_AT_KILLED_BIKE));
     }
 
     @Test

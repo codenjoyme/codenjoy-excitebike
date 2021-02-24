@@ -25,7 +25,7 @@ package com.codenjoy.dojo.excitebike.model.items;
 import com.codenjoy.dojo.excitebike.model.GameFieldImpl;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
-import com.codenjoy.dojo.excitebike.services.SettingsHandler;
+import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
@@ -68,8 +68,9 @@ public class SpawnElementsSystemParameterizedTest {
         MapParser mapParser = mock(MapParser.class);
         when(mapParser.getXSize()).thenReturn(5);
         when(mapParser.getYSize()).thenReturn(5);
-        game = new GameFieldImpl(mapParser, dice, new SettingsHandler());
-        player = new Player(mock(EventListener.class));
+        GameSettings settings = new GameSettings();
+        game = new GameFieldImpl(mapParser, dice, settings);
+        player = new Player(mock(EventListener.class), settings);
         game.newGame(player);
     }
 
