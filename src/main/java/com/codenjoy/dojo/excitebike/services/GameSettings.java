@@ -58,12 +58,12 @@ public final class GameSettings extends SettingsImpl implements SettingsReader<G
     }
 
     public GameSettings() {
-        addEditBox(GENERATION_WEIGHT_NOTHING.key()).type(Integer.class).def(10);
-        addEditBox(GENERATION_WEIGHT_SINGLE_ELEMENT.key()).type(Integer.class).def(5);
-        addEditBox(GENERATION_WEIGHT_SPRINGBOARD.key()).type(Integer.class).def(2);
-        addEditBox(GENERATION_WEIGHT_OBSTACLE_CHAIN.key()).type(Integer.class).def(2);
-        addEditBox(WIN_SCORE.key()).type(Integer.class).def(1);
-        addEditBox(LOOSE_PENALTY.key()).type(Integer.class).def(1);
+        integer(GENERATION_WEIGHT_NOTHING, 10);
+        integer(GENERATION_WEIGHT_SINGLE_ELEMENT, 5);
+        integer(GENERATION_WEIGHT_SPRINGBOARD, 2);
+        integer(GENERATION_WEIGHT_OBSTACLE_CHAIN, 2);
+        integer(WIN_SCORE, 1);
+        integer(LOOSE_PENALTY, 1);
     }
 
     public WeightedRandomBag<GenerationOption> getWeightedRandomBag() {
