@@ -31,7 +31,7 @@ window.onload = function(){
     }
 
     let hideEmptyCanvasPart = function(canvasElement) {
-        var xSize = game.boardSize;
+        var xSize = setup.boardSize;
         canvasElement.style.bottom = xSize * 50 - ySize * 50 + 'px';
         canvasElement.style.height = xSize * 50 + 'px';
 
@@ -46,13 +46,13 @@ window.onload = function(){
     let injectCssWithUiMods = function() {
         let divCanvas = document.getElementsByClassName('player-canvas');
         if(divCanvas!=null && document.getElementsByTagName('canvas').length>1){
-            let canvasElement = document.getElementById(game.playerId);
+            let canvasElement = document.getElementById(setup.playerId);
             if(canvasElement==null){
                 canvasElement = document.getElementsByTagName('canvas')[0];
             }
             document.getElementsByTagName("head")[0].insertAdjacentHTML(
                      "beforeend",
-                     "<link rel=\"stylesheet\" href=\""+document.location.origin+game.contextPath+"/resources/css/"+game.gameName+".css"+"\" />");
+                     "<link rel=\"stylesheet\" href=\"" + document.location.origin + setup.contextPath + "/resources/css/" + setup.game + ".css" + "\" />");
             initTribune(canvasElement);
             hideEmptyCanvasPart(canvasElement);
         } else {
