@@ -28,6 +28,9 @@ import com.codenjoy.dojo.excitebike.services.generation.WeightedRandomBag;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
 import com.codenjoy.dojo.services.settings.SettingsReader;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.*;
 import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.*;
 import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.OBSTACLE_CHAIN;
@@ -55,6 +58,11 @@ public final class GameSettings extends SettingsImpl implements SettingsReader<G
         public String key() {
             return key;
         }
+    }
+
+    @Override
+    public List<Key> allKeys() {
+        return Arrays.asList(Keys.values());
     }
 
     public GameSettings() {
