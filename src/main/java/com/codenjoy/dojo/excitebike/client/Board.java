@@ -24,6 +24,7 @@ package com.codenjoy.dojo.excitebike.client;
 
 
 import com.codenjoy.dojo.client.AbstractBoard;
+import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.excitebike.model.elements.BikeType;
 import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
 import com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType;
@@ -31,9 +32,7 @@ import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.printer.CharElements;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -46,23 +45,33 @@ public class Board extends AbstractBoard<CharElements> {
     private static final String OTHER_BIKE_PREFIX = "OTHER";
     private static final String FALLEN_BIKE_SUFFIX = "FALLEN";
 
+    // optimized for performance
+    public static final BikeType[] BIKE_TYPES = Arrays.stream(BikeType.values())
+            .filter(v -> !v.name().contains(OTHER_BIKE_PREFIX))
+            .collect(Collectors.toList())
+            .toArray(new BikeType[]{});
+
+    // optimized for performance
+    public static final Map<Character, CharElements> ALL_ELEMENTS = new HashMap<>() {{
+        Arrays.stream(GameElementType.values())
+                .forEach(el -> put(el.ch(), el));
+        Arrays.stream(SpringboardElementType.values())
+                .forEach(el -> put(el.ch(), el));
+        Arrays.stream(BikeType.values())
+                .forEach(el -> put(el.ch(), el));
+    }};
+
     @Override
     public CharElements valueOf(char ch) {
-        return new LinkedList<CharElements>(){{
-            addAll(Arrays.asList(GameElementType.values()));
-            addAll(Arrays.asList(SpringboardElementType.values()));
-            addAll(Arrays.asList(BikeType.values()));
-        }}.stream()
-                .filter(e -> e.ch() == ch)
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("No such element for " + ch));
+        CharElements result = ALL_ELEMENTS.get(ch);
+        if (result == null) {
+            throw new IllegalArgumentException("No such element for " + ch);
+        }
+        return result;
     }
 
     public Point getMe() {
-        return get(Arrays.stream(BikeType.values())
-                .filter(v -> !v.name().contains(OTHER_BIKE_PREFIX))
-                .collect(Collectors.toList())
-                .toArray(new BikeType[]{}))
+        return get(BIKE_TYPES)
                 .stream()
                 .findFirst()
                 .orElse(null);
