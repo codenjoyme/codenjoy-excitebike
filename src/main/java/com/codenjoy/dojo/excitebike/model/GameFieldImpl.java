@@ -255,7 +255,7 @@ public class GameFieldImpl implements GameField {
 
     @Override
     public BoardReader reader() {
-        return new BoardReader() {
+        return new BoardReader<Player>() {
 
             @Override
             public int size() {
@@ -263,7 +263,7 @@ public class GameFieldImpl implements GameField {
             }
 
             @Override
-            public Iterable<? extends Point> elements() {
+            public Iterable<? extends Point> elements(Player player) {
                 return new LinkedList<Point>() {{
                     addAll(GameFieldImpl.this.getAliveBikes());
                     addAll(GameFieldImpl.this.allShiftableElements.get(BIKE_FALLEN));
