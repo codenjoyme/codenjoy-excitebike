@@ -45,7 +45,7 @@ public class MapParserImpl implements MapParser {
     private LengthToXY xy;
 
     public MapParserImpl(String map, int xSize) {
-        this.map = map;
+        this.map = LevelUtils.clear(map);
         this.xSize = xSize;
         this.xy = new LengthToXY(xSize){
             @Override
