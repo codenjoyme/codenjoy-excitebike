@@ -41,7 +41,7 @@ public final class GameSettings extends SettingsImpl implements SettingsReader<G
     public enum Keys implements Key {
 
         WIN_SCORE("Win score"),
-        LOOSE_PENALTY("Loose penalty"),
+        LOSE_PENALTY("Lose penalty"),
         GENERATION_WEIGHT_NOTHING("Spawn weight: nothing"),
         GENERATION_WEIGHT_SINGLE_ELEMENT("Spawn weight: single element"),
         GENERATION_WEIGHT_SPRINGBOARD("Spawn weight: springboard"),
@@ -71,7 +71,7 @@ public final class GameSettings extends SettingsImpl implements SettingsReader<G
         integer(GENERATION_WEIGHT_SPRINGBOARD, 2);
         integer(GENERATION_WEIGHT_OBSTACLE_CHAIN, 2);
         integer(WIN_SCORE, 1);
-        integer(LOOSE_PENALTY, 1);
+        integer(LOSE_PENALTY, 1);
     }
 
     public WeightedRandomBag<GenerationOption> getWeightedRandomBag() {

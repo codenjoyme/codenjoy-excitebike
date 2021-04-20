@@ -25,7 +25,7 @@ package com.codenjoy.dojo.excitebike.services;
 
 import com.codenjoy.dojo.services.PlayerScores;
 
-import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.LOOSE_PENALTY;
+import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.LOSE_PENALTY;
 import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.WIN_SCORE;
 
 public class Scores implements PlayerScores {
@@ -55,7 +55,7 @@ public class Scores implements PlayerScores {
             score += settings.integer(WIN_SCORE);
         }
         if (event.equals(Events.LOSE)) {
-            score -= settings.integer(LOOSE_PENALTY);
+            score -= settings.integer(LOSE_PENALTY);
         }
         score = Math.max(0, score);
     }
