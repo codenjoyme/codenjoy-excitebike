@@ -49,7 +49,7 @@ public class Player extends GamePlayer<Bike, Field> {
     }
 
     @Override
-    public Bike initHero(Point pt) {
+    public Bike createHero(Point pt) {
         return new Bike(pt);
     }
 
