@@ -52,18 +52,22 @@ public class Board extends AbstractBoard<CharElements> {
             .toArray(new BikeType[]{});
 
     // optimized for performance
-    public static final Map<Character, CharElements> ALL_ELEMENTS = new HashMap<>() {{
-        Arrays.stream(GameElementType.values())
-                .forEach(el -> put(el.ch(), el));
-        Arrays.stream(SpringboardElementType.values())
-                .forEach(el -> put(el.ch(), el));
-        Arrays.stream(BikeType.values())
-                .forEach(el -> put(el.ch(), el));
-    }};
+    // TODO заменить символы в Elements и укоротить этот массив до 255
+    public static CharElements[] ALL_ELEMENTS; static {
+        if (ALL_ELEMENTS == null) {
+            ALL_ELEMENTS = new CharElements[10000];
+            Arrays.stream(GameElementType.values())
+                    .forEach(el -> ALL_ELEMENTS[el.ch()] = el);
+            Arrays.stream(SpringboardElementType.values())
+                    .forEach(el -> ALL_ELEMENTS[el.ch()] = el);
+            Arrays.stream(BikeType.values())
+                    .forEach(el -> ALL_ELEMENTS[el.ch()] = el);
+        }
+    }
 
     @Override
     public CharElements valueOf(char ch) {
-        CharElements result = ALL_ELEMENTS.get(ch);
+        CharElements result = ALL_ELEMENTS[ch];
         if (result == null) {
             throw new IllegalArgumentException("No such element for " + ch);
         }
