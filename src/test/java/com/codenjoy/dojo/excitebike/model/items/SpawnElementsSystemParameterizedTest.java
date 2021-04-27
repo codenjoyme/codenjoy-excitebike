@@ -22,7 +22,7 @@ package com.codenjoy.dojo.excitebike.model.items;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.GameFieldImpl;
+import com.codenjoy.dojo.excitebike.model.Excitebike;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
@@ -50,7 +50,7 @@ import static org.mockito.Mockito.when;
 public class SpawnElementsSystemParameterizedTest {
     private GameElementType gameElementType;
     private Player player;
-    private GameFieldImpl game;
+    private Excitebike game;
     private Dice dice;
 
     public SpawnElementsSystemParameterizedTest(GameElementType gameElementType) {
@@ -69,7 +69,7 @@ public class SpawnElementsSystemParameterizedTest {
         when(mapParser.getXSize()).thenReturn(5);
         when(mapParser.getYSize()).thenReturn(5);
         GameSettings settings = new GameSettings();
-        game = new GameFieldImpl(mapParser, dice, settings);
+        game = new Excitebike(mapParser, dice, settings);
         player = new Player(mock(EventListener.class), settings);
         game.newGame(player);
     }

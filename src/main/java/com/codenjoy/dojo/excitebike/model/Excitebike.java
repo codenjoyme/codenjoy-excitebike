@@ -47,37 +47,37 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
 import static java.util.stream.Collectors.toList;
 
 
-public class GameFieldImpl implements GameField {
+public class Excitebike implements Field {
 
     private final MapParser mapParser;
-    private final Map<CharElements, List<Shiftable>> allShiftableElements = new HashMap<>();
+    private final Map<CharElements, List<Shiftable>> elements = new HashMap<>();
     private final List<Player> players = new LinkedList<>();
     private final List<Fence> fences;
     private final TrackStepGenerator trackStepGenerator;
     private final GameSettings settings;
     private final Dice dice;
 
-    public GameFieldImpl(MapParser mapParser, Dice dice, GameSettings settings) {
+    public Excitebike(MapParser mapParser, Dice dice, GameSettings settings) {
         this.mapParser = mapParser;
         this.settings = settings;
         this.dice = dice;
 
         fences = mapParser.getFences();
 
-        allShiftableElements.put(ACCELERATOR, new ArrayList<>(mapParser.getAccelerators()));
-        allShiftableElements.put(INHIBITOR, new ArrayList<>(mapParser.getInhibitors()));
-        allShiftableElements.put(OBSTACLE, new ArrayList<>(mapParser.getObstacles()));
-        allShiftableElements.put(LINE_CHANGER_UP, new ArrayList<>(mapParser.getLineUpChangers()));
-        allShiftableElements.put(LINE_CHANGER_DOWN, new ArrayList<>(mapParser.getLineDownChangers()));
-        allShiftableElements.put(BIKE_FALLEN, new ArrayList<>());
+        elements.put(ACCELERATOR, new ArrayList<>(mapParser.getAccelerators()));
+        elements.put(INHIBITOR, new ArrayList<>(mapParser.getInhibitors()));
+        elements.put(OBSTACLE, new ArrayList<>(mapParser.getObstacles()));
+        elements.put(LINE_CHANGER_UP, new ArrayList<>(mapParser.getLineUpChangers()));
+        elements.put(LINE_CHANGER_DOWN, new ArrayList<>(mapParser.getLineDownChangers()));
+        elements.put(BIKE_FALLEN, new ArrayList<>());
 
-        allShiftableElements.put(SPRINGBOARD_LEFT_UP, new ArrayList<>(mapParser.getSpringboardLeftUpElements()));
-        allShiftableElements.put(SPRINGBOARD_RIGHT, new ArrayList<>(mapParser.getSpringboardLightElements()));
-        allShiftableElements.put(SPRINGBOARD_LEFT_DOWN, new ArrayList<>(mapParser.getSpringboardLeftDownElements()));
-        allShiftableElements.put(SPRINGBOARD_RIGHT_UP, new ArrayList<>(mapParser.getSpringboardRightUpElements()));
-        allShiftableElements.put(SPRINGBOARD_LEFT, new ArrayList<>(mapParser.getSpringboardDarkElements()));
-        allShiftableElements.put(SPRINGBOARD_RIGHT_DOWN, new ArrayList<>(mapParser.getSpringboardRightDownElements()));
-        allShiftableElements.put(SPRINGBOARD_TOP, new ArrayList<>(mapParser.getSpringboardNoneElements()));
+        elements.put(SPRINGBOARD_LEFT_UP, new ArrayList<>(mapParser.getSpringboardLeftUpElements()));
+        elements.put(SPRINGBOARD_RIGHT, new ArrayList<>(mapParser.getSpringboardLightElements()));
+        elements.put(SPRINGBOARD_LEFT_DOWN, new ArrayList<>(mapParser.getSpringboardLeftDownElements()));
+        elements.put(SPRINGBOARD_RIGHT_UP, new ArrayList<>(mapParser.getSpringboardRightUpElements()));
+        elements.put(SPRINGBOARD_LEFT, new ArrayList<>(mapParser.getSpringboardDarkElements()));
+        elements.put(SPRINGBOARD_RIGHT_DOWN, new ArrayList<>(mapParser.getSpringboardRightDownElements()));
+        elements.put(SPRINGBOARD_TOP, new ArrayList<>(mapParser.getSpringboardNoneElements()));
 
         this.trackStepGenerator = new TrackStepGenerator(dice, mapParser.getXSize(), mapParser.getYSize());
     }
@@ -95,10 +95,11 @@ public class GameFieldImpl implements GameField {
                 .sorted((o1, o2) -> dice.next(3) - 1)
                 .forEach(player -> player.getHero().tick());
         players.forEach(player -> player.getHero().resetTicked());
+        // TODO #4e3 тут не надо этого делать, фреймворк сам создаст новый байк, а не игра
         players.stream()
                 .filter(player -> player.getHero().getX() < 0)
                 .forEach(player -> player.newHero(this));
-        allShiftableElements.put(BIKE_FALLEN, players.stream()
+        elements.put(BIKE_FALLEN, players.stream()
                 .map(Player::getHero)
                 .filter(h -> h != null && !h.isAlive())
                 .collect(toList())
@@ -121,52 +122,52 @@ public class GameFieldImpl implements GameField {
 
     @Override
     public boolean isInhibitor(int x, int y) {
-        return allShiftableElements.get(INHIBITOR).contains(pt(x, y));
+        return elements.get(INHIBITOR).contains(pt(x, y));
     }
 
     @Override
     public boolean isAccelerator(int x, int y) {
-        return allShiftableElements.get(ACCELERATOR).contains(pt(x, y));
+        return elements.get(ACCELERATOR).contains(pt(x, y));
     }
 
     @Override
     public boolean isObstacle(int x, int y) {
-        return allShiftableElements.get(OBSTACLE).contains(pt(x, y));
+        return elements.get(OBSTACLE).contains(pt(x, y));
     }
 
     @Override
     public boolean isUpLineChanger(int x, int y) {
-        return allShiftableElements.get(LINE_CHANGER_UP).contains(pt(x, y));
+        return elements.get(LINE_CHANGER_UP).contains(pt(x, y));
     }
 
     @Override
     public boolean isDownLineChanger(int x, int y) {
-        return allShiftableElements.get(LINE_CHANGER_DOWN).contains(pt(x, y));
+        return elements.get(LINE_CHANGER_DOWN).contains(pt(x, y));
     }
 
     @Override
     public boolean isSpringboardLeftOrDownElement(int x, int y) {
-        return allShiftableElements.get(SPRINGBOARD_LEFT).contains(pt(x, y));
+        return elements.get(SPRINGBOARD_LEFT).contains(pt(x, y));
     }
 
     @Override
     public boolean isSpringboardRightElement(int x, int y) {
-        return allShiftableElements.get(SPRINGBOARD_RIGHT).contains(pt(x, y));
+        return elements.get(SPRINGBOARD_RIGHT).contains(pt(x, y));
     }
 
     @Override
     public boolean isSpringboardLeftDownElement(int x, int y) {
-        return allShiftableElements.get(SPRINGBOARD_LEFT_DOWN).contains(pt(x, y));
+        return elements.get(SPRINGBOARD_LEFT_DOWN).contains(pt(x, y));
     }
 
     @Override
     public boolean isSpringboardRightDownElement(int x, int y) {
-        return allShiftableElements.get(SPRINGBOARD_RIGHT_DOWN).contains(pt(x, y));
+        return elements.get(SPRINGBOARD_RIGHT_DOWN).contains(pt(x, y));
     }
 
     @Override
     public boolean isSpringboardTopElement(int x, int y) {
-        return allShiftableElements.get(SPRINGBOARD_TOP).contains(pt(x, y));
+        return elements.get(SPRINGBOARD_TOP).contains(pt(x, y));
     }
 
     @Override
@@ -182,18 +183,12 @@ public class GameFieldImpl implements GameField {
     }
 
     @Override
-    public Point findFreePosition() {
-        Point result = findFreePosition(true);
-        if (result == null) {
-            result = findFreePosition(false);
-        }
-        if (result == null) {
-            throw new RuntimeException("Game field is full, can't add more bikes!");
-        }
-        return result;
+    public Optional<Point> freeRandom() {
+        return findFreePosition(true)
+                .or(() -> findFreePosition(false));
     }
 
-    private Point findFreePosition(boolean chessOrder) {
+    private Optional<Point> findFreePosition(boolean chessOrder) {
         for (int xi = 0; xi < mapParser.getXSize(); xi++) {
             for (int yi = 1; yi < mapParser.getYSize() - 1; yi++) {
                 if (chessOrder && (even(xi) && even(yi) || !even(xi) && !even(yi))) {
@@ -201,13 +196,13 @@ public class GameFieldImpl implements GameField {
                 }
                 Point lowestPointAtColumn = new PointImpl(xi, 1);
                 boolean atSpringboard = pointAtSpringboard(lowestPointAtColumn);
-                Point spawnPlaceCandidate = new PointImpl(xi, atSpringboard ? yi + 1 : yi);
-                if (isFree(spawnPlaceCandidate)) {
-                    return spawnPlaceCandidate;
+                Point pt = new PointImpl(xi, atSpringboard ? yi + 1 : yi);
+                if (isFree(pt)) {
+                    return Optional.of(pt);
                 }
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     private boolean even(int number) {
@@ -215,7 +210,7 @@ public class GameFieldImpl implements GameField {
     }
 
     private boolean pointAtSpringboard(Point point) {
-        return allShiftableElements.get(SPRINGBOARD_LEFT).contains(point);
+        return elements.get(SPRINGBOARD_LEFT).contains(point);
     }
 
     private boolean isFree(Point point) {
@@ -223,10 +218,10 @@ public class GameFieldImpl implements GameField {
         return !getAliveBikes().contains(point)
                 && !fences.contains(point)
                 && !fences.contains(nextPoint)
-                && !allShiftableElements.get(OBSTACLE).contains(point)
-                && !allShiftableElements.get(OBSTACLE).contains(nextPoint)
-                && !allShiftableElements.get(BIKE_FALLEN).contains(point)
-                && !allShiftableElements.get(BIKE_FALLEN).contains(nextPoint);
+                && !elements.get(OBSTACLE).contains(point)
+                && !elements.get(OBSTACLE).contains(nextPoint)
+                && !elements.get(BIKE_FALLEN).contains(point)
+                && !elements.get(BIKE_FALLEN).contains(nextPoint);
     }
 
     public List<Bike> getAliveBikes() {
@@ -244,8 +239,8 @@ public class GameFieldImpl implements GameField {
     public void newGame(Player player) {
         if (!players.contains(player)) {
             players.add(player);
-            player.newHero(this);
         }
+        player.newHero(this);
     }
 
     @Override
@@ -265,9 +260,9 @@ public class GameFieldImpl implements GameField {
             @Override
             public Iterable<? extends Point> elements(Player player) {
                 return new LinkedList<Point>() {{
-                    addAll(GameFieldImpl.this.getAliveBikes());
-                    addAll(GameFieldImpl.this.allShiftableElements.get(BIKE_FALLEN));
-                    GameFieldImpl.this.allShiftableElements.entrySet()
+                    addAll(Excitebike.this.getAliveBikes());
+                    addAll(Excitebike.this.elements.get(BIKE_FALLEN));
+                    Excitebike.this.elements.entrySet()
                             .stream()
                             .filter(e -> e.getKey() != BIKE_FALLEN)
                             .forEach(e -> this.addAll(e.getValue()));
@@ -279,7 +274,7 @@ public class GameFieldImpl implements GameField {
 
     private void shiftTrack() {
         final int lastPossibleX = 0;
-        allShiftableElements.values().parallelStream().forEach(
+        elements.values().parallelStream().forEach(
                 pointsOfElementType -> {
                     pointsOfElementType.forEach(Shiftable::shift);
                     pointsOfElementType.removeIf(point -> point.getX() < lastPossibleX);
@@ -291,7 +286,7 @@ public class GameFieldImpl implements GameField {
         WeightedRandomBag<GenerationOption> weightedRandomBag = settings.getWeightedRandomBag();
         Map<? extends CharElements, List<Shiftable>> generated = trackStepGenerator.generate(weightedRandomBag);
         if (generated != null) {
-            generated.forEach((key, elements) -> allShiftableElements.merge(key, elements, (currentElements, newElements) -> {
+            generated.forEach((key, elements) -> this.elements.merge(key, elements, (currentElements, newElements) -> {
                         currentElements.addAll(newElements);
                         return currentElements;
                     }
@@ -309,7 +304,7 @@ public class GameFieldImpl implements GameField {
 
     @Override
     public void removeFallenBike(Bike bike) {
-        allShiftableElements.get(BIKE_FALLEN).remove(bike);
+        elements.get(BIKE_FALLEN).remove(bike);
     }
 
     @Override

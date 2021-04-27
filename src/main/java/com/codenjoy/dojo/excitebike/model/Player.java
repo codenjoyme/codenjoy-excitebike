@@ -28,46 +28,35 @@ import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.multiplayer.GamePlayer;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.Objects;
-import java.util.Random;
-
-public class Player extends GamePlayer<Bike, GameField> {
-
-    private Bike bike;
+public class Player extends GamePlayer<Bike, Field> {
 
     public Player(EventListener listener, GameSettings settings) {
         super(listener, settings);
     }
 
-    public Bike getHero() {
-        return bike;
-    }
-
-    public void setHero(Bike bike) {
-        this.bike = bike;
-    }
-
     @Override
-    public void newHero(GameField gameField) {
-        if (bike != null) {
-            gameField.removeFallenBike(bike);
+    public void newHero(Field field) {
+        if (hero != null) {
+            field.removeFallenBike(hero);
         }
-        Point freePosition = gameField.findFreePosition();
-        bike = new Bike(freePosition);
-        bike.init(gameField);
+        super.newHero(field);
+
+        // TODO #4e3 потому что игра сама берет на себя создание нового Hero тут
+        //      это надо, иначе псоле первого gameOver не будет генериться байк
+        //      в рендомном месте. Но надо убрать
+        hero.manual(false);
     }
 
     @Override
-    public boolean isAlive() {
-        return bike != null && bike.isAlive();
+    public Bike initHero(Point pt) {
+        return new Bike(pt);
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "bike=" + bike +
+                "bike=" + hero +
                 ", listener=" + listener +
                 '}';
     }

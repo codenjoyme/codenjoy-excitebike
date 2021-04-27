@@ -22,8 +22,8 @@ package com.codenjoy.dojo.excitebike;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.GameField;
-import com.codenjoy.dojo.excitebike.model.GameFieldImpl;
+import com.codenjoy.dojo.excitebike.model.Field;
+import com.codenjoy.dojo.excitebike.model.Excitebike;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.model.elements.BikeType;
@@ -37,7 +37,6 @@ import com.codenjoy.dojo.services.printer.PrinterFactoryImpl;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -76,7 +75,7 @@ public class TestUtils {
                 : PointImpl.pt(position % xSize, (map.length() - position - 1) / xSize);
     }
 
-    public static String printField(GameField gameField, Player player) {
+    public static String printField(Field gameField, Player player) {
         return (String) new PrinterFactoryImpl().getPrinter(gameField.reader(), player).print();
     }
 
@@ -86,7 +85,7 @@ public class TestUtils {
         return player;
     }
 
-    public static void ticks(GameFieldImpl game, int number) {
+    public static void ticks(Excitebike game, int number) {
         for (int i = 0; i < number; i++) {
             game.tick();
         }

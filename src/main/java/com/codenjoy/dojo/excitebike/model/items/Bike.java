@@ -23,7 +23,7 @@ package com.codenjoy.dojo.excitebike.model.items;
  */
 
 
-import com.codenjoy.dojo.excitebike.model.GameField;
+import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.model.elements.BikeType;
 import com.codenjoy.dojo.excitebike.services.Events;
@@ -58,7 +58,7 @@ import static com.codenjoy.dojo.services.Direction.LEFT;
 import static com.codenjoy.dojo.services.Direction.RIGHT;
 import static com.codenjoy.dojo.services.Direction.UP;
 
-public class Bike extends PlayerHero<GameField> implements State<BikeType, Player>, Shiftable {
+public class Bike extends PlayerHero<Field> implements State<BikeType, Player>, Shiftable {
 
     public static final String OTHER_BIKE_PREFIX = "OTHER";
     public static final String FALLEN_BIKE_SUFFIX = "FALLEN";
@@ -88,7 +88,7 @@ public class Bike extends PlayerHero<GameField> implements State<BikeType, Playe
     }
 
     @Override
-    public void init(GameField gameField) {
+    public void init(Field gameField) {
         this.field = gameField;
         adjusted = false;
         adjustStateToElement();
@@ -451,6 +451,7 @@ public class Bike extends PlayerHero<GameField> implements State<BikeType, Playe
         return BikeType.valueOf(OTHER_BIKE_PREFIX + "_" + type.name());
     }
 
+    @Override
     public boolean isAlive() {
         return type != null && !type.name().contains(FALLEN_BIKE_SUFFIX);
     }

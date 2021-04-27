@@ -22,7 +22,7 @@ package com.codenjoy.dojo.excitebike.model.items.bike;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.GameField;
+import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.services.Events;
 import com.codenjoy.dojo.excitebike.model.elements.BikeType;
@@ -41,13 +41,13 @@ import static org.mockito.Mockito.*;
 public class BikeTest {
 
     private Bike bike;
-    private GameField gameField;
+    private Field gameField;
     private GameSettings settings;
 
     @Before
     public void init() {
         bike = new Bike(5, 5);
-        gameField = mock(GameField.class);
+        gameField = mock(Field.class);
         when(gameField.xSize()).thenReturn(10);
         bike.init(gameField);
         settings = new GameSettings();

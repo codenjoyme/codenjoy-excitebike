@@ -55,7 +55,7 @@ public class MultiplayerTest {
     private Game game3;
     private EventListener eventListenerSpy3 = spy(EventListener.class);
     private Dice dice;
-    private GameFieldImpl field;
+    private Excitebike field;
 
     private void init() {
         MapParser mapParser = new MapParserImpl(
@@ -69,7 +69,7 @@ public class MultiplayerTest {
 
         dice = mock(Dice.class);
         GameSettings settings = new GameSettings();
-        field = new GameFieldImpl(mapParser, dice, settings);
+        field = new Excitebike(mapParser, dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
 
         game1 = new Single(new Player(eventListenerSpy1, settings), factory);

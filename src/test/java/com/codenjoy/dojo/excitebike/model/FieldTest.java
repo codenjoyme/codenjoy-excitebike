@@ -47,7 +47,7 @@ import static org.mockito.Mockito.when;
 
 public class FieldTest {
 
-    private GameField gameField;
+    private Field gameField;
     private MapParser mapParser;
     private Dice dice;
     private GameSettings settings;
@@ -65,7 +65,7 @@ public class FieldTest {
     public void isFence__shouldReturnTrue__IfYEqualsZero() {
         //given
         int x = 1, y = 0;
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isFence(x, y);
@@ -79,7 +79,7 @@ public class FieldTest {
         //given
         int x = 1, y = 2;
         when(mapParser.getYSize()).thenReturn(3);
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isFence(x, y);
@@ -93,7 +93,7 @@ public class FieldTest {
         //given
         int x = 1, y = 1;
         when(mapParser.getYSize()).thenReturn(3);
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isFence(x, y);
@@ -108,7 +108,7 @@ public class FieldTest {
         int x = 1, y = 1;
         Inhibitor inhibitor = new Inhibitor(x, y);
         when(mapParser.getInhibitors()).thenReturn(Collections.singletonList(inhibitor));
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isInhibitor(x, y);
@@ -123,7 +123,7 @@ public class FieldTest {
         int x = 1, y = 1;
         Accelerator accelerator = new Accelerator(x, y);
         when(mapParser.getAccelerators()).thenReturn(Collections.singletonList(accelerator));
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isAccelerator(x, y);
@@ -138,7 +138,7 @@ public class FieldTest {
         int x = 1, y = 1;
         Obstacle obstacle = new Obstacle(x, y);
         when(mapParser.getObstacles()).thenReturn(Collections.singletonList(obstacle));
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isObstacle(x, y);
@@ -153,7 +153,7 @@ public class FieldTest {
         int x = 1, y = 1;
         LineChanger lineChanger = new LineChanger(x, y, true);
         when(mapParser.getLineUpChangers()).thenReturn(Collections.singletonList(lineChanger));
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isUpLineChanger(x, y);
@@ -168,7 +168,7 @@ public class FieldTest {
         int x = 1, y = 1;
         LineChanger lineChanger = new LineChanger(x, y, false);
         when(mapParser.getLineDownChangers()).thenReturn(Collections.singletonList(lineChanger));
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         boolean result = gameField.isDownLineChanger(x, y);
@@ -180,7 +180,7 @@ public class FieldTest {
     @Test
     public void getEnemyBike__shouldReturnEmptyOptional__ifThereIsOnlyThisBikeAtGivenCoordinates() {
         //given
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
         Player player = new Player(mock(EventListener.class), settings);
         gameField.newGame(player);
 
@@ -194,7 +194,7 @@ public class FieldTest {
     @Test
     public void getEnemyBike__shouldReturnEmptyOptional__ifGivenPlayerIsNull() {
         //given
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
         Player player = new Player(mock(EventListener.class), settings);
         gameField.newGame(player);
 
@@ -208,7 +208,7 @@ public class FieldTest {
     @Test
     public void getEnemyBike__shouldReturnOptionalWithEnemyBike__ifThereIsOneAtGivenCoordinates() {
         //given
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
         int x = 1;
         int y = 1;
         Bike thisBike = new Bike(x, y);
@@ -242,7 +242,7 @@ public class FieldTest {
         when(mapParser.getLineUpChangers()).thenReturn(new ArrayList<>(Collections.singletonList(upperLineChanger)));
         when(mapParser.getLineDownChangers()).thenReturn(new ArrayList<>(Collections.singletonList(lowerLineChanger)));
 
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         when(dice.next(anyInt())).thenReturn(5);
 
@@ -270,7 +270,7 @@ public class FieldTest {
         when(mapParser.getXSize()).thenReturn(xSize);
         when(mapParser.getYSize()).thenReturn(ySize);
         when(dice.next(anyInt())).thenReturn(12, nonFenceElementOrdinal, nonFenceLaneNumber);
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
 
         //when
         gameField.tick();
@@ -282,7 +282,7 @@ public class FieldTest {
     @Test
     public void getPlayerOfBike__shouldReturnNull__ifThereIsNoPlayerWithGivenBike() {
         //given
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
         Player player = new Player(mock(EventListener.class), settings);
         gameField.newGame(player);
 
@@ -296,7 +296,7 @@ public class FieldTest {
     @Test
     public void getPlayerOfBike__shouldReturnOptionalWithEnemyBike__ifThereIsOneAtGivenCoordinates() {
         //given
-        gameField = new GameFieldImpl(mapParser, dice, settings);
+        gameField = new Excitebike(mapParser, dice, settings);
         int x = 1;
         int y = 1;
         Bike givenBike = new Bike(x, y);

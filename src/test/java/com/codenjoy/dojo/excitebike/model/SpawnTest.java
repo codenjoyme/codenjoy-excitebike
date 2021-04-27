@@ -314,7 +314,7 @@ public class SpawnTest {
 
         Dice dice = mock(Dice.class);
         when(dice.next(anyInt())).thenReturn(5);
-        GameField field = new GameFieldImpl(mapParser, dice, settings);
+        Field field = new Excitebike(mapParser, dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
 
         List<Game> games = new ArrayList<>();
@@ -334,7 +334,7 @@ public class SpawnTest {
         assertThat(res, is(expected));
     }
 
-    private Game createNewGame(GameField field, PrinterFactory factory) {
+    private Game createNewGame(Field field, PrinterFactory factory) {
         Game game = new Single(new Player(mock(EventListener.class), settings), factory);
         game.on(field);
         game.newGame();
