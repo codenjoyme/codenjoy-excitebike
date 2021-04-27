@@ -449,11 +449,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╔═╗■■■■\n" +
-                "/═\\    \n" +
-                "/Ḃ\\    \n" +
-                "/Ḃ\\    \n" +
-                "/B\\    \n" +
-                "╚/╝    \n" +
+                "ˊ═ˋ    \n" +
+                "ˊḂˋ    \n" +
+                "ˊḂˋ    \n" +
+                "ˊBˋ    \n" +
+                "╚ˊ╝    \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
     }
@@ -484,11 +484,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "■■╔═╗■■\n" +
-                "  /═\\  \n" +
-                " Ḃ/═\\  \n" +
-                "  /═\\  \n" +
-                " Ḃ/═\\  \n" +
-                "  ╚/╝  \n" +
+                "  ˊ═ˋ  \n" +
+                " Ḃˊ═ˋ  \n" +
+                "  ˊ═ˋ  \n" +
+                " Ḃˊ═ˋ  \n" +
+                "  ╚ˊ╝  \n" +
                 "■f■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
     }
@@ -515,11 +515,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "═╗■■■■■\n" +
-                "═\\     \n" +
-                "Ḃ\\     \n" +
-                "═\\     \n" +
+                "═ˋ     \n" +
+                "Ḃˋ     \n" +
+                "═ˋ     \n" +
                 "BŘ     \n" +
-                "/╝     \n" +
+                "ˊ╝     \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
     }
@@ -549,10 +549,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╔═╗■■■■\n" +
-                "/═\\    \n" +
-                "/Ḃ\\    \n" +
-                "/Ḃ\\    \n" +
-                "/═\\    \n" +
+                "ˊ═ˋ    \n" +
+                "ˊḂˋ    \n" +
+                "ˊḂˋ    \n" +
+                "ˊ═ˋ    \n" +
                 "╚F╝    \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
@@ -589,11 +589,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╔═╗■■■■\n" +
-                "/═\\    \n" +
-                "/Ḃ\\    \n" +
-                "/K\\    \n" +
-                "/═\\    \n" +
-                "╚/╝    \n" +
+                "ˊ═ˋ    \n" +
+                "ˊḂˋ    \n" +
+                "ˊKˋ    \n" +
+                "ˊ═ˋ    \n" +
+                "╚ˊ╝    \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game2.isGameOver(), is(true));
@@ -631,11 +631,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "═╗■■■■■\n" +
-                "═\\     \n" +
-                "═\\     \n" +
+                "═ˋ     \n" +
+                "═ˋ     \n" +
                 "ḃŘ     \n" +
                 "═R     \n" +
-                "/╝     \n" +
+                "ˊ╝     \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game2.isGameOver(), is(true));
@@ -671,11 +671,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "═╗■■■■■\n" +
-                "═\\     \n" +
-                "═\\     \n" +
+                "═ˋ     \n" +
+                "═ˋ     \n" +
                 "═Ř     \n" +
                 "═Ř     \n" +
-                "/╝     \n" +
+                "ˊ╝     \n" +
                 "■f■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         verify(eventListenerSpy1).event(Events.LOSE);
@@ -712,11 +712,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "═╗■■■■■\n" +
-                "═\\     \n" +
-                "═\\     \n" +
+                "═ˋ     \n" +
+                "═ˋ     \n" +
                 "═R     \n" +
                 "═Ř     \n" +
-                "/Ŝ     \n" +
+                "ˊŜ     \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
     }
@@ -748,11 +748,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "═╗■■■■■\n" +
-                "═\\     \n" +
-                "═\\     \n" +
+                "═ˋ     \n" +
+                "═ˋ     \n" +
                 "═R     \n" +
                 "═Ř     \n" +
-                "/Ŝ     \n" +
+                "ˊŜ     \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
     }
@@ -785,11 +785,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "═╗■■■■■\n" +
-                "═\\     \n" +
-                "═\\     \n" +
+                "═ˋ     \n" +
+                "═ˋ     \n" +
                 "═R     \n" +
                 "═Ř     \n" +
-                "/Ŝ     \n" +
+                "ˊŜ     \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
     }
@@ -824,8 +824,8 @@ public class MultiplayerTest {
                 "═Ř     \n" +
                 "═Ř     \n" +
                 "═R     \n" +
-                "═\\     \n" +
-                "/╝     \n" +
+                "═ˋ     \n" +
+                "ˊ╝     \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
     }
@@ -857,11 +857,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╔Ḃ╗■■■■\n" +
-                "/═\\    \n" +
-                "/═\\    \n" +
-                "/B\\    \n" +
-                "/═\\    \n" +
-                "╚/╝    \n" +
+                "ˊ═ˋ    \n" +
+                "ˊ═ˋ    \n" +
+                "ˊBˋ    \n" +
+                "ˊ═ˋ    \n" +
+                "╚ˊ╝    \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game3.isGameOver(), is(true));
@@ -900,10 +900,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╗ḟ■■■■■\n" +
-                "\\      \n" +
-                "\\Ḃ     \n" +
-                "\\B     \n" +
-                "\\      \n" +
+                "ˋ      \n" +
+                "ˋḂ     \n" +
+                "ˋB     \n" +
+                "ˋ      \n" +
                 "╝      \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
@@ -940,10 +940,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╔╗■■■■■\n" +
-                "/\\     \n" +
-                "/\\     \n" +
-                "/Ř     \n" +
-                "/Ř     \n" +
+                "ˊˋ     \n" +
+                "ˊˋ     \n" +
+                "ˊŘ     \n" +
+                "ˊŘ     \n" +
                 "╚S     \n" +
                 "■■■■■■■\n";
 
@@ -976,10 +976,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╔╗■■■■■\n" +
-                "/\\     \n" +
-                "/\\     \n" +
-                "/Ř     \n" +
-                "/Ř     \n" +
+                "ˊˋ     \n" +
+                "ˊˋ     \n" +
+                "ˊŘ     \n" +
+                "ˊŘ     \n" +
                 "╚S     \n" +
                 "■■■■■■■\n";
 
@@ -1012,10 +1012,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╔╗■■■■■\n" +
-                "/Ř     \n" +
-                "/Ř     \n" +
-                "/R     \n" +
-                "/\\     \n" +
+                "ˊŘ     \n" +
+                "ˊŘ     \n" +
+                "ˊR     \n" +
+                "ˊˋ     \n" +
                 "╚╝     \n" +
                 "■■■■■■■\n";
 
@@ -1048,10 +1048,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "■ḟ╔╗■■■\n" +
-                "  /\\   \n" +
-                " K/\\   \n" +
-                "  /\\   \n" +
-                "  /\\   \n" +
+                "  ˊˋ   \n" +
+                " Kˊˋ   \n" +
+                "  ˊˋ   \n" +
+                "  ˊˋ   \n" +
                 "  ╚╝   \n" +
                 "■■■■■■■\n";
 
@@ -1187,10 +1187,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╗■■■■■■\n" +
-                "\\      \n" +
-                "\\      \n" +
+                "ˋ      \n" +
+                "ˋ      \n" +
                 "ŘḂ     \n" +
-                "\\      \n" +
+                "ˋ      \n" +
                 "S      \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
@@ -1221,10 +1221,10 @@ public class MultiplayerTest {
         //then
         String expected =
                 "╗■■■■■■\n" +
-                "\\      \n" +
-                "\\      \n" +
+                "ˋ      \n" +
+                "ˋ      \n" +
                 "Ř      \n" +
-                "\\Ḃ     \n" +
+                "ˋḂ     \n" +
                 "S      \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
@@ -1256,9 +1256,9 @@ public class MultiplayerTest {
         String expected =
                 "╗■■■■■■\n" +
                 "Ř      \n" +
-                "\\      \n" +
+                "ˋ      \n" +
                 "Ř      \n" +
-                "\\      \n" +
+                "ˋ      \n" +
                 "S      \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
@@ -1290,11 +1290,11 @@ public class MultiplayerTest {
         //then
         String expected =
                 "════╗■■\n" +
-                "═Ḃ══\\  \n" +
-                "Ḃ═══\\  \n" +
-                "════\\  \n" +
-                "B═══\\  \n" +
-                "////╝  \n" +
+                "═Ḃ══ˋ  \n" +
+                "Ḃ═══ˋ  \n" +
+                "════ˋ  \n" +
+                "B═══ˋ  \n" +
+                "ˊˊˊˊ╝  \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         verify(eventListenerSpy1, never()).event(Events.LOSE);

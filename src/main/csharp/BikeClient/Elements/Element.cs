@@ -65,22 +65,22 @@ namespace BikeClient.Elements
         
         
         //---------------------------------------\\
-        NONE = ' ', //space
-        FENCE = '■', //254
+        NONE = ' ',
+        FENCE = '■',
 
-        ACCELERATOR = '>', //175
-        INHIBITOR = '<', //177
-        OBSTACLE = '|', //178
-        LINE_CHANGER_UP = '▲', //30
-        LINE_CHANGER_DOWN = '▼', //31
+        ACCELERATOR = '>',
+        INHIBITOR = '<',
+        OBSTACLE = '|',
+        LINE_CHANGER_UP = '▲',
+        LINE_CHANGER_DOWN = '▼',
         
         //---------------------------------------\\
         SPRINGBOARD_LEFT_UP= '╔',
-        SPRINGBOARD_LEFT= '/',
+        SPRINGBOARD_LEFT= 'ˊ',
         SPRINGBOARD_LEFT_DOWN= '╚',
         SPRINGBOARD_TOP= '═',
         SPRINGBOARD_RIGHT_UP= '╗',
-        SPRINGBOARD_RIGHT= '\\',
+        SPRINGBOARD_RIGHT= 'ˋ',
         SPRINGBOARD_RIGHT_DOWN= '╝'
     }
 }

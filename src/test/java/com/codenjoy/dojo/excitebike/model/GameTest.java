@@ -2273,9 +2273,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "   /═" +
-                "   /═" +
-                "  B╚/" +
+                "   ˊ═" +
+                "   ˊ═" +
+                "  B╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2286,9 +2286,9 @@ public class GameTest {
 
         // then
         aasertB("■╔═  " +
-                " /═  " +
-                " /B  " +
-                " ╚/  " +
+                " ˊ═  " +
+                " ˊB  " +
+                " ╚ˊ  " +
                 "■■■■■");
     }
 
@@ -2297,9 +2297,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "  B/═" +
-                "   /═" +
-                "   ╚/" +
+                "  Bˊ═" +
+                "   ˊ═" +
+                "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2310,9 +2310,9 @@ public class GameTest {
 
         // then
         aasertB("■╔B  " +
-                " /═  " +
-                " /═  " +
-                " ╚/  " +
+                " ˊ═  " +
+                " ˊ═  " +
+                " ╚ˊ  " +
                 "■■■■■");
     }
 
@@ -2321,9 +2321,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "   /═" +
-                "  B/═" +
-                "   ╚/" +
+                "   ˊ═" +
+                "  Bˊ═" +
+                "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2334,9 +2334,9 @@ public class GameTest {
 
         // then
         aasertB("■╔═  " +
-                " /B  " +
-                " /═  " +
-                " ╚/  " +
+                " ˊB  " +
+                " ˊ═  " +
+                " ╚ˊ  " +
                 "■■■■■");
     }
 
@@ -2345,9 +2345,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "  /═ " +
-                "  /B " +
-                "  ╚//" +
+                "  ˊ═ " +
+                "  ˊB " +
+                "  ╚ˊˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2358,9 +2358,9 @@ public class GameTest {
 
         // then
         aasertB("■■╔═ " +
-                " /═  " +
-                " /   " +
-                " ╚/F " +
+                " ˊ═  " +
+                " ˊ   " +
+                " ╚ˊF " +
                 "■■■■■");
     }
 
@@ -2369,9 +2369,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "  /═ " +
-                "  /B " +
-                "  ╚//" +
+                "  ˊ═ " +
+                "  ˊB " +
+                "  ╚ˊˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2383,9 +2383,9 @@ public class GameTest {
 
         // then
         aasertB("■╔═  " +
-                "/═   " +
-                "/    " +
-                "╚//  " +
+                "ˊ═   " +
+                "ˊ    " +
+                "╚ˊˊ  " +
                 "■■■f■");
     }
 
@@ -2395,9 +2395,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "  /═ " +
-                "  /  " +
-                " B╚//" +
+                "  ˊ═ " +
+                "  ˊ  " +
+                " B╚ˊˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2412,7 +2412,7 @@ public class GameTest {
         aasertB("═■■  " +
                 "     " +
                 "     " +
-                "/    " +
+                "ˊ    " +
                 "■f■■■");
     }
 
@@ -2421,9 +2421,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "  B/═" +
-                "   /═" +
-                "   ╚/" +
+                "  Bˊ═" +
+                "   ˊ═" +
+                "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2435,9 +2435,9 @@ public class GameTest {
 
         // then
         aasertB("╔═■  " +
-                "/═   " +
-                "/═   " +
-                "╚/   " +
+                "ˊ═   " +
+                "ˊ═   " +
+                "╚ˊ   " +
                 "■■■■■");
         assertThat(bike.isAlive(), is(false));
     }
@@ -2447,9 +2447,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■═╗" +
-                "   ═\\" +
-                " B  \\" +
-                "   \\╝" +
+                "   ═ˋ" +
+                " B  ˋ" +
+                "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2462,8 +2462,8 @@ public class GameTest {
 
         // then
         aasertB("╗■■  " +
-                "\\    " +
-                "\\    " +
+                "ˋ    " +
+                "ˋ    " +
                 "╝B   " +
                 "■■■■■");
     }
@@ -2473,9 +2473,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■═╗" +
-                " B  \\" +
-                "   ═\\" +
-                "   \\╝" +
+                " B  ˋ" +
+                "   ═ˋ" +
+                "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2488,8 +2488,8 @@ public class GameTest {
 
         // then
         aasertB("╗■■  " +
-                "\\    " +
-                "\\B   " +
+                "ˋ    " +
+                "ˋB   " +
                 "╝    " +
                 "■■■■■");
     }
@@ -2499,9 +2499,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■═╗" +
-                "   ═\\" +
-                " B  \\" +
-                "   \\╝" +
+                "   ═ˋ" +
+                " B  ˋ" +
+                "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2513,9 +2513,9 @@ public class GameTest {
 
         // then
         aasertB("═╗■  " +
-                "═\\   " +
-                " \\   " +
-                "\\S   " +
+                "═ˋ   " +
+                " ˋ   " +
+                "ˋS   " +
                 "■■■■■");
     }
 
@@ -2524,9 +2524,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■═╗" +
-                " B  \\" +
-                "   ═\\" +
-                "   \\╝" +
+                " B  ˋ" +
+                "   ═ˋ" +
+                "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2538,9 +2538,9 @@ public class GameTest {
 
         // then
         aasertB("═╗■  " +
-                " \\   " +
+                " ˋ   " +
                 "═R   " +
-                "\\╝   " +
+                "ˋ╝   " +
                 "■■■■■");
     }
 
@@ -2549,9 +2549,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "B  /═" +
-                "   /═" +
-                "   ╚/" +
+                "B  ˊ═" +
+                "   ˊ═" +
+                "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2565,8 +2565,8 @@ public class GameTest {
         // then
         aasertB("╔═■  " +
                 "L═   " +
-                "/═   " +
-                "╚/   " +
+                "ˊ═   " +
+                "╚ˊ   " +
                 "■■■■■");
     }
 
@@ -2575,9 +2575,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "   /═" +
-                "   /═" +
-                "B  ╚/" +
+                "   ˊ═" +
+                "   ˊ═" +
+                "B  ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2590,9 +2590,9 @@ public class GameTest {
 
         // then
         aasertB("╔═■  " +
-                "/═   " +
-                "/═   " +
-                "M/   " +
+                "ˊ═   " +
+                "ˊ═   " +
+                "Mˊ   " +
                 "■■■■■");
     }
 
@@ -2601,9 +2601,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "   /═" +
-                "   /═" +
-                "B  ╚/" +
+                "   ˊ═" +
+                "   ˊ═" +
+                "B  ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2619,7 +2619,7 @@ public class GameTest {
         aasertB("═■■  " +
                 "B    " +
                 "═    " +
-                "/    " +
+                "ˊ    " +
                 "■■■■■");
     }
 
@@ -2628,9 +2628,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "   /═" +
-                "   /═" +
-                "B  ╚/" +
+                "   ˊ═" +
+                "   ˊ═" +
+                "B  ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2655,9 +2655,9 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔═" +
-                "B  /═" +
-                "   /═" +
-                "   ╚/" +
+                "B  ˊ═" +
+                "   ˊ═" +
+                "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2673,7 +2673,7 @@ public class GameTest {
         aasertB("═■■  " +
                 "═    " +
                 "═    " +
-                "/    " +
+                "ˊ    " +
                 "■■■■■");
         assertThat(player.isAlive(), is(false));
     }
@@ -2683,9 +2683,9 @@ public class GameTest {
         // given
         String board = 
                 "■■=═╗" +
-                " B==\\" +
-                "  =═\\" +
-                "   \\╝" +
+                " B==ˋ" +
+                "  =═ˋ" +
+                "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2698,9 +2698,9 @@ public class GameTest {
 
         // then
         aasertB("═╗   " +
-                " \\   " +
+                " ˋ   " +
                 "═R   " +
-                "\\╝   " +
+                "ˋ╝   " +
                 "■■■■■");
     }
 
@@ -2709,9 +2709,9 @@ public class GameTest {
         // given
         String board = 
                 "■■=═╗" +
-                "  ==\\" +
-                " B=═\\" +
-                "   \\╝" +
+                "  ==ˋ" +
+                " B=═ˋ" +
+                "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
         when(dice.next(anyInt())).thenReturn(5);
@@ -2725,8 +2725,8 @@ public class GameTest {
 
         // then
         aasertB("╗■   " +
-                "\\    " +
-                "\\    " +
+                "ˋ    " +
+                "ˋ    " +
                 "╝    " +
                 "■f■■■");
     }
@@ -2736,8 +2736,8 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔╗" +
-                "B  /\\" +
-                "   /\\" +
+                "B  ˊˋ" +
+                "   ˊˋ" +
                 "   ╚╝" +
                 "■■■■■";
         init(board, 5);
@@ -4080,16 +4080,16 @@ public class GameTest {
         // given
         String board = 
                 "■■■■■■■■╔╗■■■" +
-                "     B< /\\  <" +
-                "        /\\   " +
-                "        /\\   " +
-                "        /\\   " +
-                "        /\\   " +
-                "        /\\   " +
-                "        /\\   " +
-                "        /\\   " +
-                "        /\\   " +
-                "        /\\   " +
+                "     B< ˊˋ  <" +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
+                "        ˊˋ   " +
                 "        ╚╝   " +
                 "■■■■■■■■■■■■■";
         init(board, 13);
@@ -4119,16 +4119,16 @@ public class GameTest {
         // given
         String board = 
                 "■■■■■■■╔═╗■■■" +
-                "    B< /═\\  <" +
-                "       /═\\   " +
-                "       /═\\   " +
-                "       /═\\   " +
-                "       /═\\   " +
-                "       /═\\   " +
-                "       /═\\   " +
-                "       /═\\   " +
-                "       /═\\   " +
-                "       /═\\   " +
+                "    B< ˊ═ˋ  <" +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
+                "       ˊ═ˋ   " +
                 "       ╚═╝   " +
                 "■■■■■■■■■■■■■";
         init(board, 13);
@@ -4162,14 +4162,14 @@ public class GameTest {
         // given
         String board = 
                 "■■■╔════╗■" +
-                "   /════\\ " +
-                "   /════\\ " +
-                "   /════\\ " +
-                "   /════\\ " +
-                "   /════\\ " +
-                "   /════\\ " +
-                "   /════\\ " +
-                "B  ╚////╝  " +
+                "   ˊ════ˋ " +
+                "   ˊ════ˋ " +
+                "   ˊ════ˋ " +
+                "   ˊ════ˋ " +
+                "   ˊ════ˋ " +
+                "   ˊ════ˋ " +
+                "   ˊ════ˋ " +
+                "B  ╚ˊˊˊˊ╝  " +
                 "■■■■■■■■■■";
         init(board, 10);
         when(dice.next(anyInt())).thenReturn(5);
@@ -4183,13 +4183,13 @@ public class GameTest {
 
         // then
         aasertB("╗■■      ■" +
-                "\\         " +
-                "\\         " +
-                "\\         " +
-                "\\         " +
-                "\\         " +
-                "\\         " +
-                "\\         " +
+                "ˋ         " +
+                "ˋ         " +
+                "ˋ         " +
+                "ˋ         " +
+                "ˋ         " +
+                "ˋ         " +
+                "ˋ         " +
                 "S         " +
                 "■■■■■■■■■■");
     }

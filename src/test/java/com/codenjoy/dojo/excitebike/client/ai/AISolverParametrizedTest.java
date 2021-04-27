@@ -982,17 +982,17 @@ public class AISolverParametrizedTest {
 
                 new Object[]{"117. not go down or up at springboard left if there is another bike in front",
                         "■╔═╗■" +
-                        "  /═\\" +
-                        "  LḂ\\" +
-                        "  ╚═╝" +
+                        " ˊ═ˋ " +
+                        " LḂˋ " +
+                        " ╚═╝ " +
                         "■■■■■",
                         null},
 
                 new Object[]{"118. not go down or up at springboard right if there is another bike in front",
-                        "■╔═╗■" +
-                        "  /═\\" +
-                        " /═RḂ" +
-                        "  ╚═╝" +
+                        "■╔══╗" +
+                        " ˊ══ˋ" +
+                        " ˊ═RḂ" +
+                        " ╚══╝" +
                         "■■■■■",
                         null},
 
@@ -1014,17 +1014,17 @@ public class AISolverParametrizedTest {
 
                 new Object[]{"121. go up at lowest springboard top line when enemy bike in front and upper",
                         "■╔══╗" +
-                        " /══\\" +
-                        " /═Ḃ\\" +
+                        " ˊ══ˋ" +
+                        " ˊ═Ḃˋ" +
                         " ╚BḂ╝" +
                         "■■■■■",
                         UP},
 
                 new Object[]{"122. go down at highest springboard top line when enemy bike in front and downer",
                         "■╔BḂ╗" +
-                        " /═Ḃ\\" +
-                        " /══\\" +
-                        "  ╚═╝" +
+                        " ˊ═Ḃˋ" +
+                        " ˊ══ˋ" +
+                        " ╚══╝" +
                         "■■■■■",
                         DOWN}
         );

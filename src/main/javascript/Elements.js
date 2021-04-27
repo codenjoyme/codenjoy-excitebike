@@ -34,11 +34,11 @@ var Elements = {
 
     //springboard elements types
     SPRINGBOARD_LEFT_UP: '╔',
-    SPRINGBOARD_LEFT: '/',
+    SPRINGBOARD_LEFT: 'ˊ',
     SPRINGBOARD_LEFT_DOWN: '╚',
     SPRINGBOARD_TOP: '═',
     SPRINGBOARD_RIGHT_UP: '╗',
-    SPRINGBOARD_RIGHT: '\\',
+    SPRINGBOARD_RIGHT: 'ˋ',
     SPRINGBOARD_RIGHT_DOWN: '╝',
 
     //player bike    
