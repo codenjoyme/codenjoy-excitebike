@@ -183,7 +183,7 @@ public class Excitebike implements Field {
     }
 
     @Override
-    public Optional<Point> freeRandom() {
+    public Optional<Point> freeRandom(Player player) {
         return findFreePosition(true)
                 .or(() -> findFreePosition(false));
     }
