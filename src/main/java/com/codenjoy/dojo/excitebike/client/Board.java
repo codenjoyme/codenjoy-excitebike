@@ -75,10 +75,7 @@ public class Board extends AbstractBoard<CharElements> {
     }
 
     public Point getMe() {
-        return get(BIKE_TYPES)
-                .stream()
-                .findFirst()
-                .orElse(null);
+        return getFirst(BIKE_TYPES);
     }
 
     public boolean isGameOver() {
