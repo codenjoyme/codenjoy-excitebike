@@ -36,20 +36,10 @@ public class Player extends GamePlayer<Bike, Field> {
     }
 
     @Override
-    public void newHero(Field field) {
-        if (hero != null) {
+    public Bike createHero(Point pt) {
+        if (hero != null) {  // TODO если закомментировать эти строчки, тесты не ругаются - они тут ннада?
             field.removeFallenBike(hero);
         }
-        super.newHero(field);
-
-        // TODO #4e3 потому что игра сама берет на себя создание нового Hero тут
-        //      это надо, иначе псоле первого gameOver не будет генериться байк
-        //      в рендомном месте. Но надо убрать
-        hero.manual(false);
-    }
-
-    @Override
-    public Bike createHero(Point pt) {
         return new Bike(pt);
     }
 
