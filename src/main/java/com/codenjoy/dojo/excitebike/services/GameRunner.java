@@ -25,13 +25,13 @@ package com.codenjoy.dojo.excitebike.services;
 
 import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.excitebike.client.Board;
-import com.codenjoy.dojo.excitebike.client.ai.AISolver;
+import com.codenjoy.dojo.games.excitebike.Board;
+import com.codenjoy.dojo.excitebike.services.ai.AISolver;
 import com.codenjoy.dojo.excitebike.model.Excitebike;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
-import com.codenjoy.dojo.excitebike.model.elements.BikeType;
-import com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
+import com.codenjoy.dojo.games.excitebike.element.BikeElement;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.excitebike.services.parse.MapParserImpl;
 import com.codenjoy.dojo.services.AbstractGameType;
@@ -66,15 +66,15 @@ public class GameRunner extends AbstractGameType<GameSettings> {
 
     protected String getMap() {
         StringBuilder sb = new StringBuilder();
-        appendElementForWholeLine(sb, GameElementType.FENCE);
+        appendElementForWholeLine(sb, GameElement.FENCE);
         for (int i = 0; i < Y_SIZE - 2; i++) {
-            appendElementForWholeLine(sb, GameElementType.NONE);
+            appendElementForWholeLine(sb, GameElement.NONE);
         }
-        appendElementForWholeLine(sb, GameElementType.FENCE);
+        appendElementForWholeLine(sb, GameElement.FENCE);
         return sb.toString();
     }
 
-    private void appendElementForWholeLine(StringBuilder sb, GameElementType element) {
+    private void appendElementForWholeLine(StringBuilder sb, GameElement element) {
         for (int i = 0; i < GameRunner.X_SIZE; i++) {
             sb.append(element);
         }
@@ -102,8 +102,8 @@ public class GameRunner extends AbstractGameType<GameSettings> {
 
     @Override
     public CharElements[] getPlots() {
-        CharElements[] result = ObjectArrays.concat(GameElementType.values(), SpringboardElementType.values(), CharElements.class);
-        result = ObjectArrays.concat(result, BikeType.values(), CharElements.class);
+        CharElements[] result = ObjectArrays.concat(GameElement.values(), SpringboardElement.values(), CharElements.class);
+        result = ObjectArrays.concat(result, BikeElement.values(), CharElements.class);
         return result;
     }
 

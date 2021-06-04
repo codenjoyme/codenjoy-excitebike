@@ -22,9 +22,8 @@ package com.codenjoy.dojo.excitebike.services.parse;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
-import com.codenjoy.dojo.excitebike.model.elements.BikeType;
-import com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.printer.CharElements;
 import com.google.common.collect.Lists;
@@ -54,19 +53,19 @@ public class MapParserTest {
     @Parameterized.Parameters(name = "{0}")
     public static Collection data() {
         return Lists.newArrayList(
-                GameElementType.FENCE,
-                GameElementType.ACCELERATOR,
-                GameElementType.INHIBITOR,
-                GameElementType.OBSTACLE,
-                GameElementType.LINE_CHANGER_UP,
-                GameElementType.LINE_CHANGER_DOWN,
-                SpringboardElementType.SPRINGBOARD_LEFT,
-                SpringboardElementType.SPRINGBOARD_RIGHT,
-                SpringboardElementType.SPRINGBOARD_LEFT_DOWN,
-                SpringboardElementType.SPRINGBOARD_RIGHT_DOWN,
-                SpringboardElementType.SPRINGBOARD_LEFT_UP,
-                SpringboardElementType.SPRINGBOARD_LEFT_DOWN,
-                SpringboardElementType.SPRINGBOARD_TOP
+                GameElement.FENCE,
+                GameElement.ACCELERATOR,
+                GameElement.INHIBITOR,
+                GameElement.OBSTACLE,
+                GameElement.LINE_CHANGER_UP,
+                GameElement.LINE_CHANGER_DOWN,
+                SpringboardElement.SPRINGBOARD_LEFT,
+                SpringboardElement.SPRINGBOARD_RIGHT,
+                SpringboardElement.SPRINGBOARD_LEFT_DOWN,
+                SpringboardElement.SPRINGBOARD_RIGHT_DOWN,
+                SpringboardElement.SPRINGBOARD_LEFT_UP,
+                SpringboardElement.SPRINGBOARD_LEFT_DOWN,
+                SpringboardElement.SPRINGBOARD_TOP
         );
     }
 
@@ -202,31 +201,31 @@ public class MapParserTest {
     }
 
     private <T extends PointImpl> List<T> callTestMethod(MapParserImpl mapParser) {
-        if (element == GameElementType.FENCE) {
+        if (element == GameElement.FENCE) {
             return (List<T>) mapParser.getFences();
-        } else if (element == GameElementType.ACCELERATOR) {
+        } else if (element == GameElement.ACCELERATOR) {
             return (List<T>) mapParser.getAccelerators();
-        } else if (element == GameElementType.INHIBITOR) {
+        } else if (element == GameElement.INHIBITOR) {
             return (List<T>) mapParser.getInhibitors();
-        } else if (element == GameElementType.OBSTACLE) {
+        } else if (element == GameElement.OBSTACLE) {
             return (List<T>) mapParser.getObstacles();
-        } else if (element == GameElementType.LINE_CHANGER_UP) {
+        } else if (element == GameElement.LINE_CHANGER_UP) {
             return (List<T>) mapParser.getLineUpChangers();
-        } else if (element == GameElementType.LINE_CHANGER_DOWN) {
+        } else if (element == GameElement.LINE_CHANGER_DOWN) {
             return (List<T>) mapParser.getLineDownChangers();
-        } else if (element == SpringboardElementType.SPRINGBOARD_LEFT) {
+        } else if (element == SpringboardElement.SPRINGBOARD_LEFT) {
             return (List<T>) mapParser.getSpringboardDarkElements();
-        } else if (element == SpringboardElementType.SPRINGBOARD_RIGHT) {
+        } else if (element == SpringboardElement.SPRINGBOARD_RIGHT) {
             return (List<T>) mapParser.getSpringboardLightElements();
-        } else if (element == SpringboardElementType.SPRINGBOARD_LEFT_DOWN) {
+        } else if (element == SpringboardElement.SPRINGBOARD_LEFT_DOWN) {
             return (List<T>) mapParser.getSpringboardLeftDownElements();
-        } else if (element == SpringboardElementType.SPRINGBOARD_LEFT_UP) {
+        } else if (element == SpringboardElement.SPRINGBOARD_LEFT_UP) {
             return (List<T>) mapParser.getSpringboardLeftUpElements();
-        } else if (element == SpringboardElementType.SPRINGBOARD_RIGHT_DOWN) {
+        } else if (element == SpringboardElement.SPRINGBOARD_RIGHT_DOWN) {
             return (List<T>) mapParser.getSpringboardRightDownElements();
-        } else if (element == SpringboardElementType.SPRINGBOARD_RIGHT_UP) {
+        } else if (element == SpringboardElement.SPRINGBOARD_RIGHT_UP) {
             return (List<T>) mapParser.getSpringboardRightUpElements();
-        } else if (element == SpringboardElementType.SPRINGBOARD_TOP) {
+        } else if (element == SpringboardElement.SPRINGBOARD_TOP) {
             return (List<T>) mapParser.getSpringboardNoneElements();
         }
         return null;

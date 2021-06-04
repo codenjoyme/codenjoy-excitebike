@@ -22,9 +22,9 @@ package com.codenjoy.dojo.excitebike.services.generation;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.excitebike.services.generation.generator.SpringboardGenerator;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.printer.CharElements;
@@ -65,13 +65,13 @@ public class TrackStepGeneratorTest {
 
         //then
         assertThat(result.values(), hasSize(7));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_LEFT_UP), hasSize(1));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_LEFT), hasSize(10));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_LEFT_DOWN), hasSize(1));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_TOP), hasSize(24));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_RIGHT_UP), hasSize(1));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_RIGHT), hasSize(7));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_RIGHT_DOWN), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT_UP), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT), hasSize(10));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT_DOWN), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_TOP), hasSize(24));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_RIGHT_UP), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_RIGHT), hasSize(7));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_RIGHT_DOWN), hasSize(1));
     }
 
     @Test
@@ -90,13 +90,13 @@ public class TrackStepGeneratorTest {
 
         //then
         assertThat(result.values(), hasSize(7));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_LEFT_UP), hasSize(1));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_LEFT), hasSize(10));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_LEFT_DOWN), hasSize(1));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_TOP), hasSize(24));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_RIGHT_UP), hasSize(1));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_RIGHT), hasSize(7));
-        assertThat(result.get(SpringboardElementType.SPRINGBOARD_RIGHT_DOWN), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT_UP), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT), hasSize(10));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT_DOWN), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_TOP), hasSize(24));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_RIGHT_UP), hasSize(1));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_RIGHT), hasSize(7));
+        assertThat(result.get(SpringboardElement.SPRINGBOARD_RIGHT_DOWN), hasSize(1));
         for (int i = 1; i <= 7; i++) {
             assertThat(generator.generate(weightedRandomBag), nullValue());
         }
@@ -136,7 +136,7 @@ public class TrackStepGeneratorTest {
         //then
         assertThat(result.values(), hasSize(1));
         assertThat(generator.generate(weightedRandomBag).values(), hasSize(1));
-        assertThat(result.get(GameElementType.ACCELERATOR), hasSize(1));
+        assertThat(result.get(GameElement.ACCELERATOR), hasSize(1));
     }
 
     @Test
@@ -154,7 +154,7 @@ public class TrackStepGeneratorTest {
 
         //then
         assertThat(result.values(), hasSize(1));
-        assertThat(result.get(GameElementType.OBSTACLE).size(), greaterThan(0));
+        assertThat(result.get(GameElement.OBSTACLE).size(), greaterThan(0));
     }
 
     private WeightedRandomBag<GenerationOption> getWeightedRandomgenerationOptionBag() {

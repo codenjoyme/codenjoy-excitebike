@@ -22,15 +22,15 @@ package com.codenjoy.dojo.excitebike.services.parse;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.excitebike.model.items.Accelerator;
 import com.codenjoy.dojo.excitebike.model.items.Fence;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.*;
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
 import com.codenjoy.dojo.excitebike.model.items.Inhibitor;
 import com.codenjoy.dojo.excitebike.model.items.LineChanger;
 import com.codenjoy.dojo.excitebike.model.items.Obstacle;
-import com.codenjoy.dojo.excitebike.model.items.SpringboardElement;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.*;
+
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
 import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
@@ -109,43 +109,43 @@ public class MapParserImpl implements MapParser {
 
 
     @Override
-    public List<SpringboardElement> getSpringboardDarkElements() {
+    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardDarkElements() {
         return getSpringboard(SPRINGBOARD_LEFT);
     }
 
-    private List<SpringboardElement> getSpringboard(SpringboardElementType element) {
+    private List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboard(SpringboardElement element) {
         return LevelUtils.getObjects(xy, map,
-                (pt, el) -> new SpringboardElement(pt, el),
+                (pt, el) -> new com.codenjoy.dojo.excitebike.model.items.SpringboardElement(pt, el),
                 element);
     }
 
     @Override
-    public List<SpringboardElement> getSpringboardLightElements() {
+    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardLightElements() {
         return getSpringboard(SPRINGBOARD_RIGHT);
     }
 
     @Override
-    public List<SpringboardElement> getSpringboardLeftDownElements() {
+    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardLeftDownElements() {
         return getSpringboard(SPRINGBOARD_LEFT_DOWN);
     }
 
     @Override
-    public List<SpringboardElement> getSpringboardLeftUpElements() {
+    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardLeftUpElements() {
         return getSpringboard(SPRINGBOARD_LEFT_UP);
     }
 
     @Override
-    public List<SpringboardElement> getSpringboardRightDownElements() {
+    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardRightDownElements() {
         return getSpringboard(SPRINGBOARD_RIGHT_DOWN);
     }
 
     @Override
-    public List<SpringboardElement> getSpringboardRightUpElements() {
+    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardRightUpElements() {
         return getSpringboard(SPRINGBOARD_RIGHT_UP);
     }
 
     @Override
-    public List<SpringboardElement> getSpringboardNoneElements() {
+    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardNoneElements() {
         return getSpringboard(SPRINGBOARD_TOP);
     }
     

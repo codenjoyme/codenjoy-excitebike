@@ -23,8 +23,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.excitebike.model.items.SpringboardElement;
-import com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Dice;
 
 import java.util.EnumMap;
@@ -32,13 +31,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_TOP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_UP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_UP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_TOP;
 
 public class SpringboardGenerator implements Generator {
 
@@ -48,7 +47,7 @@ public class SpringboardGenerator implements Generator {
     private final int x0;
     private final int ySize;
     private int width;
-    private Map<SpringboardElementType, List<Shiftable>> elements;
+    private Map<SpringboardElement, List<Shiftable>> elements;
 
     public SpringboardGenerator(Dice dice, int xSize, int ySize) {
         this.x0 = xSize - 1 + CLEAR_LINES_AROUND_SPRINGBOARD;
@@ -57,8 +56,8 @@ public class SpringboardGenerator implements Generator {
     }
 
     @Override
-    public Map<SpringboardElementType, List<Shiftable>> generate() {
-        elements = new EnumMap<>(SpringboardElementType.class);
+    public Map<SpringboardElement, List<Shiftable>> generate() {
+        elements = new EnumMap<>(SpringboardElement.class);
         width = dice.next(SPRINGBOARD_TOP_MAX_WIDTH) + 2;
         generateRiseLine(ySize);
         for (int i = x0 + 1; i < x0 + width - 1; i++) {
@@ -76,7 +75,7 @@ public class SpringboardGenerator implements Generator {
         generateSpringBoardStep(SPRINGBOARD_RIGHT_UP, SPRINGBOARD_RIGHT, SPRINGBOARD_RIGHT_DOWN, x - 1, linesNumber);
     }
 
-    private void generateSpringBoardStep(SpringboardElementType up, SpringboardElementType middle, SpringboardElementType down, int x, int lines) {
+    private void generateSpringBoardStep(SpringboardElement up, SpringboardElement middle, SpringboardElement down, int x, int lines) {
         addNewElement(down, x, 1);
         int y = 2;
         for (; y < lines - 1; y++) {
@@ -85,11 +84,11 @@ public class SpringboardGenerator implements Generator {
         addNewElement(up, x, y);
     }
 
-    private void addNewElement(SpringboardElementType type, int x, int y) {
+    private void addNewElement(SpringboardElement type, int x, int y) {
         if (!elements.containsKey(type)) {
             elements.put(type, new LinkedList<>());
         }
-        elements.get(type).add(new SpringboardElement(x, y, type));
+        elements.get(type).add(new com.codenjoy.dojo.excitebike.model.items.SpringboardElement(x, y, type));
     }
 
     @Override

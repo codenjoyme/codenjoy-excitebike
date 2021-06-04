@@ -26,7 +26,7 @@ import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Excitebike;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
-import com.codenjoy.dojo.excitebike.model.elements.BikeType;
+import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Point;
@@ -52,9 +52,9 @@ public class TestUtils {
     }
 
     public static List<Bike> parseBikes(String map, int xSize) {
-        return parseAndConvertElements(map, xSize, TestUtils::newDefaultBike, Arrays.stream(BikeType.values())
+        return parseAndConvertElements(map, xSize, TestUtils::newDefaultBike, Arrays.stream(BikeElement.values())
                 .filter(e -> !e.name().contains(Bike.OTHER_BIKE_PREFIX))
-                .toArray(BikeType[]::new));
+                .toArray(BikeElement[]::new));
     }
 
     private static Bike newDefaultBike(Point point) {

@@ -22,7 +22,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.printer.CharElements;
@@ -49,20 +49,20 @@ import static org.mockito.Mockito.when;
 @RunWith(Parameterized.class)
 public class SingleElementGeneratorParametrizedTest {
 
-    private GameElementType expectedElementType;
+    private GameElement expectedElementType;
 
-    public SingleElementGeneratorParametrizedTest(GameElementType expectedElementType) {
+    public SingleElementGeneratorParametrizedTest(GameElement expectedElementType) {
         this.expectedElementType = expectedElementType;
     }
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object> data() {
         return Lists.newArrayList(
-                GameElementType.ACCELERATOR,
-                GameElementType.INHIBITOR,
-                GameElementType.OBSTACLE,
-                GameElementType.LINE_CHANGER_UP,
-                GameElementType.LINE_CHANGER_DOWN
+                GameElement.ACCELERATOR,
+                GameElement.INHIBITOR,
+                GameElement.OBSTACLE,
+                GameElement.LINE_CHANGER_UP,
+                GameElement.LINE_CHANGER_DOWN
         );
     }
 
@@ -73,7 +73,7 @@ public class SingleElementGeneratorParametrizedTest {
         int xSize = 10;
         int ySize = 10;
         int expectedLine = new Random().nextInt();
-        when(dice.next(GameElementType.values().length - 2)).thenReturn(Arrays.asList(GameElementType.values()).indexOf(expectedElementType) - 2);
+        when(dice.next(GameElement.values().length - 2)).thenReturn(Arrays.asList(GameElement.values()).indexOf(expectedElementType) - 2);
         when(dice.next(ySize - 2)).thenReturn(expectedLine - 1);
 
         //when

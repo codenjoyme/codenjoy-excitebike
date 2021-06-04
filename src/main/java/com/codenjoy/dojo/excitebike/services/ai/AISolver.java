@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.excitebike.client.ai;
+package com.codenjoy.dojo.excitebike.services.ai;
 
 /*-
  * #%L
@@ -24,8 +24,8 @@ package com.codenjoy.dojo.excitebike.client.ai;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.excitebike.client.Board;
-import com.codenjoy.dojo.excitebike.model.elements.BikeType;
+import com.codenjoy.dojo.games.excitebike.Board;
+import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
@@ -38,21 +38,21 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_LINE_CHANGER_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.OTHER_BIKE_AT_INHIBITOR;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.OTHER_BIKE_AT_KILLED_BIKE;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.OTHER_BIKE_AT_LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.OTHER_BIKE_AT_LINE_CHANGER_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.ACCELERATOR;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.FENCE;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.LINE_CHANGER_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.OBSTACLE;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_LINE_CHANGER_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_LINE_CHANGER_UP;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_LEFT;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_LEFT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_RIGHT;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_RIGHT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.OTHER_BIKE_AT_INHIBITOR;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.OTHER_BIKE_AT_KILLED_BIKE;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.OTHER_BIKE_AT_LINE_CHANGER_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.OTHER_BIKE_AT_LINE_CHANGER_UP;
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.ACCELERATOR;
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.FENCE;
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.LINE_CHANGER_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.LINE_CHANGER_UP;
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.OBSTACLE;
 import static com.codenjoy.dojo.services.Direction.DOWN;
 import static com.codenjoy.dojo.services.Direction.RIGHT;
 import static com.codenjoy.dojo.services.Direction.UP;
@@ -183,10 +183,10 @@ public class AISolver implements Solver<Board> {
     }
 
     private CharElements[] getBikeElementsBySuffixAndElements(String suffix, CharElements... elements) {
-        BikeType[] bikeElementsBySuffix = Arrays.stream(BikeType.values())
+        BikeElement[] bikeElementsBySuffix = Arrays.stream(BikeElement.values())
                 .filter(e -> e.name().contains(suffix))
                 .collect(Collectors.toList())
-                .toArray(new BikeType[]{});
+                .toArray(new BikeElement[]{});
         List<CharElements> bikeElementsList = new ArrayList<>(Arrays.asList(bikeElementsBySuffix));
         bikeElementsList.addAll(Arrays.asList(elements));
         return bikeElementsList.toArray(new CharElements[]{});

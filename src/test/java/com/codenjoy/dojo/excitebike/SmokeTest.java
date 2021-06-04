@@ -24,8 +24,8 @@ package com.codenjoy.dojo.excitebike;
 
 
 import com.codenjoy.dojo.client.local.LocalGameRunner;
-import com.codenjoy.dojo.excitebike.client.Board;
-import com.codenjoy.dojo.excitebike.client.ai.AISolver;
+import com.codenjoy.dojo.games.excitebike.Board;
+import com.codenjoy.dojo.excitebike.services.ai.AISolver;
 import com.codenjoy.dojo.excitebike.services.GameRunner;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.services.Dice;

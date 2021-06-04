@@ -25,7 +25,7 @@ package com.codenjoy.dojo.excitebike.model.items;
 
 import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.excitebike.model.elements.BikeType;
+import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.excitebike.services.Events;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
@@ -35,30 +35,30 @@ import com.codenjoy.dojo.services.multiplayer.PlayerHero;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_ACCELERATOR;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_INHIBITOR;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_KILLED_BIKE;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_LINE_CHANGER_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_AT_SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN_AT_ACCELERATOR;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN_AT_FENCE;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN_AT_INHIBITOR;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN_AT_LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN_AT_LINE_CHANGER_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN_AT_OBSTACLE;
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_IN_FLIGHT_FROM_SPRINGBOARD;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_ACCELERATOR;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_INHIBITOR;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_KILLED_BIKE;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_LINE_CHANGER_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_LINE_CHANGER_UP;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_LEFT;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_LEFT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_RIGHT;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_RIGHT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_ACCELERATOR;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_FENCE;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_INHIBITOR;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_LINE_CHANGER_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_LINE_CHANGER_UP;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_OBSTACLE;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_IN_FLIGHT_FROM_SPRINGBOARD;
 import static com.codenjoy.dojo.services.Direction.DOWN;
 import static com.codenjoy.dojo.services.Direction.LEFT;
 import static com.codenjoy.dojo.services.Direction.RIGHT;
 import static com.codenjoy.dojo.services.Direction.UP;
 
-public class Bike extends PlayerHero<Field> implements State<BikeType, Player>, Shiftable {
+public class Bike extends PlayerHero<Field> implements State<BikeElement, Player>, Shiftable {
 
     public static final String OTHER_BIKE_PREFIX = "OTHER";
     public static final String FALLEN_BIKE_SUFFIX = "FALLEN";
@@ -70,7 +70,7 @@ public class Bike extends PlayerHero<Field> implements State<BikeType, Player>, 
 
     private Direction command;
     private Movement movement = new Movement();
-    private BikeType type = BIKE;
+    private BikeElement type = BIKE;
     private boolean ticked;
     private boolean accelerated;
     private boolean inhibited;
@@ -123,8 +123,8 @@ public class Bike extends PlayerHero<Field> implements State<BikeType, Player>, 
                                         BIKE_FALLEN;
     }
 
-    public void crushLikeEnemy(BikeType crushedEnemyBikeType) {
-        type = BikeType.valueOf(crushedEnemyBikeType.name().replace(OTHER_BIKE_PREFIX + "_", ""));
+    public void crushLikeEnemy(BikeElement crushedEnemyBikeType) {
+        type = BikeElement.valueOf(crushedEnemyBikeType.name().replace(OTHER_BIKE_PREFIX + "_", ""));
     }
 
     @Override
@@ -205,9 +205,9 @@ public class Bike extends PlayerHero<Field> implements State<BikeType, Player>, 
 
     }
 
-    private BikeType atNothingType() {
+    private BikeElement atNothingType() {
         return type.name().contains(BIKE_AT_PREFIX)
-                ? BikeType.valueOf(type.name().substring(0, type.name().indexOf(BIKE_AT_PREFIX) - 1))
+                ? BikeElement.valueOf(type.name().substring(0, type.name().indexOf(BIKE_AT_PREFIX) - 1))
                 : type;
     }
 
@@ -380,7 +380,7 @@ public class Bike extends PlayerHero<Field> implements State<BikeType, Player>, 
 
         if (field.isInhibitor(x, y)) {
             if (type.name().contains(AT_ACCELERATOR_SUFFIX)) {
-                type = BikeType.valueOf(type.name().replace(AT_ACCELERATOR_SUFFIX, ""));
+                type = BikeElement.valueOf(type.name().replace(AT_ACCELERATOR_SUFFIX, ""));
             } else {
                 changeStateToAt(AT_INHIBITOR_SUFFIX);
             }
@@ -435,20 +435,20 @@ public class Bike extends PlayerHero<Field> implements State<BikeType, Player>, 
     private void changeStateToAt(String atSuffix) {
         if (type.name().contains(BIKE_AT_PREFIX)) {
             String substringBikeAtSomething = type.name().substring(type.name().indexOf(BIKE_AT_PREFIX) - 1);
-            type = BikeType.valueOf(type.name().replace(substringBikeAtSomething, atSuffix));
+            type = BikeElement.valueOf(type.name().replace(substringBikeAtSomething, atSuffix));
         } else {
-            type = BikeType.valueOf(type.name() + atSuffix);
+            type = BikeElement.valueOf(type.name() + atSuffix);
         }
     }
 
     @Override
-    public BikeType state(Player player, Object... alsoAtPoint) {
+    public BikeElement state(Player player, Object... alsoAtPoint) {
         Bike bike = player.getHero();
         return this == bike ? bike.type : this.getEnemyBikeType();
     }
 
-    private BikeType getEnemyBikeType() {
-        return BikeType.valueOf(OTHER_BIKE_PREFIX + "_" + type.name());
+    private BikeElement getEnemyBikeType() {
+        return BikeElement.valueOf(OTHER_BIKE_PREFIX + "_" + type.name());
     }
 
     @Override

@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.model.items;
 
 import com.codenjoy.dojo.excitebike.model.Excitebike;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.excitebike.model.elements.GameElementType;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.services.Dice;
@@ -48,18 +48,18 @@ import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
 public class SpawnElementsSystemParameterizedTest {
-    private GameElementType gameElementType;
+    private GameElement gameElementType;
     private Player player;
     private Excitebike game;
     private Dice dice;
 
-    public SpawnElementsSystemParameterizedTest(GameElementType gameElementType) {
+    public SpawnElementsSystemParameterizedTest(GameElement gameElementType) {
         this.gameElementType = gameElementType;
     }
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection data() {
-        return Arrays.stream(GameElementType.values(), 2, GameElementType.values().length).collect(toList());
+        return Arrays.stream(GameElement.values(), 2, GameElement.values().length).collect(toList());
     }
 
     @Before

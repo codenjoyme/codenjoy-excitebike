@@ -23,20 +23,20 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Dice;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_LEFT_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_RIGHT_UP;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.SPRINGBOARD_TOP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_UP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_DOWN;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_UP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_TOP;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -60,7 +60,7 @@ public class SpringboardGeneratorTest {
         when(dice.next(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH)).thenReturn(expectedWidth - 2);
 
         //when
-        Map<SpringboardElementType, List<Shiftable>> result = generator.generate();
+        Map<SpringboardElement, List<Shiftable>> result = generator.generate();
 
         //then
         List<Shiftable> leftUps = result.get(SPRINGBOARD_LEFT_UP);
@@ -130,7 +130,7 @@ public class SpringboardGeneratorTest {
         when(dice.next(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH)).thenReturn(expectedWidth - 2);
 
         //when
-        Map<SpringboardElementType, List<Shiftable>> result = generator.generate();
+        Map<SpringboardElement, List<Shiftable>> result = generator.generate();
 
         //then
         List<Shiftable> leftUps = result.get(SPRINGBOARD_LEFT_UP);

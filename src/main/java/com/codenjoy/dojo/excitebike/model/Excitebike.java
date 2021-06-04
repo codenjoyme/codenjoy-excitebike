@@ -40,9 +40,9 @@ import com.codenjoy.dojo.services.printer.CharElements;
 
 import java.util.*;
 
-import static com.codenjoy.dojo.excitebike.model.elements.BikeType.BIKE_FALLEN;
-import static com.codenjoy.dojo.excitebike.model.elements.GameElementType.*;
-import static com.codenjoy.dojo.excitebike.model.elements.SpringboardElementType.*;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN;
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 import static java.util.stream.Collectors.toList;
 
