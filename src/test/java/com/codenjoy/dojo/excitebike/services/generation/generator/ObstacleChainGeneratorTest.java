@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import org.junit.Test;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public class ObstacleChainGeneratorTest {
         when(dice.next(10)).thenReturn(6, 7, 7, 8, 9, 1);
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));
@@ -77,7 +77,7 @@ public class ObstacleChainGeneratorTest {
         when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));
@@ -102,7 +102,7 @@ public class ObstacleChainGeneratorTest {
         when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));
@@ -127,7 +127,7 @@ public class ObstacleChainGeneratorTest {
         when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));
@@ -152,7 +152,7 @@ public class ObstacleChainGeneratorTest {
         when(dice.next(10)).thenReturn(0, 1, 2, 3, 4, 7, 9, 6, 9);
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));
@@ -187,7 +187,7 @@ public class ObstacleChainGeneratorTest {
         int expectedY = 2;
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));
@@ -216,7 +216,7 @@ public class ObstacleChainGeneratorTest {
         int expectedY = 2;
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));
@@ -247,7 +247,7 @@ public class ObstacleChainGeneratorTest {
         when(dice.next(10)).thenReturn(0, 1, 2, 3, 4, 7, 9, 6, 9);
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
         //then
         assertThat(result.values(), hasSize(1));

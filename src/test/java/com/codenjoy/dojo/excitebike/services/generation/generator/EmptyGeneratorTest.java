@@ -23,7 +23,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import org.junit.Test;
 
 import java.util.List;
@@ -44,7 +44,7 @@ public class EmptyGeneratorTest {
         EmptyGenerator emptyGenerator = new EmptyGenerator();
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = emptyGenerator.generate();
+        Map<? extends CharElement, List<Shiftable>> result = emptyGenerator.generate();
 
         //then
         assertThat(result, nullValue());

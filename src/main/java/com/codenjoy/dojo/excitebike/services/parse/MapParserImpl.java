@@ -22,13 +22,10 @@ package com.codenjoy.dojo.excitebike.services.parse;
  * #L%
  */
 
+import com.codenjoy.dojo.excitebike.model.items.*;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
-import com.codenjoy.dojo.excitebike.model.items.Accelerator;
-import com.codenjoy.dojo.excitebike.model.items.Fence;
+
 import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
-import com.codenjoy.dojo.excitebike.model.items.Inhibitor;
-import com.codenjoy.dojo.excitebike.model.items.LineChanger;
-import com.codenjoy.dojo.excitebike.model.items.Obstacle;
 
 import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
 import com.codenjoy.dojo.services.LengthToXY;
@@ -56,45 +53,45 @@ public class MapParserImpl implements MapParser {
     }
 
     @Override
-    public int getXSize() {
+    public int width() {
         return xSize;
     }
 
     @Override
-    public int getYSize() {
+    public int height() {
         return map.length() / xSize;
     }
 
     @Override
-    public List<Accelerator> getAccelerators() {
+    public List<Accelerator> accelerators() {
         return LevelUtils.getObjects(xy, map,
                 (pt, el) -> new Accelerator(pt),
                 ACCELERATOR);
     }
 
     @Override
-    public List<Fence> getFences() {
+    public List<Fence> fences() {
         return LevelUtils.getObjects(xy, map,
                 (pt, el) -> new Fence(pt),
                 FENCE);
     }
 
     @Override
-    public List<Inhibitor> getInhibitors() {
+    public List<Inhibitor> inhibitors() {
         return LevelUtils.getObjects(xy, map,
                 (pt, el) -> new Inhibitor(pt), 
                 INHIBITOR);
     }
 
     @Override
-    public List<LineChanger> getLineUpChangers() {
+    public List<LineChanger> lineUp() {
         return LevelUtils.getObjects(xy, map,
                 (pt, el) -> new LineChanger(pt, true), 
                 LINE_CHANGER_UP);
     }
 
     @Override
-    public List<LineChanger> getLineDownChangers() {
+    public List<LineChanger> lineDown() {
         return LevelUtils.getObjects(xy, map,
                 (pt, el) -> new LineChanger(pt, false), 
                 LINE_CHANGER_DOWN);
@@ -109,43 +106,43 @@ public class MapParserImpl implements MapParser {
 
 
     @Override
-    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardDarkElements() {
+    public List<Springboard> dark() {
         return getSpringboard(SPRINGBOARD_LEFT);
     }
 
-    private List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboard(SpringboardElement element) {
+    private List<Springboard> getSpringboard(SpringboardElement element) {
         return LevelUtils.getObjects(xy, map,
-                (pt, el) -> new com.codenjoy.dojo.excitebike.model.items.SpringboardElement(pt, el),
+                (pt, el) -> new Springboard(pt, el),
                 element);
     }
 
     @Override
-    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardLightElements() {
+    public List<Springboard> light() {
         return getSpringboard(SPRINGBOARD_RIGHT);
     }
 
     @Override
-    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardLeftDownElements() {
+    public List<Springboard> leftDown() {
         return getSpringboard(SPRINGBOARD_LEFT_DOWN);
     }
 
     @Override
-    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardLeftUpElements() {
+    public List<Springboard> leftUp() {
         return getSpringboard(SPRINGBOARD_LEFT_UP);
     }
 
     @Override
-    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardRightDownElements() {
+    public List<Springboard> rightDown() {
         return getSpringboard(SPRINGBOARD_RIGHT_DOWN);
     }
 
     @Override
-    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardRightUpElements() {
+    public List<Springboard> rightUp() {
         return getSpringboard(SPRINGBOARD_RIGHT_UP);
     }
 
     @Override
-    public List<com.codenjoy.dojo.excitebike.model.items.SpringboardElement> getSpringboardNoneElements() {
+    public List<Springboard> none() {
         return getSpringboard(SPRINGBOARD_TOP);
     }
     

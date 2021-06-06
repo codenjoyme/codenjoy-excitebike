@@ -27,40 +27,40 @@ import com.codenjoy.dojo.excitebike.model.items.Fence;
 import com.codenjoy.dojo.excitebike.model.items.Inhibitor;
 import com.codenjoy.dojo.excitebike.model.items.LineChanger;
 import com.codenjoy.dojo.excitebike.model.items.Obstacle;
-import com.codenjoy.dojo.excitebike.model.items.SpringboardElement;
+import com.codenjoy.dojo.excitebike.model.items.Springboard;
 
 import java.util.List;
 
 public interface MapParser {
 
-    int getXSize();
+    int width();
 
-    int getYSize();
+    int height();
 
-    List<Accelerator> getAccelerators();
+    List<Accelerator> accelerators();
 
-    List<Fence> getFences();
+    List<Fence> fences();
 
-    List<Inhibitor> getInhibitors();
+    List<Inhibitor> inhibitors();
 
-    List<LineChanger> getLineUpChangers();
+    List<LineChanger> lineUp();
 
-    List<LineChanger> getLineDownChangers();
+    List<LineChanger> lineDown();
 
     List<Obstacle> getObstacles();
 
-    List<SpringboardElement> getSpringboardDarkElements();
+    List<Springboard> dark();
 
-    List<SpringboardElement> getSpringboardLightElements();
+    List<Springboard> light();
 
-    List<SpringboardElement> getSpringboardLeftDownElements();
+    List<Springboard> leftDown();
 
-    List<SpringboardElement> getSpringboardLeftUpElements();
+    List<Springboard> leftUp();
 
-    List<SpringboardElement> getSpringboardRightDownElements();
+    List<Springboard> rightDown();
 
-    List<SpringboardElement> getSpringboardRightUpElements();
+    List<Springboard> rightUp();
 
-    List<SpringboardElement> getSpringboardNoneElements();
+    List<Springboard> none();
 
 }

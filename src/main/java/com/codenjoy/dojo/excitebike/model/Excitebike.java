@@ -36,7 +36,7 @@ import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.Tickable;
 import com.codenjoy.dojo.services.printer.BoardReader;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.*;
 
@@ -50,7 +50,7 @@ import static java.util.stream.Collectors.toList;
 public class Excitebike implements Field {
 
     private final MapParser mapParser;
-    private final Map<CharElements, List<Shiftable>> elements = new HashMap<>();
+    private final Map<CharElement, List<Shiftable>> elements = new HashMap<>();
     private final List<Player> players = new LinkedList<>();
     private final List<Fence> fences;
     private final TrackStepGenerator trackStepGenerator;
@@ -62,24 +62,24 @@ public class Excitebike implements Field {
         this.settings = settings;
         this.dice = dice;
 
-        fences = mapParser.getFences();
+        fences = mapParser.fences();
 
-        elements.put(ACCELERATOR, new ArrayList<>(mapParser.getAccelerators()));
-        elements.put(INHIBITOR, new ArrayList<>(mapParser.getInhibitors()));
+        elements.put(ACCELERATOR, new ArrayList<>(mapParser.accelerators()));
+        elements.put(INHIBITOR, new ArrayList<>(mapParser.inhibitors()));
         elements.put(OBSTACLE, new ArrayList<>(mapParser.getObstacles()));
-        elements.put(LINE_CHANGER_UP, new ArrayList<>(mapParser.getLineUpChangers()));
-        elements.put(LINE_CHANGER_DOWN, new ArrayList<>(mapParser.getLineDownChangers()));
+        elements.put(LINE_CHANGER_UP, new ArrayList<>(mapParser.lineUp()));
+        elements.put(LINE_CHANGER_DOWN, new ArrayList<>(mapParser.lineDown()));
         elements.put(BIKE_FALLEN, new ArrayList<>());
 
-        elements.put(SPRINGBOARD_LEFT_UP, new ArrayList<>(mapParser.getSpringboardLeftUpElements()));
-        elements.put(SPRINGBOARD_RIGHT, new ArrayList<>(mapParser.getSpringboardLightElements()));
-        elements.put(SPRINGBOARD_LEFT_DOWN, new ArrayList<>(mapParser.getSpringboardLeftDownElements()));
-        elements.put(SPRINGBOARD_RIGHT_UP, new ArrayList<>(mapParser.getSpringboardRightUpElements()));
-        elements.put(SPRINGBOARD_LEFT, new ArrayList<>(mapParser.getSpringboardDarkElements()));
-        elements.put(SPRINGBOARD_RIGHT_DOWN, new ArrayList<>(mapParser.getSpringboardRightDownElements()));
-        elements.put(SPRINGBOARD_TOP, new ArrayList<>(mapParser.getSpringboardNoneElements()));
+        elements.put(SPRINGBOARD_LEFT_UP, new ArrayList<>(mapParser.leftUp()));
+        elements.put(SPRINGBOARD_RIGHT, new ArrayList<>(mapParser.light()));
+        elements.put(SPRINGBOARD_LEFT_DOWN, new ArrayList<>(mapParser.leftDown()));
+        elements.put(SPRINGBOARD_RIGHT_UP, new ArrayList<>(mapParser.rightUp()));
+        elements.put(SPRINGBOARD_LEFT, new ArrayList<>(mapParser.dark()));
+        elements.put(SPRINGBOARD_RIGHT_DOWN, new ArrayList<>(mapParser.rightDown()));
+        elements.put(SPRINGBOARD_TOP, new ArrayList<>(mapParser.none()));
 
-        this.trackStepGenerator = new TrackStepGenerator(dice, mapParser.getXSize(), mapParser.getYSize());
+        this.trackStepGenerator = new TrackStepGenerator(dice, mapParser.width(), mapParser.height());
     }
 
     /**
@@ -107,17 +107,17 @@ public class Excitebike implements Field {
     }
 
     public int xSize() {
-        return mapParser.getXSize();
+        return mapParser.width();
     }
 
     @Override
     public int ySize() {
-        return mapParser.getYSize();
+        return mapParser.height();
     }
 
     @Override
     public boolean isFence(int x, int y) {
-        return y < 1 || y > mapParser.getYSize() - 2;
+        return y < 1 || y > mapParser.height() - 2;
     }
 
     @Override
@@ -189,8 +189,8 @@ public class Excitebike implements Field {
     }
 
     private Optional<Point> findFreePosition(boolean chessOrder) {
-        for (int xi = 0; xi < mapParser.getXSize(); xi++) {
-            for (int yi = 1; yi < mapParser.getYSize() - 1; yi++) {
+        for (int xi = 0; xi < mapParser.width(); xi++) {
+            for (int yi = 1; yi < mapParser.height() - 1; yi++) {
                 if (chessOrder && (even(xi) && even(yi) || !even(xi) && !even(yi))) {
                     continue;
                 }
@@ -254,7 +254,7 @@ public class Excitebike implements Field {
 
             @Override
             public int size() {
-                return mapParser.getXSize();
+                return mapParser.width();
             }
 
             @Override
@@ -283,12 +283,12 @@ public class Excitebike implements Field {
     }
 
     private void generateNewTrackStep() {
-        WeightedRandomBag<GenerationOption> weightedRandomBag = settings.getWeightedRandomBag();
-        Map<? extends CharElements, List<Shiftable>> generated = trackStepGenerator.generate(weightedRandomBag);
+        WeightedRandomBag<GenerationOption> bag = settings.getWeightedRandomBag();
+        Map<? extends CharElement, List<Shiftable>> generated = trackStepGenerator.generate(bag);
         if (generated != null) {
-            generated.forEach((key, elements) -> this.elements.merge(key, elements, (currentElements, newElements) -> {
-                        currentElements.addAll(newElements);
-                        return currentElements;
+            generated.forEach((key, elements) -> this.elements.merge(key, elements, (current, aNew) -> {
+                        current.addAll(aNew);
+                        return current;
                     }
             ));
         }

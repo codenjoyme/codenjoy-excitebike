@@ -26,7 +26,7 @@ import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.model.items.Obstacle;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.EnumMap;
 import java.util.LinkedList;
@@ -59,7 +59,7 @@ public class ObstacleChainGenerator implements Generator {
     }
 
     @Override
-    public Map<? extends CharElements, List<Shiftable>> generate() {
+    public Map<? extends CharElement, List<Shiftable>> generate() {
         ladderDirectionForward = true;
         elements.put(OBSTACLE, new LinkedList<>());
         shape = Shape.values()[dice.next(Shape.values().length)];

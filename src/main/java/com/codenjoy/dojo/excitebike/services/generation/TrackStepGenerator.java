@@ -29,7 +29,7 @@ import com.codenjoy.dojo.excitebike.services.generation.generator.ObstacleChainG
 import com.codenjoy.dojo.excitebike.services.generation.generator.SingleElementGenerator;
 import com.codenjoy.dojo.excitebike.services.generation.generator.SpringboardGenerator;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -57,7 +57,7 @@ public class TrackStepGenerator {
         optionGeneratorMap.put(OBSTACLE_CHAIN, new ObstacleChainGenerator(dice, xSize, ySize));
     }
 
-    public Map<? extends CharElements, List<Shiftable>> generate(WeightedRandomBag<GenerationOption> weightedRandomBag) {
+    public Map<? extends CharElement, List<Shiftable>> generate(WeightedRandomBag<GenerationOption> weightedRandomBag) {
         if (generationLock > 0) {
             generationLock--;
             return null;
@@ -66,7 +66,7 @@ public class TrackStepGenerator {
         GenerationOption generationOption = weightedRandomBag.getRandom(dice);
         Generator generator = optionGeneratorMap.get(generationOption);
 
-        Map<? extends CharElements, List<Shiftable>> generated = generator.generate();
+        Map<? extends CharElement, List<Shiftable>> generated = generator.generate();
         generationLock = generator.generationLockSize();
         return generated;
     }

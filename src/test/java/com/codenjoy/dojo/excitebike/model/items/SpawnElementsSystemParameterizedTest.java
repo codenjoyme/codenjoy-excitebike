@@ -66,8 +66,8 @@ public class SpawnElementsSystemParameterizedTest {
     public void init() {
         dice = mock(Dice.class);
         MapParser mapParser = mock(MapParser.class);
-        when(mapParser.getXSize()).thenReturn(5);
-        when(mapParser.getYSize()).thenReturn(5);
+        when(mapParser.width()).thenReturn(5);
+        when(mapParser.height()).thenReturn(5);
         GameSettings settings = new GameSettings();
         game = new Excitebike(mapParser, dice, settings);
         player = new Player(mock(EventListener.class), settings);

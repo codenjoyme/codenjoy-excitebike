@@ -25,7 +25,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,7 +77,7 @@ public class SingleElementGeneratorParametrizedTest {
         when(dice.next(ySize - 2)).thenReturn(expectedLine - 1);
 
         //when
-        Map<? extends CharElements, List<Shiftable>> result = new SingleElementGenerator(dice, xSize, ySize).generate();
+        Map<? extends CharElement, List<Shiftable>> result = new SingleElementGenerator(dice, xSize, ySize).generate();
 
         //then
         assertThat(result.values(), hasSize(1));

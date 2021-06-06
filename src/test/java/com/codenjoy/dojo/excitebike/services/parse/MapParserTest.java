@@ -25,7 +25,7 @@ package com.codenjoy.dojo.excitebike.services.parse;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,9 +44,9 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 @RunWith(Parameterized.class)
 public class MapParserTest {
 
-    private CharElements element;
+    private CharElement element;
 
-    public MapParserTest(CharElements element) {
+    public MapParserTest(CharElement element) {
         this.element = element;
     }
 
@@ -202,31 +202,31 @@ public class MapParserTest {
 
     private <T extends PointImpl> List<T> callTestMethod(MapParserImpl mapParser) {
         if (element == GameElement.FENCE) {
-            return (List<T>) mapParser.getFences();
+            return (List<T>) mapParser.fences();
         } else if (element == GameElement.ACCELERATOR) {
-            return (List<T>) mapParser.getAccelerators();
+            return (List<T>) mapParser.accelerators();
         } else if (element == GameElement.INHIBITOR) {
-            return (List<T>) mapParser.getInhibitors();
+            return (List<T>) mapParser.inhibitors();
         } else if (element == GameElement.OBSTACLE) {
             return (List<T>) mapParser.getObstacles();
         } else if (element == GameElement.LINE_CHANGER_UP) {
-            return (List<T>) mapParser.getLineUpChangers();
+            return (List<T>) mapParser.lineUp();
         } else if (element == GameElement.LINE_CHANGER_DOWN) {
-            return (List<T>) mapParser.getLineDownChangers();
+            return (List<T>) mapParser.lineDown();
         } else if (element == SpringboardElement.SPRINGBOARD_LEFT) {
-            return (List<T>) mapParser.getSpringboardDarkElements();
+            return (List<T>) mapParser.dark();
         } else if (element == SpringboardElement.SPRINGBOARD_RIGHT) {
-            return (List<T>) mapParser.getSpringboardLightElements();
+            return (List<T>) mapParser.light();
         } else if (element == SpringboardElement.SPRINGBOARD_LEFT_DOWN) {
-            return (List<T>) mapParser.getSpringboardLeftDownElements();
+            return (List<T>) mapParser.leftDown();
         } else if (element == SpringboardElement.SPRINGBOARD_LEFT_UP) {
-            return (List<T>) mapParser.getSpringboardLeftUpElements();
+            return (List<T>) mapParser.leftUp();
         } else if (element == SpringboardElement.SPRINGBOARD_RIGHT_DOWN) {
-            return (List<T>) mapParser.getSpringboardRightDownElements();
+            return (List<T>) mapParser.rightDown();
         } else if (element == SpringboardElement.SPRINGBOARD_RIGHT_UP) {
-            return (List<T>) mapParser.getSpringboardRightUpElements();
+            return (List<T>) mapParser.rightUp();
         } else if (element == SpringboardElement.SPRINGBOARD_TOP) {
-            return (List<T>) mapParser.getSpringboardNoneElements();
+            return (List<T>) mapParser.none();
         }
         return null;
     }

@@ -31,7 +31,7 @@ import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.PrinterFactoryImpl;
 
 import java.util.Arrays;
@@ -61,7 +61,7 @@ public class TestUtils {
         return new Bike(point);
     }
 
-    private static <T> List<T> parseAndConvertElements(String map, int xSize, Function<Point, T> elementConstructor, CharElements... elements) {
+    private static <T> List<T> parseAndConvertElements(String map, int xSize, Function<Point, T> elementConstructor, CharElement... elements) {
         return IntStream.range(0, map.length())
                 .filter(index -> Arrays.stream(elements).anyMatch(e -> map.charAt(index) == e.ch()))
                 .mapToObj(i -> convertToPoint(map, xSize, i))

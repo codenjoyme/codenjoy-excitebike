@@ -40,7 +40,7 @@ import com.codenjoy.dojo.services.PlayerScores;
 import com.codenjoy.dojo.services.multiplayer.GameField;
 import com.codenjoy.dojo.services.multiplayer.GamePlayer;
 import com.codenjoy.dojo.services.multiplayer.MultiplayerType;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.settings.Parameter;
 import com.google.common.collect.ObjectArrays;
 
@@ -101,9 +101,9 @@ public class GameRunner extends AbstractGameType<GameSettings> {
     }
 
     @Override
-    public CharElements[] getPlots() {
-        CharElements[] result = ObjectArrays.concat(GameElement.values(), SpringboardElement.values(), CharElements.class);
-        result = ObjectArrays.concat(result, BikeElement.values(), CharElements.class);
+    public CharElement[] getPlots() {
+        CharElement[] result = ObjectArrays.concat(GameElement.values(), SpringboardElement.values(), CharElement.class);
+        result = ObjectArrays.concat(result, BikeElement.values(), CharElement.class);
         return result;
     }
 

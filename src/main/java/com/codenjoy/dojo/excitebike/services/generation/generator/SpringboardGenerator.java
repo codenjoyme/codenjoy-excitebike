@@ -23,6 +23,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
+import com.codenjoy.dojo.excitebike.model.items.Springboard;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Dice;
 
@@ -88,7 +89,7 @@ public class SpringboardGenerator implements Generator {
         if (!elements.containsKey(type)) {
             elements.put(type, new LinkedList<>());
         }
-        elements.get(type).add(new com.codenjoy.dojo.excitebike.model.items.SpringboardElement(x, y, type));
+        elements.get(type).add(new Springboard(x, y, type));
     }
 
     @Override

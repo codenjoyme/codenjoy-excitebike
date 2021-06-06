@@ -29,7 +29,7 @@ import com.codenjoy.dojo.excitebike.model.items.LineChanger;
 import com.codenjoy.dojo.excitebike.model.items.Obstacle;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import com.google.common.collect.Lists;
 
 import java.util.EnumMap;
@@ -58,15 +58,15 @@ public class SingleElementGenerator implements Generator {
     }
 
     @Override
-    public Map<? extends CharElements, List<Shiftable>> generate() {
+    public Map<? extends CharElement, List<Shiftable>> generate() {
         int rndNonFenceElementOrdinal = dice.next(GameElement.values().length - 2) + 2;
         int rndNonFenceLaneNumber = dice.next(ySize - 2) + 1;
-        CharElements randomType = GameElement.values()[rndNonFenceElementOrdinal];
+        CharElement randomType = GameElement.values()[rndNonFenceElementOrdinal];
         int firstPossibleX = xSize - 1;
         return getNewElement(randomType, firstPossibleX, rndNonFenceLaneNumber);
     }
 
-    private Map<GameElement, List<Shiftable>> getNewElement(CharElements randomType, int x, int y) {
+    private Map<GameElement, List<Shiftable>> getNewElement(CharElement randomType, int x, int y) {
         Map<GameElement, List<Shiftable>> map = new EnumMap<>(GameElement.class);
         if (ACCELERATOR.equals(randomType)) {
             map.put(ACCELERATOR, Lists.newArrayList(new Accelerator(x, y)));

@@ -55,8 +55,8 @@ public class FieldTest {
     @Before
     public void init() {
         mapParser = mock(MapParser.class);
-        when(mapParser.getXSize()).thenReturn(5);
-        when(mapParser.getYSize()).thenReturn(5);
+        when(mapParser.width()).thenReturn(5);
+        when(mapParser.height()).thenReturn(5);
         dice = mock(Dice.class);
         settings = new GameSettings();
     }
@@ -78,7 +78,7 @@ public class FieldTest {
     public void isFence__shouldReturnTrue__IfYEqualsMaxPossibleValue() {
         //given
         int x = 1, y = 2;
-        when(mapParser.getYSize()).thenReturn(3);
+        when(mapParser.height()).thenReturn(3);
         gameField = new Excitebike(mapParser, dice, settings);
 
         //when
@@ -92,7 +92,7 @@ public class FieldTest {
     public void isFence__shouldReturnFalse__IfYIsNotZeroAndMaxPossibleValue() {
         //given
         int x = 1, y = 1;
-        when(mapParser.getYSize()).thenReturn(3);
+        when(mapParser.height()).thenReturn(3);
         gameField = new Excitebike(mapParser, dice, settings);
 
         //when
@@ -107,7 +107,7 @@ public class FieldTest {
         //given
         int x = 1, y = 1;
         Inhibitor inhibitor = new Inhibitor(x, y);
-        when(mapParser.getInhibitors()).thenReturn(Collections.singletonList(inhibitor));
+        when(mapParser.inhibitors()).thenReturn(Collections.singletonList(inhibitor));
         gameField = new Excitebike(mapParser, dice, settings);
 
         //when
@@ -122,7 +122,7 @@ public class FieldTest {
         //given
         int x = 1, y = 1;
         Accelerator accelerator = new Accelerator(x, y);
-        when(mapParser.getAccelerators()).thenReturn(Collections.singletonList(accelerator));
+        when(mapParser.accelerators()).thenReturn(Collections.singletonList(accelerator));
         gameField = new Excitebike(mapParser, dice, settings);
 
         //when
@@ -152,7 +152,7 @@ public class FieldTest {
         //given
         int x = 1, y = 1;
         LineChanger lineChanger = new LineChanger(x, y, true);
-        when(mapParser.getLineUpChangers()).thenReturn(Collections.singletonList(lineChanger));
+        when(mapParser.lineUp()).thenReturn(Collections.singletonList(lineChanger));
         gameField = new Excitebike(mapParser, dice, settings);
 
         //when
@@ -167,7 +167,7 @@ public class FieldTest {
         //given
         int x = 1, y = 1;
         LineChanger lineChanger = new LineChanger(x, y, false);
-        when(mapParser.getLineDownChangers()).thenReturn(Collections.singletonList(lineChanger));
+        when(mapParser.lineDown()).thenReturn(Collections.singletonList(lineChanger));
         gameField = new Excitebike(mapParser, dice, settings);
 
         //when
@@ -236,11 +236,11 @@ public class FieldTest {
         LineChanger upperLineChanger = new LineChanger(0, 2, true);
         LineChanger lowerLineChanger = new LineChanger(1, 2, false);
 
-        when(mapParser.getAccelerators()).thenReturn(new ArrayList<>(Collections.singletonList(accelerator)));
-        when(mapParser.getInhibitors()).thenReturn(new ArrayList<>(Collections.singletonList(inhibitor)));
+        when(mapParser.accelerators()).thenReturn(new ArrayList<>(Collections.singletonList(accelerator)));
+        when(mapParser.inhibitors()).thenReturn(new ArrayList<>(Collections.singletonList(inhibitor)));
         when(mapParser.getObstacles()).thenReturn(new ArrayList<>(Collections.singletonList(obstacle)));
-        when(mapParser.getLineUpChangers()).thenReturn(new ArrayList<>(Collections.singletonList(upperLineChanger)));
-        when(mapParser.getLineDownChangers()).thenReturn(new ArrayList<>(Collections.singletonList(lowerLineChanger)));
+        when(mapParser.lineUp()).thenReturn(new ArrayList<>(Collections.singletonList(upperLineChanger)));
+        when(mapParser.lineDown()).thenReturn(new ArrayList<>(Collections.singletonList(lowerLineChanger)));
 
         gameField = new Excitebike(mapParser, dice, settings);
 
@@ -267,8 +267,8 @@ public class FieldTest {
         int nonFenceElementOrdinal = 0;
         int nonFenceLaneNumber = 0;
 
-        when(mapParser.getXSize()).thenReturn(xSize);
-        when(mapParser.getYSize()).thenReturn(ySize);
+        when(mapParser.width()).thenReturn(xSize);
+        when(mapParser.height()).thenReturn(ySize);
         when(dice.next(anyInt())).thenReturn(12, nonFenceElementOrdinal, nonFenceLaneNumber);
         gameField = new Excitebike(mapParser, dice, settings);
 

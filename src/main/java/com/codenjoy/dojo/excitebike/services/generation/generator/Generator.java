@@ -23,7 +23,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.List;
 import java.util.Map;
@@ -33,7 +33,7 @@ import java.util.Map;
  */
 public interface Generator {
 
-    Map<? extends CharElements, List<Shiftable>> generate();
+    Map<? extends CharElement, List<Shiftable>> generate();
 
     int generationLockSize();
 }
