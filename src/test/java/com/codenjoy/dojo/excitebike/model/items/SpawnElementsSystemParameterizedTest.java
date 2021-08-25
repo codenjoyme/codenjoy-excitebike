@@ -38,6 +38,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -85,7 +86,9 @@ public class SpawnElementsSystemParameterizedTest {
         game.tick();
 
         //then
-        PointImpl generatedElement = (PointImpl) ((List) game.reader().elements(null)).stream().filter(el -> !(el instanceof Bike || el instanceof Fence)).findFirst().get();
+        LinkedList<Object> all = new LinkedList<>();
+        game.reader().addAll(null, list -> all.addAll((Collection<?>) list));
+        PointImpl generatedElement = (PointImpl)all.stream().filter(el -> !(el instanceof Bike || el instanceof Fence)).findFirst().get();
         assertThat(((State) generatedElement).state(player), is(gameElementType));
 
     }

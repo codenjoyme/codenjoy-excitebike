@@ -39,6 +39,7 @@ import com.codenjoy.dojo.services.printer.BoardReader;
 import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN;
 import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
@@ -258,16 +259,14 @@ public class Excitebike implements Field {
             }
 
             @Override
-            public Iterable<? extends Point> elements(Player player) {
-                return new LinkedList<Point>() {{
-                    addAll(Excitebike.this.getAliveBikes());
-                    addAll(Excitebike.this.elements.get(BIKE_FALLEN));
-                    Excitebike.this.elements.entrySet()
-                            .stream()
+            public void addAll(Player player, Consumer<Iterable<? extends Point>> processor) {
+                processor.accept(getAliveBikes());
+                processor.accept(elements.get(BIKE_FALLEN));
+                processor.accept(elements.entrySet().stream()
                             .filter(e -> e.getKey() != BIKE_FALLEN)
-                            .forEach(e -> this.addAll(e.getValue()));
-                    addAll(getFences());
-                }};
+                            .flatMap(e -> e.getValue().stream())
+                            .collect(toList()));
+                processor.accept(getFences());
             }
         };
     }
