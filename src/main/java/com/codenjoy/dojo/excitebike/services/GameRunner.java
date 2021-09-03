@@ -33,7 +33,6 @@ import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
-import com.codenjoy.dojo.excitebike.services.parse.MapParserImpl;
 import com.codenjoy.dojo.services.AbstractGameType;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.PlayerScores;
@@ -61,7 +60,7 @@ public class GameRunner extends AbstractGameType<GameSettings> {
     }
 
     public GameRunner() {
-        mapParser = new MapParserImpl(getMap(), X_SIZE);
+        mapParser = new MapParser(getMap(), X_SIZE);
     }
 
     protected String getMap() {

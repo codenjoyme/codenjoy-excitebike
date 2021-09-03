@@ -22,45 +22,114 @@ package com.codenjoy.dojo.excitebike.services.parse;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.items.Accelerator;
-import com.codenjoy.dojo.excitebike.model.items.Fence;
-import com.codenjoy.dojo.excitebike.model.items.Inhibitor;
-import com.codenjoy.dojo.excitebike.model.items.LineChanger;
-import com.codenjoy.dojo.excitebike.model.items.Obstacle;
-import com.codenjoy.dojo.excitebike.model.items.Springboard;
+import com.codenjoy.dojo.excitebike.model.items.*;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
+import com.codenjoy.dojo.services.LengthToXY;
+import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.services.PointImpl;
+import com.codenjoy.dojo.services.field.AbstractLevel;
 
 import java.util.List;
 
-public interface MapParser {
+import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
 
-    int width();
+public class MapParser extends AbstractLevel {
 
-    int height();
+    private final int xSize;
 
-    List<Accelerator> accelerators();
+    public MapParser(String map, int xSize) {
+        super(map);
+        this.xSize = xSize;
+        this.xy = new LengthToXY(xSize){
+            @Override
+            public Point getXY(int length) {
+                return convertToPoint(length);
+            }
+        };
+    }
 
-    List<Fence> fences();
+    public int width() {
+        return xSize;
+    }
 
-    List<Inhibitor> inhibitors();
+    public int height() {
+        return map.length() / xSize;
+    }
 
-    List<LineChanger> lineUp();
+    public List<Accelerator> accelerators() {
+        return find((pt, el) -> new Accelerator(pt),
+                ACCELERATOR);
+    }
 
-    List<LineChanger> lineDown();
+    public List<Fence> fences() {
+        return find(
+                (pt, el) -> new Fence(pt),
+                FENCE);
+    }
 
-    List<Obstacle> getObstacles();
+    public List<Inhibitor> inhibitors() {
+        return find(
+                (pt, el) -> new Inhibitor(pt), 
+                INHIBITOR);
+    }
 
-    List<Springboard> dark();
+    public List<LineChanger> lineUp() {
+        return find(
+                (pt, el) -> new LineChanger(pt, true), 
+                LINE_CHANGER_UP);
+    }
 
-    List<Springboard> light();
+    public List<LineChanger> lineDown() {
+        return find(
+                (pt, el) -> new LineChanger(pt, false), 
+                LINE_CHANGER_DOWN);
+    }
 
-    List<Springboard> leftDown();
+    public List<Obstacle> getObstacles() {
+        return find(
+                (pt, el) -> new Obstacle(pt), 
+                OBSTACLE);
+    }
 
-    List<Springboard> leftUp();
 
-    List<Springboard> rightDown();
+    public List<Springboard> dark() {
+        return getSpringboard(SPRINGBOARD_LEFT);
+    }
 
-    List<Springboard> rightUp();
+    private List<Springboard> getSpringboard(SpringboardElement element) {
+        return find(
+                (pt, el) -> new Springboard(pt, el),
+                element);
+    }
 
-    List<Springboard> none();
+    public List<Springboard> light() {
+        return getSpringboard(SPRINGBOARD_RIGHT);
+    }
 
+    public List<Springboard> leftDown() {
+        return getSpringboard(SPRINGBOARD_LEFT_DOWN);
+    }
+
+    public List<Springboard> leftUp() {
+        return getSpringboard(SPRINGBOARD_LEFT_UP);
+    }
+
+    public List<Springboard> rightDown() {
+        return getSpringboard(SPRINGBOARD_RIGHT_DOWN);
+    }
+
+    public List<Springboard> rightUp() {
+        return getSpringboard(SPRINGBOARD_RIGHT_UP);
+    }
+
+    public List<Springboard> none() {
+        return getSpringboard(SPRINGBOARD_TOP);
+    }
+    
+    private Point convertToPoint(int position) {
+        return position == -1
+                ? null
+                : PointImpl.pt(position % xSize, (this.map.length() - position - 1) / xSize);
+    }
 }

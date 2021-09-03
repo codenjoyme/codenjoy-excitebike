@@ -27,7 +27,6 @@ import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.Events;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
-import com.codenjoy.dojo.excitebike.services.parse.MapParserImpl;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Game;
@@ -58,7 +57,7 @@ public class MultiplayerTest {
     private Excitebike field;
 
     private void init() {
-        MapParser mapParser = new MapParserImpl(
+        MapParser mapParser = new MapParser(
                 "■■■■■■■" +
                 "       " +
                 "       " +

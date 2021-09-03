@@ -78,7 +78,7 @@ public class MapParserTest {
                 "     " +
                 element.ch() + "    ";
         int xSize = 5;
-        MapParserImpl mapParser = new MapParserImpl(map, xSize);
+        MapParser mapParser = new MapParser(map, xSize);
 
         //when
         List<PointImpl> result = callTestMethod(mapParser);
@@ -106,7 +106,7 @@ public class MapParserTest {
                 element.ch() + element.ch() + element.ch() +
                 element.ch() + element.ch() + element.ch();
         int xSize = 3;
-        MapParserImpl mapParser = new MapParserImpl(map, xSize);
+        MapParser mapParser = new MapParser(map, xSize);
 
         //when
         List<PointImpl> result = callTestMethod(mapParser);
@@ -149,7 +149,7 @@ public class MapParserTest {
                 "   " + element.ch() + " " +
                 "  " + element.ch() + element.ch() + " ";
         int xSize = 5;
-        MapParserImpl mapParser = new MapParserImpl(map, xSize);
+        MapParser mapParser = new MapParser(map, xSize);
 
         //when
         List<PointImpl> result = callTestMethod(mapParser);
@@ -173,7 +173,7 @@ public class MapParserTest {
         String map = "" + element.ch() + element.ch() + element.ch() +
                 element.ch() + element.ch() + element.ch();
         int xSize = 3;
-        MapParserImpl mapParser = new MapParserImpl(map, xSize);
+        MapParser mapParser = new MapParser(map, xSize);
 
         //when
         List<PointImpl> result = callTestMethod(mapParser);
@@ -200,7 +200,7 @@ public class MapParserTest {
         assertThat(result.get(5).getY(), is(0));
     }
 
-    private <T extends PointImpl> List<T> callTestMethod(MapParserImpl mapParser) {
+    private <T extends PointImpl> List<T> callTestMethod(MapParser mapParser) {
         if (element == GameElement.FENCE) {
             return (List<T>) mapParser.fences();
         } else if (element == GameElement.ACCELERATOR) {

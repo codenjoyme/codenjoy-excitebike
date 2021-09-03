@@ -24,7 +24,6 @@ package com.codenjoy.dojo.excitebike.model;
 
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
-import com.codenjoy.dojo.excitebike.services.parse.MapParserImpl;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Game;
@@ -310,7 +309,7 @@ public class SpawnTest {
     public void shouldSpawnPlayers() {
         //given
         int xSize = 7;
-        MapParser mapParser = new MapParserImpl(init, xSize);
+        MapParser mapParser = new MapParser(init, xSize);
 
         Dice dice = mock(Dice.class);
         when(dice.next(anyInt())).thenReturn(5);

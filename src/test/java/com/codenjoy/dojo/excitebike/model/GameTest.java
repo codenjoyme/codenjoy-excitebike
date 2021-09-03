@@ -25,7 +25,7 @@ package com.codenjoy.dojo.excitebike.model;
 
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
-import com.codenjoy.dojo.excitebike.services.parse.MapParserImpl;
+import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.utils.TestUtils;
@@ -57,7 +57,7 @@ public class GameTest {
 
     private void init(String board, int xSize) {
         Bike bike = parseBikes(board, xSize).get(0);
-        game = new Excitebike(new MapParserImpl(board, xSize), dice, settings);
+        game = new Excitebike(new MapParser(board, xSize), dice, settings);
         player = new Player(mock(EventListener.class), settings);
         player.setHero(bike);
         game.newGame(player);
