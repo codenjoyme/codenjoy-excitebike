@@ -30,10 +30,6 @@ import com.codenjoy.dojo.services.State;
 
 public class Fence extends PointImpl implements State<GameElement, Player> {
 
-    public Fence(int x, int y) {
-        super(x, y);
-    }
-
     public Fence(Point point) {
         super(point);
     }

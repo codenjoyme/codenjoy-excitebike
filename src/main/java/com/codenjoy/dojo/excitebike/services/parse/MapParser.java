@@ -33,6 +33,7 @@ import java.util.List;
 
 import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
 import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
+import static com.codenjoy.dojo.services.PointImpl.pt;
 
 public class MapParser extends AbstractLevel {
 
@@ -58,49 +59,35 @@ public class MapParser extends AbstractLevel {
     }
 
     public List<Accelerator> accelerators() {
-        return find((pt, el) -> new Accelerator(pt),
-                ACCELERATOR);
+        return find((pt, el) -> new Accelerator(pt), ACCELERATOR);
     }
 
     public List<Fence> fences() {
-        return find(
-                (pt, el) -> new Fence(pt),
-                FENCE);
+        return find(Fence::new, FENCE);
     }
 
     public List<Inhibitor> inhibitors() {
-        return find(
-                (pt, el) -> new Inhibitor(pt), 
-                INHIBITOR);
+        return find((pt, el) -> new Inhibitor(pt), INHIBITOR);
     }
 
     public List<LineChanger> lineUp() {
-        return find(
-                (pt, el) -> new LineChanger(pt, true), 
-                LINE_CHANGER_UP);
+        return find((pt, el) -> new LineChanger(pt, true), LINE_CHANGER_UP);
     }
 
     public List<LineChanger> lineDown() {
-        return find(
-                (pt, el) -> new LineChanger(pt, false), 
-                LINE_CHANGER_DOWN);
+        return find((pt, el) -> new LineChanger(pt, false), LINE_CHANGER_DOWN);
     }
 
     public List<Obstacle> getObstacles() {
-        return find(
-                (pt, el) -> new Obstacle(pt), 
-                OBSTACLE);
+        return find((pt, el) -> new Obstacle(pt), OBSTACLE);
     }
-
 
     public List<Springboard> dark() {
         return getSpringboard(SPRINGBOARD_LEFT);
     }
 
     private List<Springboard> getSpringboard(SpringboardElement element) {
-        return find(
-                (pt, el) -> new Springboard(pt, el),
-                element);
+        return find(Springboard::new, element);
     }
 
     public List<Springboard> light() {
@@ -128,8 +115,11 @@ public class MapParser extends AbstractLevel {
     }
     
     private Point convertToPoint(int position) {
-        return position == -1
-                ? null
-                : PointImpl.pt(position % xSize, (this.map.length() - position - 1) / xSize);
+        if (position == -1) {
+            return null;
+        }
+
+        return pt(position % xSize,
+                (this.map.length() - position - 1) / xSize);
     }
 }
