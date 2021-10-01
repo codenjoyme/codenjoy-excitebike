@@ -84,7 +84,7 @@ public class Excitebike implements Field {
     }
 
     /**
-     * @see Tickable#tick()
+     * {@link Tickable}
      */
     @Override
     public void tick() {
