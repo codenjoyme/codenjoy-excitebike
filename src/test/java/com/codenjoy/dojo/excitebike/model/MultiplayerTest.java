@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.model;
 
 
 import com.codenjoy.dojo.excitebike.model.items.Bike;
-import com.codenjoy.dojo.excitebike.services.Events;
+import com.codenjoy.dojo.excitebike.services.Event;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.services.Dice;
@@ -189,12 +189,12 @@ public class MultiplayerTest {
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game2.isGameOver(), is(true));
-        verify(eventListenerSpy1).event(Events.WIN);
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy2).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1).event(Event.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy2).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -223,12 +223,12 @@ public class MultiplayerTest {
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game3.isGameOver(), is(true));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy3).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy3).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -253,12 +253,12 @@ public class MultiplayerTest {
                 "ḟ■■■■■■\n";
         assertThat(game2.getBoardAsString(), is(expected));
         assertThat(game1.isGameOver(), is(true));
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy1).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy1).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
     }
 
     @Test
@@ -286,12 +286,12 @@ public class MultiplayerTest {
                 "       \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -322,12 +322,12 @@ public class MultiplayerTest {
                 "       \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -355,12 +355,12 @@ public class MultiplayerTest {
                 "       \n" +
                 "■■■■■■■\n";
         assertThat(game2.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -388,12 +388,12 @@ public class MultiplayerTest {
                 "       \n" +
                 "■■■■■■■\n";
         assertThat(game3.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -555,12 +555,12 @@ public class MultiplayerTest {
                 "╚F╝    \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -596,12 +596,12 @@ public class MultiplayerTest {
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game2.isGameOver(), is(true));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1).event(Events.WIN);
-        verify(eventListenerSpy2).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1).event(Event.WIN);
+        verify(eventListenerSpy2).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -638,10 +638,10 @@ public class MultiplayerTest {
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game2.isGameOver(), is(true));
-        verify(eventListenerSpy1).event(Events.WIN);
-        verify(eventListenerSpy2).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1).event(Event.WIN);
+        verify(eventListenerSpy2).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -677,12 +677,12 @@ public class MultiplayerTest {
                 "ˊ╝     \n" +
                 "■f■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -864,12 +864,12 @@ public class MultiplayerTest {
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
         assertThat(game3.isGameOver(), is(true));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -906,12 +906,12 @@ public class MultiplayerTest {
                 "╝      \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -1055,12 +1055,12 @@ public class MultiplayerTest {
                 "■■■■■■■\n";
 
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1).event(Events.WIN);
-        verify(eventListenerSpy2).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1).event(Event.WIN);
+        verify(eventListenerSpy2).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -1118,12 +1118,12 @@ public class MultiplayerTest {
                 "       \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -1153,12 +1153,12 @@ public class MultiplayerTest {
                 "       \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test
@@ -1296,12 +1296,12 @@ public class MultiplayerTest {
                 "ˊˊˊˊ╝  \n" +
                 "■■■■■■■\n";
         assertThat(game1.getBoardAsString(), is(expected));
-        verify(eventListenerSpy1, never()).event(Events.LOSE);
-        verify(eventListenerSpy1, never()).event(Events.WIN);
-        verify(eventListenerSpy2, never()).event(Events.LOSE);
-        verify(eventListenerSpy2, never()).event(Events.WIN);
-        verify(eventListenerSpy3, never()).event(Events.LOSE);
-        verify(eventListenerSpy3, never()).event(Events.WIN);
+        verify(eventListenerSpy1, never()).event(Event.LOSE);
+        verify(eventListenerSpy1, never()).event(Event.WIN);
+        verify(eventListenerSpy2, never()).event(Event.LOSE);
+        verify(eventListenerSpy2, never()).event(Event.WIN);
+        verify(eventListenerSpy3, never()).event(Event.LOSE);
+        verify(eventListenerSpy3, never()).event(Event.WIN);
     }
 
     @Test

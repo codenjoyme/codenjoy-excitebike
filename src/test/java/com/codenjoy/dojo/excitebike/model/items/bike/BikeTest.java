@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.model.items.bike;
 
 import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.excitebike.services.Events;
+import com.codenjoy.dojo.excitebike.services.Event;
 import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
@@ -574,7 +574,7 @@ public class BikeTest {
         bike.tick();
 
         //then
-        verify(player).event(Events.LOSE);
+        verify(player).event(Event.LOSE);
     }
 
 }

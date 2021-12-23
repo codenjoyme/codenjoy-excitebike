@@ -26,7 +26,7 @@ package com.codenjoy.dojo.excitebike.model.items;
 import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.games.excitebike.element.BikeElement;
-import com.codenjoy.dojo.excitebike.services.Events;
+import com.codenjoy.dojo.excitebike.services.Event;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.State;
@@ -145,7 +145,7 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
             tryToMove();
             adjustStateToElement();
             if (!isAlive()) {
-                field.getPlayerOfBike(this).event(Events.LOSE);
+                field.getPlayerOfBike(this).event(Event.LOSE);
             }
         }
     }
@@ -272,10 +272,10 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
                 if (enemyDoesNotMoveUpOrDown(enemy) || enemyCouldAvoidThisBikeButCantBecauseOfInteractionWithOtherBike(enemy)) {
                     enemy.crush();
                     type = BIKE_AT_KILLED_BIKE;
-                    field.getPlayerOfBike(this).event(Events.WIN);
+                    field.getPlayerOfBike(this).event(Event.WIN);
                     move(enemy);
                     enemy.ticked = true;
-                    field.getPlayerOfBike(enemy).event(Events.LOSE);
+                    field.getPlayerOfBike(enemy).event(Event.LOSE);
                     movement.clear();
                     command = null;
                 }
