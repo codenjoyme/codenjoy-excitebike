@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.LOSE_PENALTY;
 import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.WIN_SCORE;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ScoresTest {
 
@@ -25,12 +25,16 @@ public class ScoresTest {
     @Before
     public void setup() {
         settings = new GameSettings();
-        scores = new ScoresImpl<>(0, new Scores(settings));
+        givenScores(0);
+    }
+
+    private void givenScores(int score) {
+        scores = new ScoresImpl<>(score, new Scores(settings));
     }
 
     @Test
     public void shouldCollectScores() {
-        scores = new ScoresImpl<>(100, new Scores(settings));
+        givenScores(100);
 
         win();
         win();
@@ -46,7 +50,7 @@ public class ScoresTest {
 
     @Test
     public void shouldWin() {
-        scores = new ScoresImpl<>(100, new Scores(settings));
+        givenScores(100);
 
         win();
         win();
@@ -58,7 +62,7 @@ public class ScoresTest {
 
     @Test
     public void shouldLose() {
-        scores = new ScoresImpl<>(100, new Scores(settings));
+        givenScores(100);
 
         loose();
         loose();
@@ -70,7 +74,7 @@ public class ScoresTest {
 
     @Test
     public void shouldNotLessThan0() {
-        scores = new ScoresImpl<>(1, new Scores(settings));
+        givenScores(1);
 
         loose();
         loose();
