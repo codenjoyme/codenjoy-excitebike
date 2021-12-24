@@ -23,6 +23,7 @@ package com.codenjoy.dojo.excitebike.model;
  */
 
 
+import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.Event;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
@@ -39,11 +40,7 @@ import static com.codenjoy.dojo.excitebike.TestUtils.ticks;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class MultiplayerTest {
 
@@ -67,7 +64,7 @@ public class MultiplayerTest {
                 "■■■■■■■", 7);
 
         dice = mock(Dice.class);
-        GameSettings settings = new GameSettings();
+        GameSettings settings = new TestGameSettings();
         field = new Excitebike(mapParser, dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
 
