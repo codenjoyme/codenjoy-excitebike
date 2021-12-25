@@ -83,7 +83,7 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
         }};
     }
 
-    public Calculator<Integer> calculator() {
+    public Calculator<Void> calculator() {
         return new Calculator<>(new Scores(this));
     }
 }

@@ -29,7 +29,7 @@ import com.codenjoy.dojo.services.settings.SettingsReader;
 import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.LOSE_PENALTY;
 import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.WIN_SCORE;
 
-public class Scores extends ScoresMap<Integer> {
+public class Scores extends ScoresMap<Void> {
 
     public Scores(SettingsReader settings) {
         super(settings);
