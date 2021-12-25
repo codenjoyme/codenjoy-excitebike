@@ -22,11 +22,8 @@ package com.codenjoy.dojo.excitebike.model;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.items.Accelerator;
-import com.codenjoy.dojo.excitebike.model.items.Inhibitor;
-import com.codenjoy.dojo.excitebike.model.items.LineChanger;
-import com.codenjoy.dojo.excitebike.model.items.Obstacle;
-import com.codenjoy.dojo.excitebike.model.items.Bike;
+import com.codenjoy.dojo.excitebike.TestGameSettings;
+import com.codenjoy.dojo.excitebike.model.items.*;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.services.Dice;
@@ -58,11 +55,11 @@ public class FieldTest {
         when(mapParser.width()).thenReturn(5);
         when(mapParser.height()).thenReturn(5);
         dice = mock(Dice.class);
-        settings = new GameSettings();
+        settings = new TestGameSettings();
     }
 
     @Test
-    public void isFence__shouldReturnTrue__IfYEqualsZero() {
+    public void isFence_shouldReturnTrue_IfYEqualsZero() {
         //given
         int x = 1, y = 0;
         gameField = new Excitebike(mapParser, dice, settings);
@@ -75,7 +72,7 @@ public class FieldTest {
     }
 
     @Test
-    public void isFence__shouldReturnTrue__IfYEqualsMaxPossibleValue() {
+    public void isFence_shouldReturnTrue_IfYEqualsMaxPossibleValue() {
         //given
         int x = 1, y = 2;
         when(mapParser.height()).thenReturn(3);
@@ -89,7 +86,7 @@ public class FieldTest {
     }
 
     @Test
-    public void isFence__shouldReturnFalse__IfYIsNotZeroAndMaxPossibleValue() {
+    public void isFence_shouldReturnFalse_IfYIsNotZeroAndMaxPossibleValue() {
         //given
         int x = 1, y = 1;
         when(mapParser.height()).thenReturn(3);
@@ -103,7 +100,7 @@ public class FieldTest {
     }
 
     @Test
-    public void isInhibitor__shouldReturnTrue() {
+    public void isInhibitor_shouldReturnTrue() {
         //given
         int x = 1, y = 1;
         Inhibitor inhibitor = new Inhibitor(x, y);
@@ -118,7 +115,7 @@ public class FieldTest {
     }
 
     @Test
-    public void isAccelerator__shouldReturnTrue() {
+    public void isAccelerator_shouldReturnTrue() {
         //given
         int x = 1, y = 1;
         Accelerator accelerator = new Accelerator(x, y);
@@ -133,7 +130,7 @@ public class FieldTest {
     }
 
     @Test
-    public void isObstacle__shouldReturnTrue() {
+    public void isObstacle_shouldReturnTrue() {
         //given
         int x = 1, y = 1;
         Obstacle obstacle = new Obstacle(x, y);
@@ -148,7 +145,7 @@ public class FieldTest {
     }
 
     @Test
-    public void isUpLineChanger__shouldReturnTrue() {
+    public void isUpLineChanger_shouldReturnTrue() {
         //given
         int x = 1, y = 1;
         LineChanger lineChanger = new LineChanger(x, y, true);
@@ -163,7 +160,7 @@ public class FieldTest {
     }
 
     @Test
-    public void isDownLineChanger__shouldReturnTrue() {
+    public void isDownLineChanger_shouldReturnTrue() {
         //given
         int x = 1, y = 1;
         LineChanger lineChanger = new LineChanger(x, y, false);
@@ -178,7 +175,7 @@ public class FieldTest {
     }
 
     @Test
-    public void getEnemyBike__shouldReturnEmptyOptional__ifThereIsOnlyThisBikeAtGivenCoordinates() {
+    public void getEnemyBike_shouldReturnEmptyOptional_ifThereIsOnlyThisBikeAtGivenCoordinates() {
         //given
         gameField = new Excitebike(mapParser, dice, settings);
         Player player = new Player(mock(EventListener.class), settings);
@@ -192,7 +189,7 @@ public class FieldTest {
     }
 
     @Test
-    public void getEnemyBike__shouldReturnEmptyOptional__ifGivenPlayerIsNull() {
+    public void getEnemyBike_shouldReturnEmptyOptional_ifGivenPlayerIsNull() {
         //given
         gameField = new Excitebike(mapParser, dice, settings);
         Player player = new Player(mock(EventListener.class), settings);
@@ -206,7 +203,7 @@ public class FieldTest {
     }
 
     @Test
-    public void getEnemyBike__shouldReturnOptionalWithEnemyBike__ifThereIsOneAtGivenCoordinates() {
+    public void getEnemyBike_shouldReturnOptionalWithEnemyBike_ifThereIsOneAtGivenCoordinates() {
         //given
         gameField = new Excitebike(mapParser, dice, settings);
         int x = 1;
@@ -228,7 +225,7 @@ public class FieldTest {
     }
 
     @Test
-    public void tick__shouldShiftAllShiftableElementsAndRemoveTheseAreOutOfBound() {
+    public void tick_shouldShiftAllShiftableElementsAndRemoveTheseAreOutOfBound() {
         //given
         Accelerator accelerator = new Accelerator(0, 1);
         Inhibitor inhibitor = new Inhibitor(1, 1);
@@ -260,7 +257,7 @@ public class FieldTest {
     }
 
     @Test
-    public void tick__shouldGenerateAccelerator() {
+    public void tick_shouldGenerateAccelerator() {
         //given
         int xSize = 5;
         int ySize = 5;
@@ -280,7 +277,7 @@ public class FieldTest {
     }
 
     @Test
-    public void getPlayerOfBike__shouldReturnNull__ifThereIsNoPlayerWithGivenBike() {
+    public void getPlayerOfBike_shouldReturnNull_ifThereIsNoPlayerWithGivenBike() {
         //given
         gameField = new Excitebike(mapParser, dice, settings);
         Player player = new Player(mock(EventListener.class), settings);
@@ -294,7 +291,7 @@ public class FieldTest {
     }
 
     @Test
-    public void getPlayerOfBike__shouldReturnOptionalWithEnemyBike__ifThereIsOneAtGivenCoordinates() {
+    public void getPlayerOfBike_shouldReturnOptionalWithEnemyBike_ifThereIsOneAtGivenCoordinates() {
         //given
         gameField = new Excitebike(mapParser, dice, settings);
         int x = 1;

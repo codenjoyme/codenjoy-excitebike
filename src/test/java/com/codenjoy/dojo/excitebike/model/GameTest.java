@@ -23,6 +23,7 @@ package com.codenjoy.dojo.excitebike.model;
  */
 
 
+import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
@@ -32,9 +33,7 @@ import com.codenjoy.dojo.utils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.codenjoy.dojo.excitebike.TestUtils.parseBikes;
-import static com.codenjoy.dojo.excitebike.TestUtils.printField;
-import static com.codenjoy.dojo.excitebike.TestUtils.ticks;
+import static com.codenjoy.dojo.excitebike.TestUtils.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -52,7 +51,7 @@ public class GameTest {
     @Before
     public void setup() {
         dice = mock(Dice.class);
-        settings = new GameSettings();
+        settings = new TestGameSettings();
     }
 
     private void init(String board, int xSize) {
@@ -65,7 +64,7 @@ public class GameTest {
     }
 
     @Test
-    public void init__shouldFillFieldCorrectly() {
+    public void init_shouldFillFieldCorrectly() {
         // given
         String board = 
                 "■■■■■" +
@@ -86,7 +85,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldShiftTrack() {
+    public void tick_shouldShiftTrack() {
         // given
         String board = 
                 "■■■■■" +
@@ -111,7 +110,7 @@ public class GameTest {
     }
 
     @Test
-    public void down__shouldMoveBikeToDown() {
+    public void down_shouldMoveBikeToDown() {
         // given
         String board = 
                 "■■■■■" +
@@ -135,7 +134,7 @@ public class GameTest {
     }
 
     @Test
-    public void up__shouldMoveBikeToUp() {
+    public void up_shouldMoveBikeToUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -159,7 +158,7 @@ public class GameTest {
     }
 
     @Test
-    public void crush__shouldFallBike() {
+    public void crush_shouldFallBike() {
         // given
         String board = 
                 "■■■■■" +
@@ -183,7 +182,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldIgnoreMovingAfterBikeIsFallen() {
+    public void tick_shouldIgnoreMovingAfterBikeIsFallen() {
         // given
         String board = 
                 "■■■■■" +
@@ -209,7 +208,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorTick1__shouldChangeBikeStateToAtInhibitor__atTheBeginning() {
+    public void inhibitorTick1_shouldChangeBikeStateToAtInhibitor_atTheBeginning() {
         // given
         String board = 
                 "■■■■■" +
@@ -232,7 +231,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorTick2__shouldChangeBikeStateToNormal__atTheBeginning() {
+    public void inhibitorTick2_shouldChangeBikeStateToNormal_atTheBeginning() {
         // given
         String board = 
                 "■■■■■" +
@@ -256,7 +255,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitor__shouldChangeBikeStateToAtInhibitor__atTheEnding() {
+    public void inhibitor_shouldChangeBikeStateToAtInhibitor_atTheEnding() {
         // given
         String board = 
                 "■■■■■" +
@@ -279,7 +278,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitor__shouldChangeBikeStateToAtInhibitor__afterBikeMoveUp() {
+    public void inhibitor_shouldChangeBikeStateToAtInhibitor_afterBikeMoveUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -303,7 +302,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorTick1__shouldChangeStateToInhibited() {
+    public void inhibitorTick1_shouldChangeStateToInhibited() {
         // given
         String board = 
                 "■■■■■" +
@@ -326,7 +325,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorTick2__shouldMoveInhibitedBikeOneStepBack() {
+    public void inhibitorTick2_shouldMoveInhibitedBikeOneStepBack() {
         // given
         String board = 
                 "■■■■■" +
@@ -350,7 +349,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorTick3__shouldChangeBikeStateToNormalAndMoveBackInhibitor() {
+    public void inhibitorTick3_shouldChangeBikeStateToNormalAndMoveBackInhibitor() {
         // given
         String board = 
                 "■■■■■" +
@@ -374,7 +373,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoInhibitorsTick1__shouldChangeStateToInhibited() {
+    public void twoInhibitorsTick1_shouldChangeStateToInhibited() {
         // given
         String board = 
                 "■■■■■" +
@@ -397,7 +396,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoInhibitorsTick2__shouldChangeKeepBikeStateInhibitedAndMoveItBack() {
+    public void twoInhibitorsTick2_shouldChangeKeepBikeStateInhibitedAndMoveItBack() {
         // given
         String board = 
                 "■■■■■" +
@@ -421,7 +420,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoInhibitorsTick3__shouldChangeKeepBikeStateInhibited() {
+    public void twoInhibitorsTick3_shouldChangeKeepBikeStateInhibited() {
         // given
         String board = 
                 "■■■■■" +
@@ -445,7 +444,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoInhibitorsTick4__shouldChangeBikeStateToNormal() {
+    public void twoInhibitorsTick4_shouldChangeBikeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -469,7 +468,7 @@ public class GameTest {
     }
 
     @Test
-    public void accelerator__shouldChangeBikeStateToAtAccelerator__atTheBeginning() {
+    public void accelerator_shouldChangeBikeStateToAtAccelerator_atTheBeginning() {
         // given
         String board = 
                 "■■■■■" +
@@ -492,7 +491,7 @@ public class GameTest {
     }
 
     @Test
-    public void accelerator__shouldChangeBikeStateToAtAccelerator__atTheEnding() {
+    public void accelerator_shouldChangeBikeStateToAtAccelerator_atTheEnding() {
         // given
         String board = 
                 "■■■■■" +
@@ -515,7 +514,7 @@ public class GameTest {
     }
 
     @Test
-    public void accelerator__shouldChangeBikeStateToAtAccelerator__afterBikeMoveUp() {
+    public void accelerator_shouldChangeBikeStateToAtAccelerator_afterBikeMoveUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -539,7 +538,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorTick1__shouldChangeStateToAccelerated() {
+    public void acceleratorTick1_shouldChangeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -562,7 +561,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorTick2__shouldMoveAcceleratedBikeOneStepForwardAndChangeStateToNormalAndMoveAcceleratorBack() {
+    public void acceleratorTick2_shouldMoveAcceleratedBikeOneStepForwardAndChangeStateToNormalAndMoveAcceleratorBack() {
         // given
         String board = 
                 "■■■■■" +
@@ -586,7 +585,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorTick3__shouldMoveBackAccelerator() {
+    public void acceleratorTick3_shouldMoveBackAccelerator() {
         // given
         String board = 
                 "■■■■■" +
@@ -610,7 +609,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsTick1__shouldChangeBikeStateToAccelerated() {
+    public void twoAcceleratorsTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -633,7 +632,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsTick2__shouldMoveBikeForwardAndChangeStateToNormal() {
+    public void twoAcceleratorsTick2_shouldMoveBikeForwardAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -657,7 +656,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsTick3__shouldChangeKeepBikeStateNormalButMoveItForward() {
+    public void twoAcceleratorsTick3_shouldChangeKeepBikeStateNormalButMoveItForward() {
         // given
         String board = 
                 "■■■■■" +
@@ -681,7 +680,7 @@ public class GameTest {
     }
 
     @Test
-    public void obstacleTick1__shouldObstructBike() {
+    public void obstacleTick1_shouldObstructBike() {
         // given
         String board = 
                 "■■■■■" +
@@ -704,7 +703,7 @@ public class GameTest {
     }
 
     @Test
-    public void obstacleTick2__shouldMoveObstructedBikeLeft() {
+    public void obstacleTick2_shouldMoveObstructedBikeLeft() {
         // given
         String board = 
                 "■■■■■" +
@@ -728,7 +727,7 @@ public class GameTest {
     }
 
     @Test
-    public void obstacleTick3__shouldMoveObstructedBikeLeft() {
+    public void obstacleTick3_shouldMoveObstructedBikeLeft() {
         // given
         String board = 
                 "■■■■■" +
@@ -752,7 +751,7 @@ public class GameTest {
     }
 
     @Test
-    public void obstacleTick4__shouldMoveObstructedBikeLeft() {
+    public void obstacleTick4_shouldMoveObstructedBikeLeft() {
         // given
         String board = 
                 "■■■■■" +
@@ -776,7 +775,7 @@ public class GameTest {
     }
 
     @Test
-    public void obstacleTick5__shouldRespawnObstructedBike__ifItIsLastCell() {
+    public void obstacleTick5_shouldRespawnObstructedBike_ifItIsLastCell() {
         // given
         String board = 
                 "■■■■■" +
@@ -800,7 +799,7 @@ public class GameTest {
     }
 
     @Test
-    public void obstacleAndUpCommand__shouldMoveBikeUp() {
+    public void obstacleAndUpCommand_shouldMoveBikeUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -824,7 +823,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick2__shouldMoveObstructedBikeAndObstacleTogether() {
+    public void tick2_shouldMoveObstructedBikeAndObstacleTogether() {
         // given
         String board = 
                 "■■■■■" +
@@ -848,7 +847,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick1__shouldMakeBikeObstructed__IfBikeInteractedWithObstacle() {
+    public void tick1_shouldMakeBikeObstructed_IfBikeInteractedWithObstacle() {
         // given
         String board = 
                 "■■■■■" +
@@ -871,7 +870,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick2__shouldRespawnObstructedBike__ifItIsFirstColumn() {
+    public void tick2_shouldRespawnObstructedBike_ifItIsFirstColumn() {
         // given
         String board = 
                 "■■■■■" +
@@ -895,7 +894,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndInhibitorTick1__shouldChangeBikeStateToAccelerated() {
+    public void acceleratorAndInhibitorTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -918,7 +917,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndInhibitorTick2__shouldChangeBikeStateToInhibited() {
+    public void acceleratorAndInhibitorTick2_shouldChangeBikeStateToInhibited() {
         // given
         String board = 
                 "■■■■■" +
@@ -942,7 +941,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndInhibitorTick3__shouldChangeBikeStateToNormal() {
+    public void acceleratorAndInhibitorTick3_shouldChangeBikeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -966,7 +965,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndObstacleTick1__shouldChangeBikeStateToAccelerated() {
+    public void acceleratorAndObstacleTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -989,7 +988,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndObstacleTick2__shouldChangeBikeStateToFallen() {
+    public void acceleratorAndObstacleTick2_shouldChangeBikeStateToFallen() {
         // given
         String board = 
                 "■■■■■" +
@@ -1013,7 +1012,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndLineChangerUpTick1__shouldChangeBikeStateToAccelerated() {
+    public void acceleratorAndLineChangerUpTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -1036,7 +1035,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndLineChangerUpTick2__shouldMoveBikeForwardAndUp() {
+    public void acceleratorAndLineChangerUpTick2_shouldMoveBikeForwardAndUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -1060,7 +1059,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndLineChangerDownTick1__shouldChangeBikeStateToAccelerated() {
+    public void acceleratorAndLineChangerDownTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -1083,7 +1082,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorAndLineChangerDownTick2__shouldMoveBikeForwardAndDown() {
+    public void acceleratorAndLineChangerDownTick2_shouldMoveBikeForwardAndDown() {
         // given
         String board = 
                 "■■■■■" +
@@ -1107,7 +1106,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpTick1__shouldChangeBikeStateToAtLineChangerUp() {
+    public void lineChangerUpTick1_shouldChangeBikeStateToAtLineChangerUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -1130,7 +1129,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpTick2__shouldMoveBikeUpAndChangeStateBackToNormal() {
+    public void lineChangerUpTick2_shouldMoveBikeUpAndChangeStateBackToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1154,7 +1153,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownTick1__shouldChangeBikeStateToAtLineChangerDown() {
+    public void lineChangerDownTick1_shouldChangeBikeStateToAtLineChangerDown() {
         // given
         String board = 
                 "■■■■■" +
@@ -1177,7 +1176,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownTick2__shouldMoveBikeDownAndChangeStateBackToNormal() {
+    public void lineChangerDownTick2_shouldMoveBikeDownAndChangeStateBackToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1201,7 +1200,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndCommandUpTick1__shouldMoveBikeUpAndKeepStateNormal() {
+    public void lineChangerUpAndCommandUpTick1_shouldMoveBikeUpAndKeepStateNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1225,7 +1224,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndCommandUpTick2__shouldNotMoveBikeAndKeepState() {
+    public void lineChangerUpAndCommandUpTick2_shouldNotMoveBikeAndKeepState() {
         // given
         String board = 
                 "■■■■■" +
@@ -1250,7 +1249,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpTick2AndCommandDown__shouldNotMoveBikeAndChangeStateBackToNormal() {
+    public void lineChangerUpTick2AndCommandDown_shouldNotMoveBikeAndChangeStateBackToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1275,7 +1274,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownAndCommandDownTick1__shouldMoveBikeDownAndKeepStateNormal() {
+    public void lineChangerDownAndCommandDownTick1_shouldMoveBikeDownAndKeepStateNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1299,7 +1298,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownAndCommandDownTick2__shouldNotMoveBikeAndChangeState() {
+    public void lineChangerDownAndCommandDownTick2_shouldNotMoveBikeAndChangeState() {
         // given
         String board = 
                 "■■■■■" +
@@ -1324,7 +1323,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownTick2AndCommandUp__shouldNotMoveBikeAndChangeStateBackToNormal() {
+    public void lineChangerDownTick2AndCommandUp_shouldNotMoveBikeAndChangeStateBackToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1349,7 +1348,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAfterInhibitorTick1__shouldChangeStateToInhibited() {
+    public void inhibitorAfterInhibitorTick1_shouldChangeStateToInhibited() {
         // given
         String board = 
                 "■■■■■■■■" +
@@ -1378,7 +1377,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAfterInhibitorTick2__shouldMoveBikeBackAndKeepStateInhibited() {
+    public void inhibitorAfterInhibitorTick2_shouldMoveBikeBackAndKeepStateInhibited() {
         // given
         String board = 
                 "■■■■■■■■" +
@@ -1408,7 +1407,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAfterInhibitorTick3__shouldChangeStateToNormal() {
+    public void inhibitorAfterInhibitorTick3_shouldChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■■■■" +
@@ -1438,7 +1437,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAfterInhibitorTick4__shouldKeepStateNormal() {
+    public void inhibitorAfterInhibitorTick4_shouldKeepStateNormal() {
         // given
         String board = 
                 "■■■■■■■■" +
@@ -1468,7 +1467,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAfterInhibitorTick5__shouldChangeStateToInhibited() {
+    public void inhibitorAfterInhibitorTick5_shouldChangeStateToInhibited() {
         // given
         String board = 
                 "■■■■■■■■" +
@@ -1498,7 +1497,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAfterInhibitorTick6__shouldMoveInhibitedBikeBack() {
+    public void inhibitorAfterInhibitorTick6_shouldMoveInhibitedBikeBack() {
         // given
         String board = 
                 "■■■■■■■■" +
@@ -1528,7 +1527,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAfterInhibitorTick7__shouldChangeStateToNormal() {
+    public void inhibitorAfterInhibitorTick7_shouldChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■■■■" +
@@ -1558,7 +1557,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoLineChangersUpTick1__shouldChangeBikeStateToAtLineChangerUp() {
+    public void twoLineChangersUpTick1_shouldChangeBikeStateToAtLineChangerUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -1581,7 +1580,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoLineChangersUpTick2__shouldMoveBikeUpAndChangeStateToNormal() {
+    public void twoLineChangersUpTick2_shouldMoveBikeUpAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1605,7 +1604,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndDownTick1__shouldChangeBikeStateToAtLineChangerUp() {
+    public void lineChangerUpAndDownTick1_shouldChangeBikeStateToAtLineChangerUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -1628,7 +1627,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndDownTick2__shouldMoveBikeUpAndChangeStateToNormal() {
+    public void lineChangerUpAndDownTick2_shouldMoveBikeUpAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1652,7 +1651,7 @@ public class GameTest {
     }
 
     @Test
-    public void commandUpToAcceleratorTick1__shouldMoveBikeUpAndChangeStateToAccelerated() {
+    public void commandUpToAcceleratorTick1_shouldMoveBikeUpAndChangeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -1676,7 +1675,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorWithSpaceAndObstacleTick1__shouldChangeBikeStateToAccelerated() {
+    public void acceleratorWithSpaceAndObstacleTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -1699,7 +1698,7 @@ public class GameTest {
     }
 
     @Test
-    public void acceleratorWithSpaceAndObstacleTick2__shouldMoveBikeForwardAndChangeStateToObstructed() {
+    public void acceleratorWithSpaceAndObstacleTick2_shouldMoveBikeForwardAndChangeStateToObstructed() {
         // given
         String board = 
                 "■■■■■" +
@@ -1748,7 +1747,7 @@ public class GameTest {
     }
 
     @Test
-    public void left__shouldDoNothing() {
+    public void left_shouldDoNothing() {
         // given
         String board = 
                 "■■■■■" +
@@ -1772,7 +1771,7 @@ public class GameTest {
     }
 
     @Test
-    public void right__shouldDoNothing() {
+    public void right_shouldDoNothing() {
         // given
         String board = 
                 "■■■■■" +
@@ -1796,7 +1795,7 @@ public class GameTest {
     }
 
     @Test
-    public void act__shouldDoNothing() {
+    public void act_shouldDoNothing() {
         // given
         String board = 
                 "■■■■■" +
@@ -1820,7 +1819,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownAndObstacleTick1__shouldChangeBikeStateToAtLineChangerDown() {
+    public void lineChangerDownAndObstacleTick1_shouldChangeBikeStateToAtLineChangerDown() {
         // given
         String board = 
                 "■■■■■" +
@@ -1843,7 +1842,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownAndObstacleTick2__shouldMoveBikeDownAndChangeStateToNormal() {
+    public void lineChangerDownAndObstacleTick2_shouldMoveBikeDownAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1867,7 +1866,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndObstacleTick1__shouldChangeBikeStateToAtLineChangerUp() {
+    public void lineChangerUpAndObstacleTick1_shouldChangeBikeStateToAtLineChangerUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -1890,7 +1889,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndObstacleTick2__shouldMoveBikeUpAndChangeStateToNormal() {
+    public void lineChangerUpAndObstacleTick2_shouldMoveBikeUpAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1914,7 +1913,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownAndAcceleratorTick1__shouldChangeBikeStateToAtLineChangerDown() {
+    public void lineChangerDownAndAcceleratorTick1_shouldChangeBikeStateToAtLineChangerDown() {
         // given
         String board = 
                 "■■■■■" +
@@ -1937,7 +1936,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownAndAcceleratorTick2__shouldMoveBikeDownAndChangeStateToNormal() {
+    public void lineChangerDownAndAcceleratorTick2_shouldMoveBikeDownAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -1961,7 +1960,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerDownAndAcceleratorTick3__shouldDoNothing() {
+    public void lineChangerDownAndAcceleratorTick3_shouldDoNothing() {
         // given
         String board = 
                 "■■■■■" +
@@ -1985,7 +1984,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAndAcceleratorTick1__shouldChangeStateToInhibited() {
+    public void inhibitorAndAcceleratorTick1_shouldChangeStateToInhibited() {
         // given
         String board = 
                 "■■■■■" +
@@ -2008,7 +2007,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAndAcceleratorTick2__shouldMoveBikeBack() {
+    public void inhibitorAndAcceleratorTick2_shouldMoveBikeBack() {
         // given
         String board = 
                 "■■■■■" +
@@ -2032,7 +2031,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAndAcceleratorTick3__shouldChangeBikeStateToAccelerated() {
+    public void inhibitorAndAcceleratorTick3_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -2056,7 +2055,7 @@ public class GameTest {
     }
 
     @Test
-    public void inhibitorAndAcceleratorTick4__shouldChangeMoveBikeForwardAndChangeStateToNormal() {
+    public void inhibitorAndAcceleratorTick4_shouldChangeMoveBikeForwardAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -2080,7 +2079,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndObstacleUpperTick1__shouldChangeBikeStateToAtLineChangerUp() {
+    public void lineChangerUpAndObstacleUpperTick1_shouldChangeBikeStateToAtLineChangerUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -2103,7 +2102,7 @@ public class GameTest {
     }
 
     @Test
-    public void lineChangerUpAndObstacleUpperTick2__shouldMoveBikeUpAndChangeStateToFallenAtObstacle() {
+    public void lineChangerUpAndObstacleUpperTick2_shouldMoveBikeUpAndChangeStateToFallenAtObstacle() {
         // given
         String board = 
                 "■■■■■" +
@@ -2127,7 +2126,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsAndLineChangerUpTick1__shouldChangeBikeStateToAccelerated() {
+    public void twoAcceleratorsAndLineChangerUpTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -2150,7 +2149,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsAndLineChangerUpTick2__shouldChangeBikeStateToAtLineChangerUp() {
+    public void twoAcceleratorsAndLineChangerUpTick2_shouldChangeBikeStateToAtLineChangerUp() {
         // given
         String board = 
                 "■■■■■" +
@@ -2174,7 +2173,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsAndLineChangerUpTick3__shouldMoveBikeUpAndRightAndChangeStateToNormal() {
+    public void twoAcceleratorsAndLineChangerUpTick3_shouldMoveBikeUpAndRightAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -2198,7 +2197,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsAndLineChangerDownTick1__shouldChangeBikeStateToAccelerated() {
+    public void twoAcceleratorsAndLineChangerDownTick1_shouldChangeBikeStateToAccelerated() {
         // given
         String board = 
                 "■■■■■" +
@@ -2221,7 +2220,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsAndLineChangerDownTick2__shouldChangeBikeStateToAtLineChangerDown() {
+    public void twoAcceleratorsAndLineChangerDownTick2_shouldChangeBikeStateToAtLineChangerDown() {
         // given
         String board = 
                 "■■■■■" +
@@ -2245,7 +2244,7 @@ public class GameTest {
     }
 
     @Test
-    public void twoAcceleratorsAndLineChangerDownTick3__shouldMoveBikeDownAndRightAndChangeStateToNormal() {
+    public void twoAcceleratorsAndLineChangerDownTick3_shouldMoveBikeDownAndRightAndChangeStateToNormal() {
         // given
         String board = 
                 "■■■■■" +
@@ -2269,7 +2268,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeUp_ifBikeCrossRiseOfSpringboard() {
+    public void tick_shouldMoveBikeUp_ifBikeCrossRiseOfSpringboard() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2293,7 +2292,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeUp_ifBikeCrossRiseOfSpringboard2() {
+    public void tick_shouldMoveBikeUp_ifBikeCrossRiseOfSpringboard2() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2317,7 +2316,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeUp_ifBikeCrossRiseOfSpringboard3() {
+    public void tick_shouldMoveBikeUp_ifBikeCrossRiseOfSpringboard3() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2341,7 +2340,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldSetStateBikeInFlight() {
+    public void tick_shouldSetStateBikeInFlight() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2365,7 +2364,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldCrushBikeAtFence_ifBikeWasInFlight() {
+    public void tick_shouldCrushBikeAtFence_ifBikeWasInFlight() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2391,7 +2390,7 @@ public class GameTest {
 
 
     @Test
-    public void tick__shouldCrushBikeAtFence_ifBikeWasInFlight2() {
+    public void tick_shouldCrushBikeAtFence_ifBikeWasInFlight2() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2417,7 +2416,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldCrushBike_ifBikeMoveUpOnSpringboardFence() {
+    public void tick_shouldCrushBike_ifBikeMoveUpOnSpringboardFence() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2443,7 +2442,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard() {
+    public void tick_shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard() {
         // given
         String board = 
                 "■■■═╗" +
@@ -2469,7 +2468,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard2() {
+    public void tick_shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard2() {
         // given
         String board = 
                 "■■■═╗" +
@@ -2495,7 +2494,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard3() {
+    public void tick_shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard3() {
         // given
         String board = 
                 "■■■═╗" +
@@ -2520,7 +2519,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard4() {
+    public void tick_shouldMoveBikeDown_ifBikeCrossDescentOfSpringboard4() {
         // given
         String board = 
                 "■■■═╗" +
@@ -2545,7 +2544,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldNotMoveBikeDown_ifBikeCommandDownBeforeSpringboardRise() {
+    public void tick_shouldNotMoveBikeDown_ifBikeCommandDownBeforeSpringboardRise() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2571,7 +2570,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldNotMoveBikeDown_ifBikeCommandDownBeforeSpringboardRise2() {
+    public void tick_shouldNotMoveBikeDown_ifBikeCommandDownBeforeSpringboardRise2() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2597,7 +2596,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldNotMoveBikeUp_ifBikeCommandUpAtSpringboardRise() {
+    public void tick_shouldNotMoveBikeUp_ifBikeCommandUpAtSpringboardRise() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2624,7 +2623,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldNotMoveBikeDownAndSetInFlightState_ifBikeCommandDownAtSpringboardRise() {
+    public void tick_shouldNotMoveBikeDownAndSetInFlightState_ifBikeCommandDownAtSpringboardRise() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2651,7 +2650,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldNotMoveBikeUpAndCrushIt_ifBikeCommandUpAtSpringboardRise() {
+    public void tick_shouldNotMoveBikeUpAndCrushIt_ifBikeCommandUpAtSpringboardRise() {
         // given
         String board = 
                 "■■■╔═" +
@@ -2679,7 +2678,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldNotMoveBikeDown_ifBikeCommandDownBeforeSpringboardDescent() {
+    public void tick_shouldNotMoveBikeDown_ifBikeCommandDownBeforeSpringboardDescent() {
         // given
         String board = 
                 "■■=═╗" +
@@ -2705,7 +2704,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeDownAndCrushIt_ifBikeCommandDownAtSpringboardDescent() {
+    public void tick_shouldMoveBikeDownAndCrushIt_ifBikeCommandDownAtSpringboardDescent() {
         // given
         String board = 
                 "■■=═╗" +
@@ -2732,7 +2731,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeUpAndCrushIt_ifBikeCommandUpAtSpringboardDescent() {
+    public void tick_shouldMoveBikeUpAndCrushIt_ifBikeCommandUpAtSpringboardDescent() {
         // given
         String board = 
                 "■■■╔╗" +
@@ -2761,7 +2760,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick2__shouldSpawnStraightObstaclesLineWithOneExit__ifDiceReturnsAccordingNumbers() {
+    public void tick2_shouldSpawnStraightObstaclesLineWithOneExit_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -2802,7 +2801,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick1__shouldSpawnEmptyLine__ifDiceReturnsAccordingForObstacleLadderUpNumbers() {
+    public void tick1_shouldSpawnEmptyLine_ifDiceReturnsAccordingForObstacleLadderUpNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -2843,7 +2842,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick2__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick2_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -2885,7 +2884,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick3__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick3_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -2927,7 +2926,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick4__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick4_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -2969,7 +2968,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick5__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick5_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3011,7 +3010,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick6__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick6_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3053,7 +3052,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick7__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick7_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3095,7 +3094,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick8__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick8_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3137,7 +3136,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick9__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick9_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3179,7 +3178,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick10__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick10_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3221,7 +3220,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick11__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick11_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3263,7 +3262,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick12__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick12_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3305,7 +3304,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick13__shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick13_shouldSpawnLadderUpObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3347,7 +3346,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick1__shouldSpawnEmptyLine__ifDiceReturnsAccordingToObstacleLadderDownNumbers() {
+    public void tick1_shouldSpawnEmptyLine_ifDiceReturnsAccordingToObstacleLadderDownNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3388,7 +3387,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick2__shouldSpawnEmptyLineWhichIsExit__ifDiceReturnsAccordingToObstacleLadderDownNumbers() {
+    public void tick2_shouldSpawnEmptyLineWhichIsExit_ifDiceReturnsAccordingToObstacleLadderDownNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3430,7 +3429,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick3__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick3_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3472,7 +3471,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick4__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick4_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3514,7 +3513,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick5__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick5_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3556,7 +3555,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick6__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick6_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3598,7 +3597,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick7__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick7_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3640,7 +3639,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick8__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick8_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3682,7 +3681,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick9__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick9_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3724,7 +3723,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick10__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick10_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3766,7 +3765,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick11__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick11_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3808,7 +3807,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick12__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick12_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3850,7 +3849,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick13__shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen__ifDiceReturnsAccordingNumbers() {
+    public void tick13_shouldSpawnLadderDownObstaclesLineWithOneExitAndWidthTen_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3892,7 +3891,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick6__shouldSpawnLadderUpAndDownObstaclesLineWithOneExitAndWidthFour__ifDiceReturnsAccordingNumbers() {
+    public void tick6_shouldSpawnLadderUpAndDownObstaclesLineWithOneExitAndWidthFour_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3934,7 +3933,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick6__shouldSpawnLadderDownAndUpObstaclesLineWithOneExitAndWidthFour__ifDiceReturnsAccordingNumbers() {
+    public void tick6_shouldSpawnLadderDownAndUpObstaclesLineWithOneExitAndWidthFour_ifDiceReturnsAccordingNumbers() {
         // given
         String board = 
                 "■■■■■■■■■■■■" +
@@ -3976,7 +3975,7 @@ public class GameTest {
     }
 
     @Test
-    public void commandUpAtLineChangerDown__shouldNotMoveBike() {
+    public void commandUpAtLineChangerDown_shouldNotMoveBike() {
         // given
         String board = 
                 "■■■■■" +
@@ -4001,7 +4000,7 @@ public class GameTest {
     }
 
     @Test
-    public void commandDownAtLineChangerUp__shouldNotMoveBike() {
+    public void commandDownAtLineChangerUp_shouldNotMoveBike() {
         // given
         String board = 
                 "■■■■■" +
@@ -4026,7 +4025,7 @@ public class GameTest {
     }
 
     @Test
-    public void commandDownAtLineChangerDown__shouldMoveBikeForTwoCells() {
+    public void commandDownAtLineChangerDown_shouldMoveBikeForTwoCells() {
         // given
         String board = 
                 "■■■■■" +
@@ -4051,7 +4050,7 @@ public class GameTest {
     }
 
     @Test
-    public void commandUpAtLineChangerUp__shouldMoveBikeForTwoCells() {
+    public void commandUpAtLineChangerUp_shouldMoveBikeForTwoCells() {
         // given
         String board = 
                 "■■■■■" +
@@ -4158,7 +4157,7 @@ public class GameTest {
     }
 
     @Test
-    public void tick__shouldNotMoveBikeDown_ifBikeJustSpawnedAtSpringboard() {
+    public void tick_shouldNotMoveBikeDown_ifBikeJustSpawnedAtSpringboard() {
         // given
         String board = 
                 "■■■╔════╗■" +
@@ -4195,7 +4194,7 @@ public class GameTest {
     }
 
     @Test
-    public void bikeInFrontOfObstacleAtLine1__tick1__shouldBeCrushedAtObstacle() {
+    public void bikeInFrontOfObstacleAtLine1_tick1_shouldBeCrushedAtObstacle() {
         // given
         String board = 
                 "■■■■■" +
@@ -4218,7 +4217,7 @@ public class GameTest {
     }
 
     @Test
-    public void bikeInFrontOfObstacleAtLine1__tick2__shouldBeRespawnedAtFreeSpace() {
+    public void bikeInFrontOfObstacleAtLine1_tick2_shouldBeRespawnedAtFreeSpace() {
         // given
         String board = 
                 "■■■■■" +

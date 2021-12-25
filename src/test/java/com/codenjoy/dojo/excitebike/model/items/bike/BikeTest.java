@@ -22,12 +22,13 @@ package com.codenjoy.dojo.excitebike.model.items.bike;
  * #L%
  */
 
+import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.excitebike.services.Event;
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
+import com.codenjoy.dojo.excitebike.services.Event;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
+import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,11 +51,11 @@ public class BikeTest {
         gameField = mock(Field.class);
         when(gameField.xSize()).thenReturn(10);
         bike.init(gameField);
-        settings = new GameSettings();
+        settings = new TestGameSettings();
     }
 
     @Test
-    public void tick__shouldNotShiftBike__ifBikeIsNotAlive() {
+    public void tick_shouldNotShiftBike_ifBikeIsNotAlive() {
         //given
         Player player = mock(Player.class);
         when(gameField.getPlayerOfBike(bike)).thenReturn(player);
@@ -69,7 +70,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tickWithUpCommand__shouldMoveBikeToUp__ifUpperPositionIsFree() {
+    public void tickWithUpCommand_shouldMoveBikeToUp_ifUpperPositionIsFree() {
         //given
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
         when(gameField.getEnemyBike(anyInt(), anyInt(), any(Player.class))).thenReturn(Optional.empty());
@@ -84,7 +85,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tickWithUpCommand__shouldMoveAndCrushBike__ifUpperPositionIsFence() {
+    public void tickWithUpCommand_shouldMoveAndCrushBike_ifUpperPositionIsFence() {
         //given
         Player player = mock(Player.class);
         when(gameField.getPlayerOfBike(bike)).thenReturn(player);
@@ -102,7 +103,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tickWithUpCommand__shouldMoveBikeAndChangeItsStateToKilledEnemy__ifUpperPositionIsOtherBike() {
+    public void tickWithUpCommand_shouldMoveBikeAndChangeItsStateToKilledEnemy_ifUpperPositionIsOtherBike() {
         //given
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
         Bike enemy = new Bike(5, 6);
@@ -123,7 +124,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tickWithDownCommand__shouldMoveBikeToDown__ifLowerPositionIsFree() {
+    public void tickWithDownCommand_shouldMoveBikeToDown_ifLowerPositionIsFree() {
         //given
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
         when(gameField.getEnemyBike(anyInt(), anyInt(), any(Player.class))).thenReturn(Optional.empty());
@@ -138,7 +139,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tickWithDownCommand__shouldMoveBikeAndCrushIt__ifLowerPositionIsFence() {
+    public void tickWithDownCommand_shouldMoveBikeAndCrushIt_ifLowerPositionIsFence() {
         //given
         Player player = mock(Player.class);
         when(gameField.getPlayerOfBike(bike)).thenReturn(player);
@@ -157,7 +158,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tickWithDownCommand__shouldMoveBikeAndChangeItsStateToKilledEnemy__ifLowerPositionIsOtherBike() {
+    public void tickWithDownCommand_shouldMoveBikeAndChangeItsStateToKilledEnemy_ifLowerPositionIsOtherBike() {
         //given
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
         Bike enemy = new Bike(5, 4);
@@ -178,7 +179,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick1__shouldNotChangeBikePositionAndChangeStateToAccelerated__ifBikeTakeAccelerator() {
+    public void tick1_shouldNotChangeBikePositionAndChangeStateToAccelerated_ifBikeTakeAccelerator() {
         //given
         when(gameField.isAccelerator(anyInt(), anyInt())).thenReturn(true);
         when(gameField.xSize()).thenReturn(8);
@@ -193,7 +194,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldSetBikeXCoordinateToMaxPossible__ifBikePositionAfterAccelerationIsOutOfFieldBound() {
+    public void tick2_shouldSetBikeXCoordinateToMaxPossible_ifBikePositionAfterAccelerationIsOutOfFieldBound() {
         //given
         when(gameField.isAccelerator(5, 5)).thenReturn(true);
         when(gameField.xSize()).thenReturn(6);
@@ -209,7 +210,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick1__shouldNotChangeBikePosition_ifBikeTakeInhibitor() {
+    public void tick1_shouldNotChangeBikePosition_ifBikeTakeInhibitor() {
         //given
         when(gameField.isInhibitor(anyInt(), anyInt())).thenReturn(true);
 
@@ -223,7 +224,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldMoveBikeBackAndKeepInhibitedState__ifBikeTakeInhibitor() {
+    public void tick2_shouldMoveBikeBackAndKeepInhibitedState_ifBikeTakeInhibitor() {
         //given
         when(gameField.isInhibitor(anyInt(), anyInt())).thenReturn(true);
         bike.tick();
@@ -238,7 +239,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick3__shouldNotMoveBikeBackAndChangeStateToNormal__ifBikeTakeInhibitor() {
+    public void tick3_shouldNotMoveBikeBackAndChangeStateToNormal_ifBikeTakeInhibitor() {
         //given
         when(gameField.isInhibitor(5, 5)).thenReturn(true);
         bike.tick();
@@ -254,7 +255,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldSetBikeXCoordinateToMinPossible_ifBikePositionAfterInhibitionIsOutOfFieldBound() {
+    public void tick2_shouldSetBikeXCoordinateToMinPossible_ifBikePositionAfterInhibitionIsOutOfFieldBound() {
         //given
         bike.setX(1);
         when(gameField.isInhibitor(anyInt(), anyInt())).thenReturn(true);
@@ -269,7 +270,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick__shouldFallBike_ifBikeEncounterWithObstacle() {
+    public void tick_shouldFallBike_ifBikeEncounterWithObstacle() {
         //given
         Player player = mock(Player.class);
         when(gameField.getPlayerOfBike(bike)).thenReturn(player);
@@ -283,7 +284,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick1__shouldNotChangeBikePosition__ifBikeTakeUpLineChangerAndUpperPositionIsFree() {
+    public void tick1_shouldNotChangeBikePosition_ifBikeTakeUpLineChangerAndUpperPositionIsFree() {
         //given
         when(gameField.isUpLineChanger(anyInt(), anyInt())).thenReturn(true);
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
@@ -298,7 +299,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldMoveBikeUpper__ifBikeTakeUpLineChangerAndUpperPositionIsFree() {
+    public void tick2_shouldMoveBikeUpper_ifBikeTakeUpLineChangerAndUpperPositionIsFree() {
         //given
         when(gameField.isUpLineChanger(anyInt(), anyInt())).thenReturn(true);
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
@@ -314,7 +315,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick1__shouldNotMoveAndCrushBike__ifBikeTakeUpLineChangerAndUpperPositionIsFence() {
+    public void tick1_shouldNotMoveAndCrushBike_ifBikeTakeUpLineChangerAndUpperPositionIsFence() {
         //given
         when(gameField.isUpLineChanger(anyInt(), anyInt())).thenReturn(true);
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(true);
@@ -330,7 +331,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldMoveAndCrushBike__ifBikeTakeUpLineChangerAndUpperPositionIsFence() {
+    public void tick2_shouldMoveAndCrushBike_ifBikeTakeUpLineChangerAndUpperPositionIsFence() {
         //given
         Player player = mock(Player.class);
         when(gameField.getPlayerOfBike(bike)).thenReturn(player);
@@ -349,7 +350,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick1__shouldNotMoveBike__ifBikeTakeUpLineChangerAndUpperPositionIsOtherBike() {
+    public void tick1_shouldNotMoveBike_ifBikeTakeUpLineChangerAndUpperPositionIsOtherBike() {
         //given
         when(gameField.isUpLineChanger(anyInt(), anyInt())).thenReturn(true);
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
@@ -368,7 +369,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldMoveBike_ifBikeTakeUpLineChangerAndUpperPositionIsOtherBike() {
+    public void tick2_shouldMoveBike_ifBikeTakeUpLineChangerAndUpperPositionIsOtherBike() {
         //given
         when(gameField.isUpLineChanger(anyInt(), anyInt())).thenReturn(true);
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
@@ -389,7 +390,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick1__shouldNotMoveBike__ifBikeTakeDownLineChangerAndLowerPositionIsFree() {
+    public void tick1_shouldNotMoveBike_ifBikeTakeDownLineChangerAndLowerPositionIsFree() {
         //given
         when(gameField.isDownLineChanger(anyInt(), anyInt())).thenReturn(true);
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
@@ -404,7 +405,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldMoveBikeDown__ifBikeTakeDownLineChangerAndLowerPositionIsFree() {
+    public void tick2_shouldMoveBikeDown_ifBikeTakeDownLineChangerAndLowerPositionIsFree() {
         //given
         when(gameField.isDownLineChanger(anyInt(), anyInt())).thenReturn(true);
         when(gameField.isFence(anyInt(), anyInt())).thenReturn(false);
@@ -420,7 +421,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldMoveAndCrushBike__ifBikeTakeDownLineChangerAndLowerPositionIsFence() {
+    public void tick2_shouldMoveAndCrushBike_ifBikeTakeDownLineChangerAndLowerPositionIsFence() {
         //given
         Player player = mock(Player.class);
         when(gameField.getPlayerOfBike(bike)).thenReturn(player);
@@ -439,7 +440,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick1__shouldNotMoveBike__ifBikeTakeDownLineChangerAndLowerPositionIsOtherBike() {
+    public void tick1_shouldNotMoveBike_ifBikeTakeDownLineChangerAndLowerPositionIsOtherBike() {
         //given
         when(gameField.isDownLineChanger(5, 5)).thenReturn(true);
         Bike enemy = new Bike(5, 6);
@@ -458,7 +459,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldMoveBikeDown__ifBikeTakeDownLineChangerAndLowerPositionIsOtherBike() {
+    public void tick2_shouldMoveBikeDown_ifBikeTakeDownLineChangerAndLowerPositionIsOtherBike() {
         //given
         when(gameField.isDownLineChanger(5, 5)).thenReturn(true);
         Bike enemy = new Bike(5, 4);
@@ -479,7 +480,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick__shouldCrushBike__ifBikeCollideOtherCrushedBike() {
+    public void tick_shouldCrushBike_ifBikeCollideOtherCrushedBike() {
         //given
         Bike enemyBike = new Bike(5, 5);
         enemyBike.crush();
@@ -499,7 +500,7 @@ public class BikeTest {
     }
 
     @Test
-    public void downCommandToEnemyBikeTick__shouldCrushOtherBike__ifOtherBikeDidNotChangeLine() {
+    public void downCommandToEnemyBikeTick_shouldCrushOtherBike_ifOtherBikeDidNotChangeLine() {
         //given
         Bike enemy = new Bike(5, 4);
         Player player = mock(Player.class);
@@ -524,7 +525,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick2__shouldCrushBikeAndChangeEnemyBikeStateToAtKilledBike__ifBikeAfterAcceleratorCollidesEnemyBike() {
+    public void tick2_shouldCrushBikeAndChangeEnemyBikeStateToAtKilledBike_ifBikeAfterAcceleratorCollidesEnemyBike() {
         //given
         when(gameField.isAccelerator(5, 5)).thenReturn(true);
         when(gameField.xSize()).thenReturn(10);
@@ -548,7 +549,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick__shouldMoveBikeDownToFlight__ifBikeGoToSpringboardDarkElementTypeUnderRoad() {
+    public void tick_shouldMoveBikeDownToFlight_ifBikeGoToSpringboardDarkElementTypeUnderRoad() {
         //given
         bike.setY(2);
         bike.down();
@@ -564,7 +565,7 @@ public class BikeTest {
     }
 
     @Test
-    public void tick__shouldFireLoseEventAfterCrush() {
+    public void tick_shouldFireLoseEventAfterCrush() {
         //given
         Player player = mock(Player.class);
         when(gameField.getPlayerOfBike(bike)).thenReturn(player);

@@ -83,7 +83,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void games__shouldInitializeCorrectly() {
+    public void games_shouldInitializeCorrectly() {
         //given
 
         //when
@@ -259,7 +259,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void shouldDoNothingAfterBikesClashEachOther__bike1() {
+    public void shouldDoNothingAfterBikesClashEachOther_bike1() {
         //given
         init();
         when(dice.next(anyInt())).thenReturn(5);
@@ -292,7 +292,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void shouldDoNothingAfterBikesClashEachOther__bike1__tick2() {
+    public void shouldDoNothingAfterBikesClashEachOther_bike1_tick2() {
         //given
         init();
         when(dice.next(anyInt())).thenReturn(5);
@@ -328,7 +328,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void shouldDoNothingAfterBikesClashEachOther__bike2() {
+    public void shouldDoNothingAfterBikesClashEachOther_bike2() {
         //given
         init();
         when(dice.next(anyInt())).thenReturn(5);
@@ -361,7 +361,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void shouldDoNothingAfterBikesClashEachOther__bike3() {
+    public void shouldDoNothingAfterBikesClashEachOther_bike3() {
         //given
         init();
         when(dice.next(anyInt())).thenReturn(5);
@@ -1061,7 +1061,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void twoBikesBehindObstacleTick1__shouldBeSpawnedCorrectly() {
+    public void twoBikesBehindObstacleTick1_shouldBeSpawnedCorrectly() {
         //given
         init();
         game3.close();
@@ -1089,7 +1089,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void twoBikesBehindObstacleTick2__shouldCrushEnemyBikeAtObstacle() {
+    public void twoBikesBehindObstacleTick2_shouldCrushEnemyBikeAtObstacle() {
         //given
         init();
         game3.close();
@@ -1124,7 +1124,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void twoBikesBehindObstacleTick3__shouldCrushPlayerBikeAtEnemyAtObstacleAndGetScores() {
+    public void twoBikesBehindObstacleTick3_shouldCrushPlayerBikeAtEnemyAtObstacleAndGetScores() {
         //given
         init();
         game3.close();
@@ -1302,7 +1302,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void shouldMoveBike3DownFirstAndThenBike2Up__ifDiceReturnedRandomNumberLikeThatForTicking() {
+    public void shouldMoveBike3DownFirstAndThenBike2Up_ifDiceReturnedRandomNumberLikeThatForTicking() {
         //given
         init();
         when(dice.next(3)).thenReturn(0);
@@ -1326,7 +1326,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void shouldMoveBike2UpFirstAndThenBike3Down__ifDiceReturnedRandomNumberLikeThatForTicking() {
+    public void shouldMoveBike2UpFirstAndThenBike3Down_ifDiceReturnedRandomNumberLikeThatForTicking() {
         //given
         init();
         when(dice.next(3)).thenReturn(2);
@@ -1350,7 +1350,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void shouldKillLowerBikeByLowest__ifThereWerePairOfBikesWithLikewiseCommandsAndAnotherOneLowest__andDiceSaysPlayer3ShouldBeTicketFirstAndThenPlayer2AndThenPlayer1() {
+    public void shouldKillLowerBikeByLowest_ifThereWerePairOfBikesWithLikewiseCommandsAndAnotherOneLowest_andDiceSaysPlayer3ShouldBeTicketFirstAndThenPlayer2AndThenPlayer1() {
         //given
         init();
         Bike bike1 = (Bike) game1.getPlayer().getHero();
@@ -1381,7 +1381,7 @@ public class MultiplayerTest {
     }
 
     @Test
-    public void lowestBikeShouldKillLowerBikeAndThenShouldBeKilledByUpperBike__ifThereWerePairOfBikesWithLikewiseCommandsAndAnotherOneLowest__andDiceSaysPlayer1ShouldBeTicketFirstAndThenPlayer2AndThenPlayer3() {
+    public void lowestBikeShouldKillLowerBikeAndThenShouldBeKilledByUpperBike_ifThereWerePairOfBikesWithLikewiseCommandsAndAnotherOneLowest_andDiceSaysPlayer1ShouldBeTicketFirstAndThenPlayer2AndThenPlayer3() {
         //given
         init();
         Bike bike1 = (Bike) game1.getPlayer().getHero();

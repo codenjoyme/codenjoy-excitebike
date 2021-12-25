@@ -22,6 +22,7 @@ package com.codenjoy.dojo.excitebike.model;
  * #L%
  */
 
+import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.services.Dice;
@@ -53,7 +54,7 @@ public class SpawnTest {
     private String init;
     private String expected;
     private int newPlayerNumberAfterInit;
-    private GameSettings settings = new GameSettings();
+    private GameSettings settings = new TestGameSettings();
 
     public SpawnTest(String name, int newPlayerNumberAfterInit, String init, String expected) {
         this.newPlayerNumberAfterInit = newPlayerNumberAfterInit;
@@ -166,7 +167,7 @@ public class SpawnTest {
                         "Ḃ  Ḃ Ḃ \n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"7. shouldAddThreeBikesInFirstColumn__atSpringboardBeginning",
+                new Object[]{"7. shouldAddThreeBikesInFirstColumn_atSpringboardBeginning",
                         3,
                         "╔════╗■" +
                         "ˊ════ˋ " +
@@ -183,7 +184,7 @@ public class SpawnTest {
                         "Mˊˊˊˊ╝ \n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"8. shouldAddThreeBikesInFirstColumn__atSpringboardTop",
+                new Object[]{"8. shouldAddThreeBikesInFirstColumn_atSpringboardTop",
                         3,
                         "════╗■■" +
                         "════ˋ  " +
@@ -200,7 +201,7 @@ public class SpawnTest {
                         "ˊˊˊˊ╝  \n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"9. shouldAddThreeBikesInFirstColumn__atSpringboardEnding",
+                new Object[]{"9. shouldAddThreeBikesInFirstColumn_atSpringboardEnding",
                         3,
                         "╗■■■■■■" +
                         "ˋ      " +
@@ -217,7 +218,7 @@ public class SpawnTest {
                         "S      \n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"10. shouldAddManyBikes__coveringWholeFieldInChessOrder",
+                new Object[]{"10. shouldAddManyBikes_coveringWholeFieldInChessOrder",
                         18,
                         "■■■■■■■" +
                         "       " +
@@ -234,7 +235,7 @@ public class SpawnTest {
                         "B Ḃ Ḃ Ḃ\n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"11. shouldAddManyBikes__coveringWholeFieldInChessOrderAndTwoMore",
+                new Object[]{"11. shouldAddManyBikes_coveringWholeFieldInChessOrderAndTwoMore",
                         20,
                         "■■■■■■■" +
                         "       " +
@@ -251,7 +252,7 @@ public class SpawnTest {
                         "B Ḃ Ḃ Ḃ\n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"12. shouldAddManyBikes__fullyCoveringWholeField",
+                new Object[]{"12. shouldAddManyBikes_fullyCoveringWholeField",
                         35,
                         "■■■■■■■" +
                         "       " +
@@ -268,7 +269,7 @@ public class SpawnTest {
                         "BḂḂḂḂḂḂ\n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"13. shouldAddManyBikes__coveringWholeSpringboardAndLinesBeforeAndAfterInChessOrder",
+                new Object[]{"13. shouldAddManyBikes_coveringWholeSpringboardAndLinesBeforeAndAfterInChessOrder",
                         18,
                         "■╔═══╗■" +
                         " ˊ═══ˋ " +
@@ -285,7 +286,7 @@ public class SpawnTest {
                         "B╚ˊˊˊ╝Ḃ\n" +
                         "■■■■■■■\n"
                 },
-                new Object[]{"14. shouldAddManyBikes__fullyCoveringWholeSpringboardAndLinesBeforeAndAfter",
+                new Object[]{"14. shouldAddManyBikes_fullyCoveringWholeSpringboardAndLinesBeforeAndAfter",
                         35,
                         "■╔═══╗■" +
                         " ˊ═══ˋ " +

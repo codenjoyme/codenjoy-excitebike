@@ -30,27 +30,17 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_UP;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_UP;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_TOP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Pavel Bobylev 7/19/2019
- */
+
 public class SpringboardGeneratorTest {
 
     @Test
-    public void generate__shouldReturnCorrectSpringBoardWithWidth5__whenDiceReturnsWidth5() {
+    public void generate_shouldReturnCorrectSpringBoardWithWidth5_whenDiceReturnsWidth5() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -120,7 +110,7 @@ public class SpringboardGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnCorrectSpringBoardWithWidth2__whenDiceReturnsWidth2() {
+    public void generate_shouldReturnCorrectSpringBoardWithWidth2_whenDiceReturnsWidth2() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;

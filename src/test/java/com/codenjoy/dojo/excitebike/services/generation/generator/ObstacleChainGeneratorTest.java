@@ -37,13 +37,11 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Pavel Bobylev 7/19/2019
- */
+
 public class ObstacleChainGeneratorTest {
 
     @Test
-    public void generate__shouldReturnStraightObstaclesLineWithOneExit__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnStraightObstaclesLineWithOneExit_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -66,7 +64,7 @@ public class ObstacleChainGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnStraightObstaclesLineWithThreeExits__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnStraightObstaclesLineWithThreeExits_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -90,7 +88,7 @@ public class ObstacleChainGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnLadderUpObstaclesLineWithOneExit__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnLadderUpObstaclesLineWithOneExit_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -115,7 +113,7 @@ public class ObstacleChainGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnLadderUpObstaclesLineWithThreeExits__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnLadderUpObstaclesLineWithThreeExits_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -140,7 +138,7 @@ public class ObstacleChainGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnUpToDownToUpLadderObstaclesLineWithWidth3AndOneExits__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnUpToDownToUpLadderObstaclesLineWithWidth3AndOneExits_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -173,7 +171,7 @@ public class ObstacleChainGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnLadderDownObstaclesLineWithOneExit__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnLadderDownObstaclesLineWithOneExit_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -202,7 +200,7 @@ public class ObstacleChainGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnLadderDownObstaclesLineWithThreeExits__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnLadderDownObstaclesLineWithThreeExits_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -235,7 +233,7 @@ public class ObstacleChainGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnDownToUpToDownLadderObstaclesLineWithWidth3AndOneExits__ifDiceReturnedNumbersAccordingToIt() {
+    public void generate_shouldReturnDownToUpToDownLadderObstaclesLineWithWidth3AndOneExits_ifDiceReturnedNumbersAccordingToIt() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;

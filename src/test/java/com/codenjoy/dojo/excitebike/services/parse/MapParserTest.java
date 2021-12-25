@@ -38,9 +38,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
-/**
- * Created by Pavel Bobylev 6/4/2019
- */
 @RunWith(Parameterized.class)
 public class MapParserTest {
 
@@ -70,7 +67,7 @@ public class MapParserTest {
     }
 
     @Test
-    public void getPointImplMethods__shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates__ifGivenMapIsSquareWithDifferentObjects() {
+    public void getPointImplMethods_shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates_ifGivenMapIsSquareWithDifferentObjects() {
         //given
         String map = "     " +
                 "   " + element.ch() + " " +
@@ -100,7 +97,7 @@ public class MapParserTest {
     }
 
     @Test
-    public void getPointImplMethods__shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates__ifGivenMapIsSquareWithElementsOfCertainTypeOnly() {
+    public void getPointImplMethods_shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates_ifGivenMapIsSquareWithElementsOfCertainTypeOnly() {
         //given
         String map = "" + element.ch() + element.ch() + element.ch() +
                 element.ch() + element.ch() + element.ch() +
@@ -143,7 +140,7 @@ public class MapParserTest {
     }
 
     @Test
-    public void getPointImplMethods__shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates__ifGivenMapIsRectangleWithDifferentObjects() {
+    public void getPointImplMethods_shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates_ifGivenMapIsRectangleWithDifferentObjects() {
         //given
         String map = "     " +
                 "   " + element.ch() + " " +
@@ -168,7 +165,7 @@ public class MapParserTest {
     }
 
     @Test
-    public void getPointImplMethods__shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates__ifGivenMapIsRectangleWithElementsOfCertainTypeOnly() {
+    public void getPointImplMethods_shouldReturnAllElementsOfCertainTypeWithCorrectCoordinates_ifGivenMapIsRectangleWithElementsOfCertainTypeOnly() {
         //given
         String map = "" + element.ch() + element.ch() + element.ch() +
                 element.ch() + element.ch() + element.ch();

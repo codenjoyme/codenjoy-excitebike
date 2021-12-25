@@ -22,8 +22,8 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  * #L%
  */
 
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.google.common.collect.Lists;
@@ -31,11 +31,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -43,9 +39,7 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Pavel Bobylev 7/19/2019
- */
+
 @RunWith(Parameterized.class)
 public class SingleElementGeneratorParametrizedTest {
 
@@ -67,7 +61,7 @@ public class SingleElementGeneratorParametrizedTest {
     }
 
     @Test
-    public void generate__shouldReturnElementAtLineN__accordingToDice() {
+    public void generate_shouldReturnElementAtLineN_accordingToDice() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;

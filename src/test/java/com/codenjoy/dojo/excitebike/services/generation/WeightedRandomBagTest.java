@@ -31,13 +31,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Pavel Bobylev 7/19/2019
- */
+
 public class WeightedRandomBagTest {
 
     @Test
-    public void getRandom__shouldReturnNull__ifNoOptionsWereSet() {
+    public void getRandom_shouldReturnNull_ifNoOptionsWereSet() {
         //given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         Dice dice = mock(Dice.class);
@@ -51,7 +49,7 @@ public class WeightedRandomBagTest {
     }
 
     @Test
-    public void getRandom__shouldReturnTheOnlyOptionSet__ifItIsTheOnlyOptionAndDiceReturnsCorrespondingWeight() {
+    public void getRandom_shouldReturnTheOnlyOptionSet_ifItIsTheOnlyOptionAndDiceReturnsCorrespondingWeight() {
         //given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.NOTHING, 50);
@@ -66,7 +64,7 @@ public class WeightedRandomBagTest {
     }
 
     @Test
-    public void getRandom__shouldReturnOptionOne__ifTwoOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionOne() {
+    public void getRandom_shouldReturnOptionOne_ifTwoOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionOne() {
         //given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.NOTHING, 50);
@@ -82,7 +80,7 @@ public class WeightedRandomBagTest {
     }
 
     @Test
-    public void getRandom__shouldReturnOptionTwo__ifTwoOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionTwo() {
+    public void getRandom_shouldReturnOptionTwo_ifTwoOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionTwo() {
         //given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.NOTHING, 50);
@@ -98,7 +96,7 @@ public class WeightedRandomBagTest {
     }
 
     @Test
-    public void getRandom__shouldReturnOptionOne__ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionOne() {
+    public void getRandom_shouldReturnOptionOne_ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionOne() {
         //given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.SPRINGBOARD, 50);
@@ -115,7 +113,7 @@ public class WeightedRandomBagTest {
     }
 
     @Test
-    public void getRandom__shouldReturnOptionTwo__ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionTwo() {
+    public void getRandom_shouldReturnOptionTwo_ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionTwo() {
         //given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.SPRINGBOARD, 50);
@@ -132,7 +130,7 @@ public class WeightedRandomBagTest {
     }
 
     @Test
-    public void getRandom__shouldReturnOptionThree__ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionThree() {
+    public void getRandom_shouldReturnOptionThree_ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionThree() {
         //given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.SPRINGBOARD, 50);

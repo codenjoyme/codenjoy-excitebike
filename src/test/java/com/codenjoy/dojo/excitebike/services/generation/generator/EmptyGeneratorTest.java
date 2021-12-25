@@ -33,13 +33,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
 
-/**
- * Created by Pavel Bobylev 7/19/2019
- */
+
 public class EmptyGeneratorTest {
 
     @Test
-    public void generate__shouldReturnNull() {
+    public void generate_shouldReturnNull() {
         //given
         EmptyGenerator emptyGenerator = new EmptyGenerator();
 
@@ -51,7 +49,7 @@ public class EmptyGeneratorTest {
     }
 
     @Test
-    public void generationLockSize__shouldReturnZero() {
+    public void generationLockSize_shouldReturnZero() {
         //given
         EmptyGenerator emptyGenerator = new EmptyGenerator();
         emptyGenerator.generate();

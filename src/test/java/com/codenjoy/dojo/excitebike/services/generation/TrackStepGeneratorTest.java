@@ -22,10 +22,10 @@ package com.codenjoy.dojo.excitebike.services.generation;
  * #L%
  */
 
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.excitebike.services.generation.generator.SpringboardGenerator;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.junit.Test;
@@ -33,10 +33,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.NOTHING;
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.OBSTACLE_CHAIN;
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.SINGLE_ELEMENT;
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.SPRINGBOARD;
+import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -44,13 +41,10 @@ import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Pavel Bobylev 7/19/2019
- */
 public class TrackStepGeneratorTest {
 
     @Test
-    public void generate__shouldReturnSpringboardElements__ifDiceReturnedNumberCorrespondingToSpringboardAmongOtherOptions() {
+    public void generate_shouldReturnSpringboardElements_ifDiceReturnedNumberCorrespondingToSpringboardAmongOtherOptions() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -75,7 +69,7 @@ public class TrackStepGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnNullSevenTimes__afterItReturnedSpringboardWithWidthFive() {
+    public void generate_shouldReturnNullSevenTimes_afterItReturnedSpringboardWithWidthFive() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -104,7 +98,7 @@ public class TrackStepGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnNull__ifDiceReturnedNumberCorrespondingToNothingAmongOtherOptions() {
+    public void generate_shouldReturnNull_ifDiceReturnedNumberCorrespondingToNothingAmongOtherOptions() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -121,7 +115,7 @@ public class TrackStepGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnMapWithSingleElement__ifDiceReturnedNumberCorrespondingToSingleElementAmongOtherOptions() {
+    public void generate_shouldReturnMapWithSingleElement_ifDiceReturnedNumberCorrespondingToSingleElementAmongOtherOptions() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;
@@ -140,7 +134,7 @@ public class TrackStepGeneratorTest {
     }
 
     @Test
-    public void generate__shouldReturnMapWithObstacleChain__ifDiceReturnedNumberCorrespondingToObstacleChainAmongOtherOptions() {
+    public void generate_shouldReturnMapWithObstacleChain_ifDiceReturnedNumberCorrespondingToObstacleChainAmongOtherOptions() {
         //given
         Dice dice = mock(Dice.class);
         int xSize = 10;

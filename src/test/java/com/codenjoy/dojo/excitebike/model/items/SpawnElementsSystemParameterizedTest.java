@@ -22,11 +22,12 @@ package com.codenjoy.dojo.excitebike.model.items;
  * #L%
  */
 
+import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.model.Excitebike;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.PointImpl;
@@ -39,7 +40,6 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -69,7 +69,7 @@ public class SpawnElementsSystemParameterizedTest {
         MapParser mapParser = mock(MapParser.class);
         when(mapParser.width()).thenReturn(5);
         when(mapParser.height()).thenReturn(5);
-        GameSettings settings = new GameSettings();
+        GameSettings settings = new TestGameSettings();
         game = new Excitebike(mapParser, dice, settings);
         player = new Player(mock(EventListener.class), settings);
         game.newGame(player);

@@ -23,7 +23,6 @@ package com.codenjoy.dojo.excitebike.services.ai;
  */
 
 import com.codenjoy.dojo.games.excitebike.Board;
-import com.codenjoy.dojo.excitebike.services.ai.AISolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import com.google.common.collect.Lists;
@@ -35,9 +34,7 @@ import org.mockito.stubbing.Answer;
 import java.util.List;
 import java.util.Random;
 
-import static com.codenjoy.dojo.services.Direction.DOWN;
-import static com.codenjoy.dojo.services.Direction.STOP;
-import static com.codenjoy.dojo.services.Direction.UP;
+import static com.codenjoy.dojo.services.Direction.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -1032,7 +1029,7 @@ public class AISolverParametrizedTest {
     }
 
     @Test
-    public void get__shouldReturnAppropriateDirection__accordingToGameElementTypeAround() {
+    public void get_shouldReturnAppropriateDirection_accordingToGameElementTypeAround() {
         //given
         Board board = toBoard(boardString);
         if (expectedDirection == STOP) {
