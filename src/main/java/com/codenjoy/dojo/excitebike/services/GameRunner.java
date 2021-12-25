@@ -25,14 +25,14 @@ package com.codenjoy.dojo.excitebike.services;
 
 import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.excitebike.Board;
-import com.codenjoy.dojo.excitebike.services.ai.AISolver;
 import com.codenjoy.dojo.excitebike.model.Excitebike;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
+import com.codenjoy.dojo.excitebike.services.ai.AISolver;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
+import com.codenjoy.dojo.games.excitebike.Board;
+import com.codenjoy.dojo.games.excitebike.element.BikeElement;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
+import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.AbstractGameType;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.PlayerScores;
@@ -82,7 +82,7 @@ public class GameRunner extends AbstractGameType<GameSettings> {
 
     @Override
     public PlayerScores getPlayerScores(Object score, GameSettings settings) {
-        return new ScoresImpl<>(Integer.parseInt(score.toString()), new Scores(settings));
+        return new ScoresImpl<>(Integer.parseInt(score.toString()), settings.calculator());
     }
 
     @Override

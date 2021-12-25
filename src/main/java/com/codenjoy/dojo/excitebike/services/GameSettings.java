@@ -25,6 +25,7 @@ package com.codenjoy.dojo.excitebike.services;
 
 import com.codenjoy.dojo.excitebike.services.generation.GenerationOption;
 import com.codenjoy.dojo.excitebike.services.generation.WeightedRandomBag;
+import com.codenjoy.dojo.services.event.Calculator;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
 import com.codenjoy.dojo.services.settings.SettingsReader;
 
@@ -82,4 +83,7 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
         }};
     }
 
+    public Calculator<Integer> calculator() {
+        return new Calculator<>(new Scores(this));
+    }
 }
