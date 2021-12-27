@@ -250,8 +250,8 @@ public class Excitebike implements Field {
     }
 
     @Override
-    public BoardReader reader() {
-        return new BoardReader<Player>() {
+    public BoardReader<Player> reader() {
+        return new BoardReader<>() {
 
             @Override
             public int size() {
