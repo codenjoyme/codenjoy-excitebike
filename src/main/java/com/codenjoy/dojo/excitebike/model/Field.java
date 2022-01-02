@@ -24,12 +24,11 @@ package com.codenjoy.dojo.excitebike.model;
 
 
 import com.codenjoy.dojo.excitebike.model.items.Bike;
-import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.multiplayer.GameField;
 
 import java.util.Optional;
 
-public interface Field extends GameField<Player> {
+public interface Field extends GameField<Player, Bike> {
 
     int xSize();
 
