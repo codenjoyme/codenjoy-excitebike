@@ -26,7 +26,7 @@ import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.State;
+import com.codenjoy.dojo.services.printer.state.State;
 
 public class Accelerator extends PointImpl implements State<GameElement, Player>, Shiftable {
 
