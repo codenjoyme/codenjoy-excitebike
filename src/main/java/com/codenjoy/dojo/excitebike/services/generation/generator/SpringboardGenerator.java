@@ -32,13 +32,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_LEFT_UP;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_RIGHT_UP;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.SPRINGBOARD_TOP;
+import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
 
 public class SpringboardGenerator implements Generator {
 
@@ -86,6 +80,7 @@ public class SpringboardGenerator implements Generator {
     }
 
     private void addNewElement(SpringboardElement type, int x, int y) {
+        // TODO do not use map.containsKey just check that map.get() != null
         if (!elements.containsKey(type)) {
             elements.put(type, new LinkedList<>());
         }
