@@ -27,8 +27,8 @@ import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.utils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,21 +36,19 @@ import org.junit.Test;
 import static com.codenjoy.dojo.excitebike.TestUtils.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class GameTest {
 
     private Excitebike game;
     private Bike bike;
-    private Dice dice;
+    private MockDice dice;
     private Player player;
     private GameSettings settings;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         settings = new TestGameSettings();
     }
 
@@ -94,9 +92,9 @@ public class GameTest {
                 " ▲ < " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(20)).thenReturn(12);
-        when(dice.next(5)).thenReturn(1);
-        when(dice.next(3)).thenReturn(1);
+        dice.whenThen(20, 12);
+        dice.whenThen(5, 1);
+        dice.whenThen(3, 1);
 
         // when
         game.tick();
@@ -119,7 +117,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.down();
@@ -143,7 +141,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.up();
@@ -167,7 +165,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.crush();
@@ -191,7 +189,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         bike.crush();
         game.tick();
 
@@ -217,7 +215,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -240,7 +238,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -264,7 +262,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -287,7 +285,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.up();
@@ -311,7 +309,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -334,7 +332,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -358,7 +356,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -382,7 +380,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -405,7 +403,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -429,7 +427,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -453,7 +451,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 3);
 
         // when
@@ -477,7 +475,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -500,7 +498,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -523,7 +521,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.up();
@@ -547,7 +545,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -570,7 +568,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -594,7 +592,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -618,7 +616,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -641,7 +639,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -665,7 +663,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -689,7 +687,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -712,7 +710,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -736,7 +734,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -760,7 +758,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 3);
 
         // when
@@ -784,7 +782,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 4);
 
         // when
@@ -808,7 +806,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         bike.up();
 
         // when
@@ -832,7 +830,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -856,7 +854,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -879,7 +877,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -903,7 +901,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -926,7 +924,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -950,7 +948,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -974,7 +972,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -997,7 +995,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1021,7 +1019,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1044,7 +1042,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1068,7 +1066,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1091,7 +1089,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1115,7 +1113,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1138,7 +1136,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1162,7 +1160,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1185,7 +1183,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1209,7 +1207,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.up();
@@ -1233,7 +1231,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         bike.up();
         game.tick();
 
@@ -1258,7 +1256,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1283,7 +1281,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.down();
@@ -1307,7 +1305,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         bike.down();
         game.tick();
 
@@ -1332,7 +1330,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1360,7 +1358,7 @@ public class GameTest {
                 "        " +
                 "■■■■■■■■";
         init(board, 8);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1389,7 +1387,7 @@ public class GameTest {
                 "        " +
                 "■■■■■■■■";
         init(board, 8);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1419,7 +1417,7 @@ public class GameTest {
                 "        " +
                 "■■■■■■■■";
         init(board, 8);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -1449,7 +1447,7 @@ public class GameTest {
                 "        " +
                 "■■■■■■■■";
         init(board, 8);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 3);
 
         // when
@@ -1479,7 +1477,7 @@ public class GameTest {
                 "        " +
                 "■■■■■■■■";
         init(board, 8);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 4);
 
         // when
@@ -1509,7 +1507,7 @@ public class GameTest {
                 "        " +
                 "■■■■■■■■";
         init(board, 8);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 5);
 
         // when
@@ -1539,7 +1537,7 @@ public class GameTest {
                 "        " +
                 "■■■■■■■■";
         init(board, 8);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 6);
 
         // when
@@ -1566,7 +1564,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1589,7 +1587,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1613,7 +1611,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1636,7 +1634,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1660,7 +1658,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.up();
@@ -1684,7 +1682,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1707,7 +1705,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1731,9 +1729,9 @@ public class GameTest {
                 "B    " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(20)).thenReturn(12);
-        when(dice.next(5)).thenReturn(0);
-        when(dice.next(3)).thenReturn(2);
+        dice.whenThen(20, 12);
+        dice.whenThen(5, 0);
+        dice.whenThen(3, 2);
 
         // when
         game.tick();
@@ -1756,7 +1754,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.left();
@@ -1780,7 +1778,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.right();
@@ -1804,7 +1802,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.act();
@@ -1828,7 +1826,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1851,7 +1849,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1875,7 +1873,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1898,7 +1896,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1922,7 +1920,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -1945,7 +1943,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -1969,7 +1967,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -1993,7 +1991,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2016,7 +2014,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -2040,7 +2038,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -2064,7 +2062,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 3);
 
         // when
@@ -2088,7 +2086,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2111,7 +2109,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -2135,7 +2133,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2158,7 +2156,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -2182,7 +2180,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -2206,7 +2204,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2229,7 +2227,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -2253,7 +2251,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
 
         // when
@@ -2277,7 +2275,7 @@ public class GameTest {
                 "  B╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -2301,7 +2299,7 @@ public class GameTest {
                 "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -2325,7 +2323,7 @@ public class GameTest {
                 "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -2349,7 +2347,7 @@ public class GameTest {
                 "  ╚ˊˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         bike.down();
@@ -2373,7 +2371,7 @@ public class GameTest {
                 "  ╚ˊˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         bike.down();
         game.tick();
 
@@ -2399,7 +2397,7 @@ public class GameTest {
                 " B╚ˊˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
         bike.down();
         game.tick();
@@ -2425,7 +2423,7 @@ public class GameTest {
                 "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 2);
         bike.up();
 
@@ -2451,7 +2449,7 @@ public class GameTest {
                 "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
         game.tick();
         game.tick();
@@ -2477,7 +2475,7 @@ public class GameTest {
                 "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
         game.tick();
         game.tick();
@@ -2503,7 +2501,7 @@ public class GameTest {
                 "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
         game.tick();
 
@@ -2528,7 +2526,7 @@ public class GameTest {
                 "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
         game.tick();
 
@@ -2553,7 +2551,7 @@ public class GameTest {
                 "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2579,7 +2577,7 @@ public class GameTest {
                 "B  ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2605,7 +2603,7 @@ public class GameTest {
                 "B  ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2632,7 +2630,7 @@ public class GameTest {
                 "B  ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2659,7 +2657,7 @@ public class GameTest {
                 "   ╚ˊ" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2687,7 +2685,7 @@ public class GameTest {
                 "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2713,7 +2711,7 @@ public class GameTest {
                 "   ˋ╝" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2740,7 +2738,7 @@ public class GameTest {
                 "   ╚╝" +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -2776,10 +2774,10 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(0);
-        when(dice.next(3)).thenReturn(0);
-        when(dice.next(10)).thenReturn(9, 7, 8, 6, 4);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 0);
+        dice.whenThen(3, 0);
+        dice.whenThen(10, 9, 7, 8, 6, 4);
         game.tick();
 
         // when
@@ -2817,11 +2815,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
 
         // when
         game.tick();
@@ -2858,11 +2856,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         game.tick();
 
         // when
@@ -2900,11 +2898,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 2);
 
         // when
@@ -2942,11 +2940,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 3);
 
         // when
@@ -2984,11 +2982,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 4);
 
         // when
@@ -3026,11 +3024,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 5);
 
         // when
@@ -3068,11 +3066,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 6);
 
         // when
@@ -3110,11 +3108,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 7);
 
         // when
@@ -3152,11 +3150,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 8);
 
         // when
@@ -3194,11 +3192,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 9);
 
         // when
@@ -3236,11 +3234,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 10);
 
         // when
@@ -3278,11 +3276,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 11);
 
         // when
@@ -3320,11 +3318,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 12);
 
         // when
@@ -3362,11 +3360,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
 
         // when
         game.tick();
@@ -3403,11 +3401,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         game.tick();
 
         // when
@@ -3445,11 +3443,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 2);
 
         // when
@@ -3487,11 +3485,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 3);
 
         // when
@@ -3529,11 +3527,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 4);
 
         // when
@@ -3571,11 +3569,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 5);
 
         // when
@@ -3613,11 +3611,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 6);
 
         // when
@@ -3655,11 +3653,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 7);
 
         // when
@@ -3697,11 +3695,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 8);
 
         // when
@@ -3739,11 +3737,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 9);
 
         // when
@@ -3781,11 +3779,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 10);
 
         // when
@@ -3823,11 +3821,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 11);
 
         // when
@@ -3865,11 +3863,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(9);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 9);
+        dice.whenThen(5, 0);
         ticks(game, 12);
 
         // when
@@ -3907,11 +3905,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(1);
-        when(dice.next(10)).thenReturn(3);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 1);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 1);
+        dice.whenThen(10, 3);
+        dice.whenThen(5, 0);
         ticks(game, 5);
 
         // when
@@ -3949,11 +3947,11 @@ public class GameTest {
                 "            " +
                 "■■■■■■■■■■■■";
         init(board, 12);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(20)).thenReturn(18);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(3);
-        when(dice.next(5)).thenReturn(0);
+        dice.whenThen(3, 2);
+        dice.whenThen(20, 18);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 3);
+        dice.whenThen(5, 0);
         ticks(game, 5);
 
         // when
@@ -3984,7 +3982,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -4009,7 +4007,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -4034,7 +4032,7 @@ public class GameTest {
                 "     " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -4059,7 +4057,7 @@ public class GameTest {
                 "  B▲ " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         game.tick();
 
         // when
@@ -4092,7 +4090,7 @@ public class GameTest {
                 "        ╚╝   " +
                 "■■■■■■■■■■■■■";
         init(board, 13);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         ticks(game, 10);
@@ -4131,7 +4129,7 @@ public class GameTest {
                 "       ╚═╝   " +
                 "■■■■■■■■■■■■■";
         init(board, 13);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         ticks(game, 11);
@@ -4171,7 +4169,7 @@ public class GameTest {
                 "B  ╚ˊˊˊˊ╝  " +
                 "■■■■■■■■■■";
         init(board, 10);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
         ticks(game, 5);
         bike.crush();
         ticks(game, 2);
@@ -4203,7 +4201,7 @@ public class GameTest {
                 "B||  " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         // when
         game.tick();
@@ -4226,7 +4224,7 @@ public class GameTest {
                 "B||  " +
                 "■■■■■";
         init(board, 5);
-        when(dice.next(anyInt())).thenReturn(5);
+        dice(5);
 
         aasertB("■■■■■" +
                 " ||  " +
@@ -4251,5 +4249,9 @@ public class GameTest {
                 "|B   " +
                 "|    " +
                 "■■■■■");
+    }
+
+    private void dice(Integer... next) {
+        dice.then(next);
     }
 }

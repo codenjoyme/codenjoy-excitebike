@@ -25,9 +25,9 @@ package com.codenjoy.dojo.excitebike.model;
 import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Game;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.multiplayer.Single;
 import com.codenjoy.dojo.services.printer.PrinterFactory;
 import com.codenjoy.dojo.services.printer.PrinterFactoryImpl;
@@ -44,9 +44,7 @@ import java.util.stream.IntStream;
 import static com.codenjoy.dojo.excitebike.TestUtils.parseBikes;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
 public class SpawnTest {
@@ -312,8 +310,8 @@ public class SpawnTest {
         int xSize = 7;
         MapParser mapParser = new MapParser(init, xSize);
 
-        Dice dice = mock(Dice.class);
-        when(dice.next(anyInt())).thenReturn(5);
+        MockDice dice = new MockDice();
+        dice.then(5);
         Field field = new Excitebike(mapParser, dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
 

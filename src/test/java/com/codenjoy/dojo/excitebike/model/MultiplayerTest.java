@@ -28,9 +28,9 @@ import com.codenjoy.dojo.excitebike.model.items.Bike;
 import com.codenjoy.dojo.excitebike.services.Event;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Game;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.multiplayer.Single;
 import com.codenjoy.dojo.services.printer.PrinterFactory;
 import com.codenjoy.dojo.services.printer.PrinterFactoryImpl;
@@ -39,7 +39,6 @@ import org.junit.Test;
 import static com.codenjoy.dojo.excitebike.TestUtils.ticks;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 public class MultiplayerTest {
@@ -50,7 +49,7 @@ public class MultiplayerTest {
     private EventListener eventListenerSpy2 = spy(EventListener.class);
     private Game game3;
     private EventListener eventListenerSpy3 = spy(EventListener.class);
-    private Dice dice;
+    private MockDice dice;
     private Excitebike field;
 
     private void init() {
@@ -63,7 +62,7 @@ public class MultiplayerTest {
                 "       " +
                 "■■■■■■■", 7);
 
-        dice = mock(Dice.class);
+        dice = new MockDice();
         GameSettings settings = new TestGameSettings();
         field = new Excitebike(mapParser, dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
@@ -120,7 +119,7 @@ public class MultiplayerTest {
     public void shouldJoystick() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
 
         game3.getJoystick().up();
         game2.getJoystick().left();
@@ -145,7 +144,7 @@ public class MultiplayerTest {
     public void shouldRemove() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
 
         //when
         game3.close();
@@ -167,7 +166,7 @@ public class MultiplayerTest {
     public void shouldCrushEnemyBikeAfterClashAndGetEvents() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
         bike2.setY(bike2.getY() - 1);
 
@@ -198,7 +197,7 @@ public class MultiplayerTest {
     public void shouldCrushEnemyBikeAfterClash2AndGetScores() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setY(bike1.getY() + 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -232,7 +231,7 @@ public class MultiplayerTest {
     public void shouldCrushBikeAfterClashWithFenceAndGetScores() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
 
         //when
         game1.getJoystick().down();
@@ -262,7 +261,7 @@ public class MultiplayerTest {
     public void shouldDoNothingAfterBikesClashEachOther_bike1() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setY(bike1.getY() + 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -295,7 +294,7 @@ public class MultiplayerTest {
     public void shouldDoNothingAfterBikesClashEachOther_bike1_tick2() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setY(bike1.getY() + 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -331,7 +330,7 @@ public class MultiplayerTest {
     public void shouldDoNothingAfterBikesClashEachOther_bike2() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setY(bike1.getY() + 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -364,7 +363,7 @@ public class MultiplayerTest {
     public void shouldDoNothingAfterBikesClashEachOther_bike3() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setY(bike1.getY() + 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -397,7 +396,7 @@ public class MultiplayerTest {
     public void shouldMoveBikesInAnyOrderOfCall() {
         //given
         init();
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
         bike2.setY(bike2.getY() - 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -428,7 +427,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -461,7 +460,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -500,7 +499,7 @@ public class MultiplayerTest {
         bike2.setY(bike2.getY() - 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
         bike3.setY(bike3.getY() - 2);
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         ticks(field, 6);
         ((Bike) game1.getPlayer().getHero()).crush();
         ticks(field, 2);
@@ -527,7 +526,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -567,7 +566,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -608,7 +607,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -648,7 +647,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -689,7 +688,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -724,7 +723,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -760,7 +759,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -797,7 +796,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -833,7 +832,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -876,7 +875,7 @@ public class MultiplayerTest {
         int springboardTopSize = 1;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -918,7 +917,7 @@ public class MultiplayerTest {
         int springboardTopSize = 0;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -953,7 +952,7 @@ public class MultiplayerTest {
         int springboardTopSize = 0;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
@@ -989,7 +988,7 @@ public class MultiplayerTest {
         int springboardTopSize = 0;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -1025,7 +1024,7 @@ public class MultiplayerTest {
         int springboardTopSize = 0;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 1);
         bike1.setY(bike1.getY() + 2);
@@ -1065,8 +1064,8 @@ public class MultiplayerTest {
         //given
         init();
         game3.close();
-        when(dice.next(20)).thenReturn(12);
-        when(dice.next(5)).thenReturn(2, 2);
+        dice.whenThen(20, 12);
+        dice.whenThen(5, 2, 2);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 4);
         bike1.setY(bike1.getY() + 2);
@@ -1093,8 +1092,8 @@ public class MultiplayerTest {
         //given
         init();
         game3.close();
-        when(dice.next(20)).thenReturn(12, 1);
-        when(dice.next(5)).thenReturn(2, 2);
+        dice.whenThen(20, 12, 1);
+        dice.whenThen(5, 2, 2);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 4);
         bike1.setY(bike1.getY() + 2);
@@ -1128,8 +1127,8 @@ public class MultiplayerTest {
         //given
         init();
         game3.close();
-        when(dice.next(20)).thenReturn(12, 1);
-        when(dice.next(5)).thenReturn(2, 2);
+        dice.whenThen(20, 12, 1);
+        dice.whenThen(5, 2, 2);
         Bike bike1 = (Bike) game1.getPlayer().getHero();
         bike1.setX(bike1.getX() + 4);
         bike1.setY(bike1.getY() + 2);
@@ -1168,7 +1167,7 @@ public class MultiplayerTest {
         bike2.setY(bike2.getY() - 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
         bike3.setY(bike3.getY() - 2);
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         ticks(field, 8);
         ((Bike) game1.getPlayer().getHero()).crush();
         ((Bike) game2.getPlayer().getHero()).crush();
@@ -1199,7 +1198,7 @@ public class MultiplayerTest {
         int springboardTopSize = 2;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
         bike2.setY(bike2.getY() - 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -1233,7 +1232,7 @@ public class MultiplayerTest {
         int springboardTopSize = 0;
 
         init();
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         Bike bike2 = (Bike) game2.getPlayer().getHero();
         bike2.setY(bike2.getY() - 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
@@ -1270,7 +1269,7 @@ public class MultiplayerTest {
         bike2.setY(bike2.getY() - 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
         bike3.setY(bike3.getY() - 2);
-        when(dice.next(anyInt())).thenReturn(springboardWeight, springboardTopSize);
+        dice.then(springboardWeight, springboardTopSize);
         ticks(field, 8);
         ((Bike) game1.getPlayer().getHero()).crush();
         ((Bike) game2.getPlayer().getHero()).crush();
@@ -1305,7 +1304,7 @@ public class MultiplayerTest {
     public void shouldMoveBike3DownFirstAndThenBike2Up_ifDiceReturnedRandomNumberLikeThatForTicking() {
         //given
         init();
-        when(dice.next(3)).thenReturn(0);
+        dice.whenThen(3, 0);
 
         game3.getJoystick().down();
         game2.getJoystick().up();
@@ -1329,7 +1328,7 @@ public class MultiplayerTest {
     public void shouldMoveBike2UpFirstAndThenBike3Down_ifDiceReturnedRandomNumberLikeThatForTicking() {
         //given
         init();
-        when(dice.next(3)).thenReturn(2);
+        dice.whenThen(3, 2);
 
         game3.getJoystick().down();
         game2.getJoystick().up();
@@ -1357,7 +1356,7 @@ public class MultiplayerTest {
         bike1.setY(bike1.getY() + 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
         bike3.setY(bike3.getY() - 1);
-        when(dice.next(3)).thenReturn(-1);
+        dice.whenThen(3, -1);
 
         //when
         game1.getJoystick().up();
@@ -1388,7 +1387,7 @@ public class MultiplayerTest {
         bike1.setY(bike1.getY() + 1);
         Bike bike3 = (Bike) game3.getPlayer().getHero();
         bike3.setY(bike3.getY() - 1);
-        when(dice.next(3)).thenReturn(1);
+        dice.whenThen(3, 1);
 
         //when
         game1.getJoystick().up();

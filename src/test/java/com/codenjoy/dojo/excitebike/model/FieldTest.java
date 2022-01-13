@@ -26,8 +26,8 @@ import com.codenjoy.dojo.excitebike.TestGameSettings;
 import com.codenjoy.dojo.excitebike.model.items.*;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,7 +38,6 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -46,7 +45,7 @@ public class FieldTest {
 
     private Field gameField;
     private MapParser mapParser;
-    private Dice dice;
+    private MockDice dice;
     private GameSettings settings;
 
     @Before
@@ -54,7 +53,7 @@ public class FieldTest {
         mapParser = mock(MapParser.class);
         when(mapParser.width()).thenReturn(5);
         when(mapParser.height()).thenReturn(5);
-        dice = mock(Dice.class);
+        dice = new MockDice();
         settings = new TestGameSettings();
     }
 
@@ -241,7 +240,7 @@ public class FieldTest {
 
         gameField = new Excitebike(mapParser, dice, settings);
 
-        when(dice.next(anyInt())).thenReturn(5);
+        dice.then(5);
 
         //when
         gameField.tick();
@@ -266,7 +265,7 @@ public class FieldTest {
 
         when(mapParser.width()).thenReturn(xSize);
         when(mapParser.height()).thenReturn(ySize);
-        when(dice.next(anyInt())).thenReturn(12, nonFenceElementOrdinal, nonFenceLaneNumber);
+        dice.then(12, nonFenceElementOrdinal, nonFenceLaneNumber);
         gameField = new Excitebike(mapParser, dice, settings);
 
         //when

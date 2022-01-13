@@ -23,7 +23,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.junit.Test;
 
@@ -34,26 +34,25 @@ import static com.codenjoy.dojo.games.excitebike.element.GameElement.OBSTACLE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 public class ObstacleChainGeneratorTest {
 
+    private MockDice dice = new MockDice();
+    
     @Test
     public void generate_shouldReturnStraightObstaclesLineWithOneExit_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(4)).thenReturn(0, 0);
-        when(dice.next(10)).thenReturn(6, 7, 7, 8, 9, 1);
+        dice.whenThen(4, 0, 0);
+        dice.whenThen(10, 6, 7, 7, 8, 9, 1);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(7));
@@ -65,19 +64,18 @@ public class ObstacleChainGeneratorTest {
 
     @Test
     public void generate_shouldReturnStraightObstaclesLineWithThreeExits_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(3)).thenReturn(0);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
+        dice.whenThen(3, 0);
+        dice.whenThen(4, 2);
+        dice.whenThen(10, 1, 7, 6, 8, 2, 7, 9, 6);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(5));
@@ -89,20 +87,19 @@ public class ObstacleChainGeneratorTest {
 
     @Test
     public void generate_shouldReturnLadderUpObstaclesLineWithOneExit_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(4)).thenReturn(0);
-        when(dice.next(ySize - 2)).thenReturn(7);
-        when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
+        dice.whenThen(3, 1);
+        dice.whenThen(4, 0);
+        dice.whenThen(ySize - 2, 7);
+        dice.whenThen(10, 1, 7, 6, 8, 2, 7, 9, 6);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(7));
@@ -114,20 +111,19 @@ public class ObstacleChainGeneratorTest {
 
     @Test
     public void generate_shouldReturnLadderUpObstaclesLineWithThreeExits_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(ySize - 2)).thenReturn(7);
-        when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
+        dice.whenThen(3, 1);
+        dice.whenThen(4, 2);
+        dice.whenThen(ySize - 2, 7);
+        dice.whenThen(10, 1, 7, 6, 8, 2, 7, 9, 6);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(5));
@@ -139,20 +135,19 @@ public class ObstacleChainGeneratorTest {
 
     @Test
     public void generate_shouldReturnUpToDownToUpLadderObstaclesLineWithWidth3AndOneExits_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(3)).thenReturn(1);
-        when(dice.next(4)).thenReturn(0);
-        when(dice.next(ySize - 2)).thenReturn(2);
-        when(dice.next(10)).thenReturn(0, 1, 2, 3, 4, 7, 9, 6, 9);
+        dice.whenThen(3, 1);
+        dice.whenThen(4, 0);
+        dice.whenThen(ySize - 2, 2);
+        dice.whenThen(10, 0, 1, 2, 3, 4, 7, 9, 6, 9);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(7));
@@ -172,22 +167,21 @@ public class ObstacleChainGeneratorTest {
 
     @Test
     public void generate_shouldReturnLadderDownObstaclesLineWithOneExit_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(4)).thenReturn(0);
-        when(dice.next(ySize - 2)).thenReturn(7);
-        when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
+        dice.whenThen(3, 2);
+        dice.whenThen(4, 0);
+        dice.whenThen(ySize - 2, 7);
+        dice.whenThen(10, 1, 7, 6, 8, 2, 7, 9, 6);
         int expectedX = 16;
         int expectedY = 2;
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(7));
@@ -201,22 +195,21 @@ public class ObstacleChainGeneratorTest {
 
     @Test
     public void generate_shouldReturnLadderDownObstaclesLineWithThreeExits_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(4)).thenReturn(2);
-        when(dice.next(ySize - 2)).thenReturn(7);
-        when(dice.next(10)).thenReturn(1, 7, 6, 8, 2, 7, 9, 6);
+        dice.whenThen(3, 2);
+        dice.whenThen(4, 2);
+        dice.whenThen(ySize - 2, 7);
+        dice.whenThen(10, 1, 7, 6, 8, 2, 7, 9, 6);
         int expectedX = 16;
         int expectedY = 2;
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(5));
@@ -234,20 +227,19 @@ public class ObstacleChainGeneratorTest {
 
     @Test
     public void generate_shouldReturnDownToUpToDownLadderObstaclesLineWithWidth3AndOneExits_ifDiceReturnedNumbersAccordingToIt() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
         ObstacleChainGenerator generator = new ObstacleChainGenerator(dice, xSize, ySize);
-        when(dice.next(3)).thenReturn(2);
-        when(dice.next(4)).thenReturn(0);
-        when(dice.next(ySize - 2)).thenReturn(2);
-        when(dice.next(10)).thenReturn(0, 1, 2, 3, 4, 7, 9, 6, 9);
+        dice.whenThen(3, 2);
+        dice.whenThen(4, 0);
+        dice.whenThen(ySize - 2, 2);
+        dice.whenThen(10, 0, 1, 2, 3, 4, 7, 9, 6, 9);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         List<Shiftable> obstacles = result.get(OBSTACLE);
         assertThat(obstacles, hasSize(7));

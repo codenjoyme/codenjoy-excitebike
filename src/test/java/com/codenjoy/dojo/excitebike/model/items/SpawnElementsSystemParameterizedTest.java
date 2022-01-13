@@ -28,9 +28,9 @@ import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.PointImpl;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.printer.state.State;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,10 +49,11 @@ import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
 public class SpawnElementsSystemParameterizedTest {
+
     private GameElement gameElementType;
     private Player player;
     private Excitebike game;
-    private Dice dice;
+    private MockDice dice;
 
     public SpawnElementsSystemParameterizedTest(GameElement gameElementType) {
         this.gameElementType = gameElementType;
@@ -65,7 +66,7 @@ public class SpawnElementsSystemParameterizedTest {
 
     @Before
     public void init() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         MapParser mapParser = mock(MapParser.class);
         when(mapParser.width()).thenReturn(5);
         when(mapParser.height()).thenReturn(5);
@@ -77,19 +78,18 @@ public class SpawnElementsSystemParameterizedTest {
 
     @Test
     public void shouldGenerateElement() {
-        //given
-        when(dice.next(20)).thenReturn(12);
-        when(dice.next(5)).thenReturn(gameElementType.ordinal() - 2);
-        when(dice.next(3)).thenReturn(0);
+        // given
+        dice.whenThen(20, 12);
+        dice.whenThen(5, gameElementType.ordinal() - 2);
+        dice.whenThen(3, 0);
 
-        //when
+        // when
         game.tick();
 
-        //then
+        // then
         LinkedList<Object> all = new LinkedList<>();
         game.reader().addAll(null, list -> all.addAll((Collection<?>) list));
         PointImpl generatedElement = (PointImpl)all.stream().filter(el -> !(el instanceof Bike || el instanceof Fence)).findFirst().get();
         assertThat(((State) generatedElement).state(player), is(gameElementType));
-
     }
 }

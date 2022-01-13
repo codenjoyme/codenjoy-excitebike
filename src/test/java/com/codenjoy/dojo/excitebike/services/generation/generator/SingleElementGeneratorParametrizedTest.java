@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.google.common.collect.Lists;
 import org.junit.Test;
@@ -36,9 +36,6 @@ import java.util.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 
 @RunWith(Parameterized.class)
 public class SingleElementGeneratorParametrizedTest {
@@ -62,18 +59,20 @@ public class SingleElementGeneratorParametrizedTest {
 
     @Test
     public void generate_shouldReturnElementAtLineN_accordingToDice() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
+        MockDice dice = new MockDice();
         int xSize = 10;
         int ySize = 10;
         int expectedLine = new Random().nextInt();
-        when(dice.next(GameElement.values().length - 2)).thenReturn(Arrays.asList(GameElement.values()).indexOf(expectedElementType) - 2);
-        when(dice.next(ySize - 2)).thenReturn(expectedLine - 1);
+        dice.whenThen(GameElement.values().length - 2,
+                Arrays.asList(GameElement.values()).indexOf(expectedElementType) - 2);
+        dice.whenThen(ySize - 2,
+                expectedLine - 1);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = new SingleElementGenerator(dice, xSize, ySize).generate();
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         assertThat(result.get(expectedElementType), hasSize(1));
         assertThat(result.get(expectedElementType).get(0).getX(), is(xSize - 1));

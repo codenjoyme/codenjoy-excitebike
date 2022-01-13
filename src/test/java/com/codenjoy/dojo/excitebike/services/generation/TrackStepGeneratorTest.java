@@ -26,7 +26,7 @@ import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.excitebike.services.generation.generator.SpringboardGenerator;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.junit.Test;
 
@@ -38,26 +38,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class TrackStepGeneratorTest {
 
+    private MockDice dice = new MockDice();
+    
     @Test
     public void generate_shouldReturnSpringboardElements_ifDiceReturnedNumberCorrespondingToSpringboardAmongOtherOptions() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
-        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomgenerationOptionBag();
+        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomGenerationOptionBag();
         TrackStepGenerator generator = new TrackStepGenerator(dice, xSize, ySize);
-        when(dice.next(19)).thenReturn(16);
-        when(dice.next(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH)).thenReturn(3);
+        dice.whenThen(19, 16);
+        dice.whenThen(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH, 3);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate(weightedRandomBag);
 
-        //then
+        // then
         assertThat(result.values(), hasSize(7));
         assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT_UP), hasSize(1));
         assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT), hasSize(10));
@@ -70,19 +69,18 @@ public class TrackStepGeneratorTest {
 
     @Test
     public void generate_shouldReturnNullSevenTimes_afterItReturnedSpringboardWithWidthFive() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
-        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomgenerationOptionBag();
+        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomGenerationOptionBag();
         TrackStepGenerator generator = new TrackStepGenerator(dice, xSize, ySize);
-        when(dice.next(19)).thenReturn(16, 12);
-        when(dice.next(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH)).thenReturn(3);
+        dice.whenThen(19, 16, 12);
+        dice.whenThen(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH, 3);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate(weightedRandomBag);
 
-        //then
+        // then
         assertThat(result.values(), hasSize(7));
         assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT_UP), hasSize(1));
         assertThat(result.get(SpringboardElement.SPRINGBOARD_LEFT), hasSize(10));
@@ -99,35 +97,33 @@ public class TrackStepGeneratorTest {
 
     @Test
     public void generate_shouldReturnNull_ifDiceReturnedNumberCorrespondingToNothingAmongOtherOptions() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
-        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomgenerationOptionBag();
+        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomGenerationOptionBag();
         TrackStepGenerator generator = new TrackStepGenerator(dice, xSize, ySize);
-        when(dice.next(19)).thenReturn(5);
+        dice.whenThen(19, 5);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate(weightedRandomBag);
 
-        //then
+        // then
         assertThat(result, nullValue());
     }
 
     @Test
     public void generate_shouldReturnMapWithSingleElement_ifDiceReturnedNumberCorrespondingToSingleElementAmongOtherOptions() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
-        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomgenerationOptionBag();
+        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomGenerationOptionBag();
         TrackStepGenerator generator = new TrackStepGenerator(dice, xSize, ySize);
-        when(dice.next(19)).thenReturn(12);
+        dice.whenThen(19, 12);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate(weightedRandomBag);
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         assertThat(generator.generate(weightedRandomBag).values(), hasSize(1));
         assertThat(result.get(GameElement.ACCELERATOR), hasSize(1));
@@ -135,23 +131,22 @@ public class TrackStepGeneratorTest {
 
     @Test
     public void generate_shouldReturnMapWithObstacleChain_ifDiceReturnedNumberCorrespondingToObstacleChainAmongOtherOptions() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
         int xSize = 10;
         int ySize = 10;
-        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomgenerationOptionBag();
+        WeightedRandomBag<GenerationOption> weightedRandomBag = getWeightedRandomGenerationOptionBag();
         TrackStepGenerator generator = new TrackStepGenerator(dice, xSize, ySize);
-        when(dice.next(19)).thenReturn(18);
+        dice.whenThen(19, 18);
 
-        //when
+        // when
         Map<? extends CharElement, List<Shiftable>> result = generator.generate(weightedRandomBag);
 
-        //then
+        // then
         assertThat(result.values(), hasSize(1));
         assertThat(result.get(GameElement.OBSTACLE).size(), greaterThan(0));
     }
 
-    private WeightedRandomBag<GenerationOption> getWeightedRandomgenerationOptionBag() {
+    private WeightedRandomBag<GenerationOption> getWeightedRandomGenerationOptionBag() {
         WeightedRandomBag<GenerationOption> weightedRandomBag = new WeightedRandomBag<>();
         weightedRandomBag.addEntry(NOTHING, 10);
         weightedRandomBag.addEntry(SINGLE_ELEMENT, 5);

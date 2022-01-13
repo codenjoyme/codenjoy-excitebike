@@ -23,13 +23,12 @@ package com.codenjoy.dojo.excitebike.services.ai;
  */
 
 import com.codenjoy.dojo.games.excitebike.Board;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.stubbing.Answer;
 
 import java.util.List;
 import java.util.Random;
@@ -37,13 +36,11 @@ import java.util.Random;
 import static com.codenjoy.dojo.services.Direction.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
 public class AISolverParametrizedTest {
 
-    private Dice dice;
+    private MockDice dice;
     private AISolver solver;
     private String boardString;
     private Direction expectedDirection;
@@ -51,7 +48,7 @@ public class AISolverParametrizedTest {
     public AISolverParametrizedTest(String caseName, String board, Direction expectedDirection) {
         this.boardString = board;
         this.expectedDirection = expectedDirection;
-        dice = mock(Dice.class);
+        dice = new MockDice();
         solver = new AISolver(dice);
     }
 
@@ -1030,25 +1027,24 @@ public class AISolverParametrizedTest {
 
     @Test
     public void get_shouldReturnAppropriateDirection_accordingToGameElementTypeAround() {
-        //given
+        // given
         Board board = toBoard(boardString);
         if (expectedDirection == STOP) {
-            when(dice.next(2)).then((Answer<Integer>) invocationOnMock -> {
+            dice.whenThen(2, () -> {
                 int randomInt = new Random().nextInt(2);
                 expectedDirection = randomInt == 1 ? DOWN : UP;
                 return randomInt;
             });
         }
 
-        //when
+        // when
         String result = solver.get(board);
 
-        //then
+        // then
         assertThat(result, is(expectedDirection != null ? expectedDirection.toString() : ""));
     }
 
     private Board toBoard(String board) {
         return (Board) new Board().forString(board);
     }
-
 }

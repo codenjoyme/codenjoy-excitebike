@@ -22,127 +22,124 @@ package com.codenjoy.dojo.excitebike.services.generation;
  * #L%
  */
 
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 
 public class WeightedRandomBagTest {
 
     @Test
     public void getRandom_shouldReturnNull_ifNoOptionsWereSet() {
-        //given
+        // given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
-        Dice dice = mock(Dice.class);
-        when(dice.next(1)).thenReturn(0);
+        MockDice dice = new MockDice();
+        dice.whenThen(1, 0);
 
-        //when
+        // when
         GenerationOption result = bag.getRandom(dice);
 
-        //then
+        // then
         assertThat(result, nullValue());
     }
 
     @Test
     public void getRandom_shouldReturnTheOnlyOptionSet_ifItIsTheOnlyOptionAndDiceReturnsCorrespondingWeight() {
-        //given
+        // given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.NOTHING, 50);
-        Dice dice = mock(Dice.class);
-        when(dice.next(51)).thenReturn(25);
+        MockDice dice = new MockDice();
+        dice.whenThen(51, 25);
 
-        //when
+        // when
         GenerationOption result = bag.getRandom(dice);
 
-        //then
+        // then
         assertThat(result, is(GenerationOption.NOTHING));
     }
 
     @Test
     public void getRandom_shouldReturnOptionOne_ifTwoOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionOne() {
-        //given
+        // given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.NOTHING, 50);
         bag.addEntry(GenerationOption.OBSTACLE_CHAIN, 32);
-        Dice dice = mock(Dice.class);
-        when(dice.next(84)).thenReturn(1);
+        MockDice dice = new MockDice();
+        dice.whenThen(84, 1);
 
-        //when
+        // when
         GenerationOption result = bag.getRandom(dice);
 
-        //then
+        // then
         assertThat(result, is(GenerationOption.NOTHING));
     }
 
     @Test
     public void getRandom_shouldReturnOptionTwo_ifTwoOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionTwo() {
-        //given
+        // given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.NOTHING, 50);
         bag.addEntry(GenerationOption.OBSTACLE_CHAIN, 27);
-        Dice dice = mock(Dice.class);
-        when(dice.next(78)).thenReturn(58);
+        MockDice dice = new MockDice();
+        dice.whenThen(78, 58);
 
-        //when
+        // when
         GenerationOption result = bag.getRandom(dice);
 
-        //then
+        // then
         assertThat(result, is(GenerationOption.OBSTACLE_CHAIN));
     }
 
     @Test
     public void getRandom_shouldReturnOptionOne_ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionOne() {
-        //given
+        // given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.SPRINGBOARD, 50);
         bag.addEntry(GenerationOption.SINGLE_ELEMENT, 32);
         bag.addEntry(GenerationOption.OBSTACLE_CHAIN, 111);
-        Dice dice = mock(Dice.class);
-        when(dice.next(194)).thenReturn(1);
+        MockDice dice = new MockDice();
+        dice.whenThen(194, 1);
 
-        //when
+        // when
         GenerationOption result = bag.getRandom(dice);
 
-        //then
+        // then
         assertThat(result, is(GenerationOption.SPRINGBOARD));
     }
 
     @Test
     public void getRandom_shouldReturnOptionTwo_ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionTwo() {
-        //given
+        // given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.SPRINGBOARD, 50);
         bag.addEntry(GenerationOption.SINGLE_ELEMENT, 32);
         bag.addEntry(GenerationOption.OBSTACLE_CHAIN, 111);
-        Dice dice = mock(Dice.class);
-        when(dice.next(194)).thenReturn(75);
+        MockDice dice = new MockDice();
+        dice.whenThen(194, 75);
 
-        //when
+        // when
         GenerationOption result = bag.getRandom(dice);
 
-        //then
+        // then
         assertThat(result, is(GenerationOption.SINGLE_ELEMENT));
     }
 
     @Test
     public void getRandom_shouldReturnOptionThree_ifThreeOptionsWereSetAndDiceReturnsWeightCorrespondingToOptionThree() {
-        //given
+        // given
         WeightedRandomBag<GenerationOption> bag = new WeightedRandomBag<>();
         bag.addEntry(GenerationOption.SPRINGBOARD, 50);
         bag.addEntry(GenerationOption.SINGLE_ELEMENT, 32);
         bag.addEntry(GenerationOption.OBSTACLE_CHAIN, 111);
-        Dice dice = mock(Dice.class);
-        when(dice.next(194)).thenReturn(184);
+        MockDice dice = new MockDice();
+        dice.whenThen(194, 184);
 
-        //when
+        // when
         GenerationOption result = bag.getRandom(dice);
 
-        //then
+        // then
         assertThat(result, is(GenerationOption.OBSTACLE_CHAIN));
     }
 }

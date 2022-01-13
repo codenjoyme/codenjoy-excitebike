@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Test;
 
 import java.util.List;
@@ -33,26 +33,25 @@ import java.util.Map;
 import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 public class SpringboardGeneratorTest {
 
     @Test
     public void generate_shouldReturnCorrectSpringBoardWithWidth5_whenDiceReturnsWidth5() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
+        MockDice dice = new MockDice();
         int xSize = 10;
         int ySize = 10;
         SpringboardGenerator generator = new SpringboardGenerator(dice, xSize, ySize);
         int expectedWidth = 5;
-        when(dice.next(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH)).thenReturn(expectedWidth - 2);
+        dice.whenThen(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH,
+                expectedWidth - 2);
 
-        //when
+        // when
         Map<SpringboardElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         List<Shiftable> leftUps = result.get(SPRINGBOARD_LEFT_UP);
         assertThat(leftUps, hasSize(1));
         assertThat(leftUps.get(0).getX(), is(xSize));
@@ -111,18 +110,19 @@ public class SpringboardGeneratorTest {
 
     @Test
     public void generate_shouldReturnCorrectSpringBoardWithWidth2_whenDiceReturnsWidth2() {
-        //given
-        Dice dice = mock(Dice.class);
+        // given
+        MockDice dice = new MockDice();
         int xSize = 10;
         int ySize = 10;
         SpringboardGenerator generator = new SpringboardGenerator(dice, xSize, ySize);
         int expectedWidth = 2;
-        when(dice.next(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH)).thenReturn(expectedWidth - 2);
+        dice.whenThen(SpringboardGenerator.SPRINGBOARD_TOP_MAX_WIDTH,
+                expectedWidth - 2);
 
-        //when
+        // when
         Map<SpringboardElement, List<Shiftable>> result = generator.generate();
 
-        //then
+        // then
         List<Shiftable> leftUps = result.get(SPRINGBOARD_LEFT_UP);
         assertThat(leftUps, hasSize(1));
         assertThat(leftUps.get(0).getX(), is(xSize));
