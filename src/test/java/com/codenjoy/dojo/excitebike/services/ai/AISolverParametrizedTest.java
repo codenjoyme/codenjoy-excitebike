@@ -1030,7 +1030,7 @@ public class AISolverParametrizedTest {
         // given
         Board board = toBoard(boardString);
         if (expectedDirection == STOP) {
-            dice.whenThen(2, () -> {
+            dice.whenThen(2, max -> {
                 int randomInt = new Random().nextInt(2);
                 expectedDirection = randomInt == 1 ? DOWN : UP;
                 return randomInt;
