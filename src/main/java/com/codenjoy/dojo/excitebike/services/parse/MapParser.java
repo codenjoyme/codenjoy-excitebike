@@ -26,7 +26,6 @@ import com.codenjoy.dojo.excitebike.model.items.*;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.field.AbstractLevel;
 
 import java.util.List;
@@ -44,7 +43,7 @@ public class MapParser extends AbstractLevel {
         this.xSize = xSize;
         this.xy = new LengthToXY(xSize){
             @Override
-            public Point getXY(int length) {
+            public Point point(int length) {
                 return convertToPoint(length);
             }
         };
