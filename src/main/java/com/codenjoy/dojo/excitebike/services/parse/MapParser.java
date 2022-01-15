@@ -41,7 +41,7 @@ public class MapParser extends AbstractLevel {
     public MapParser(String map, int xSize) {
         super(map);
         this.xSize = xSize;
-        this.xy = new LengthToXY(xSize){
+        this.map.xy = new LengthToXY(xSize){
             @Override
             public Point point(int length) {
                 return convertToPoint(length);
