@@ -107,6 +107,7 @@ public class Excitebike implements Field {
         );
     }
 
+    @Override
     public int xSize() {
         return mapParser.width();
     }
@@ -187,6 +188,11 @@ public class Excitebike implements Field {
     public Optional<Point> freeRandom(Player player) {
         return findFreePosition(true)
                 .or(() -> findFreePosition(false));
+    }
+
+    @Override
+    public int size() {
+        return 0; // TODO поле сделать квадратной формы
     }
 
     private Optional<Point> findFreePosition(boolean chessOrder) {

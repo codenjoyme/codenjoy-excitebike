@@ -25,38 +25,18 @@ package com.codenjoy.dojo.excitebike.model.items;
 
 import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.excitebike.services.Event;
+import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.printer.state.State;
 import com.codenjoy.dojo.services.multiplayer.PlayerHero;
+import com.codenjoy.dojo.services.printer.state.State;
 
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_ACCELERATOR;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_INHIBITOR;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_KILLED_BIKE;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_LINE_CHANGER_UP;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_LEFT;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_LEFT_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_RIGHT;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_AT_SPRINGBOARD_RIGHT_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_ACCELERATOR;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_FENCE;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_INHIBITOR;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_LINE_CHANGER_UP;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN_AT_OBSTACLE;
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_IN_FLIGHT_FROM_SPRINGBOARD;
-import static com.codenjoy.dojo.services.Direction.DOWN;
-import static com.codenjoy.dojo.services.Direction.LEFT;
-import static com.codenjoy.dojo.services.Direction.RIGHT;
-import static com.codenjoy.dojo.services.Direction.UP;
+import static com.codenjoy.dojo.games.excitebike.element.BikeElement.*;
+import static com.codenjoy.dojo.services.Direction.*;
 
 public class Bike extends PlayerHero<Field> implements State<BikeElement, Player>, Shiftable {
 
@@ -240,6 +220,13 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
         if (xBefore != x || yBefore != y) {
             adjusted = false;
         }
+    }
+
+    @Override
+    protected boolean isValidateOnMove() {
+        // TODO в игре почему-то байки появляются из за пределов поля,
+        //      а потому move валидацию обычную для других игр надо отключать
+        return false;
     }
 
     private void interactWithOtherBike() {
