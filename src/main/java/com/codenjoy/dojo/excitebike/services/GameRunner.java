@@ -52,6 +52,7 @@ public class GameRunner extends AbstractGameType<GameSettings> {
     // Don't forget to adjust excitebike.js if you change those x/y parameters:
     private static final int X_SIZE = 30;
     private static final int Y_SIZE = 12;
+    public static final String GAME_NAME = "excitebike";
     //-----------------------------------
     private final MapParser mapParser;
 
@@ -97,7 +98,7 @@ public class GameRunner extends AbstractGameType<GameSettings> {
 
     @Override
     public String name() {
-        return "excitebike";
+        return GAME_NAME;
     }
 
     @Override
