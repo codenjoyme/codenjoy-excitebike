@@ -26,32 +26,34 @@ package com.codenjoy.dojo.excitebike.services;
 import com.codenjoy.dojo.excitebike.services.generation.GenerationOption;
 import com.codenjoy.dojo.excitebike.services.generation.WeightedRandomBag;
 import com.codenjoy.dojo.services.event.Calculator;
+import com.codenjoy.dojo.services.settings.PropertiesKey;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
 import com.codenjoy.dojo.services.settings.SettingsReader;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static com.codenjoy.dojo.excitebike.services.GameRunner.GAME_NAME;
 import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.*;
 import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.*;
 
 public class GameSettings extends SettingsImpl implements SettingsReader<GameSettings> {
 
 
-    public enum Keys implements Key {
+    public enum Keys implements PropertiesKey {
 
-        WIN_SCORE("[Score] Win score"),
-        LOSE_PENALTY("[Score] Lose penalty"),
-        GENERATION_WEIGHT_NOTHING("[Level] Spawn weight: nothing"),
-        GENERATION_WEIGHT_SINGLE_ELEMENT("[Level] Spawn weight: single element"),
-        GENERATION_WEIGHT_SPRINGBOARD("[Level] Spawn weight: springboard"),
-        GENERATION_WEIGHT_OBSTACLE_CHAIN("[Level] Spawn weight: obstacle chain"),
-        LEVEL_MAP("[Level] Level map");
+        WIN_SCORE,
+        LOSE_PENALTY,
+        GENERATION_WEIGHT_NOTHING,
+        GENERATION_WEIGHT_SINGLE_ELEMENT,
+        GENERATION_WEIGHT_SPRINGBOARD,
+        GENERATION_WEIGHT_OBSTACLE_CHAIN,
+        LEVEL_MAP;
 
         private String key;
 
-        Keys(String key) {
-            this.key = key;
+        Keys() {
+            this.key = key(GAME_NAME);
         }
 
         @Override
