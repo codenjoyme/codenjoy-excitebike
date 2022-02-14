@@ -41,9 +41,7 @@ import com.codenjoy.dojo.services.printer.CharElement;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.BIKE_FALLEN;
-import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
+import static com.codenjoy.dojo.games.excitebike.Element.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 import static java.util.stream.Collectors.toList;
 

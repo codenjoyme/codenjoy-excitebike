@@ -26,7 +26,7 @@ package com.codenjoy.dojo.excitebike.model.items;
 import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.services.Event;
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.multiplayer.PlayerHero;
@@ -35,10 +35,10 @@ import com.codenjoy.dojo.services.printer.state.State;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codenjoy.dojo.games.excitebike.element.BikeElement.*;
+import static com.codenjoy.dojo.games.excitebike.Element.*;
 import static com.codenjoy.dojo.services.Direction.*;
 
-public class Bike extends PlayerHero<Field> implements State<BikeElement, Player>, Shiftable {
+public class Bike extends PlayerHero<Field> implements State<Element, Player>, Shiftable {
 
     public static final String OTHER_BIKE_PREFIX = "OTHER";
     public static final String FALLEN_BIKE_SUFFIX = "FALLEN";
@@ -50,7 +50,7 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
 
     private Direction command;
     private Movement movement = new Movement();
-    private BikeElement type = BIKE;
+    private Element type = BIKE;
     private boolean ticked;
     private boolean accelerated;
     private boolean inhibited;
@@ -103,8 +103,8 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
                                         BIKE_FALLEN;
     }
 
-    public void crushLikeEnemy(BikeElement crushedEnemyBikeType) {
-        type = BikeElement.valueOf(crushedEnemyBikeType.name().replace(OTHER_BIKE_PREFIX + "_", ""));
+    public void crushLikeEnemy(Element crushedEnemyBikeType) {
+        type = Element.valueOf(crushedEnemyBikeType.name().replace(OTHER_BIKE_PREFIX + "_", ""));
     }
 
     @Override
@@ -185,9 +185,9 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
 
     }
 
-    private BikeElement atNothingType() {
+    private Element atNothingType() {
         return type.name().contains(BIKE_AT_PREFIX)
-                ? BikeElement.valueOf(type.name().substring(0, type.name().indexOf(BIKE_AT_PREFIX) - 1))
+                ? Element.valueOf(type.name().substring(0, type.name().indexOf(BIKE_AT_PREFIX) - 1))
                 : type;
     }
 
@@ -367,7 +367,7 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
 
         if (field.isInhibitor(x, y)) {
             if (type.name().contains(AT_ACCELERATOR_SUFFIX)) {
-                type = BikeElement.valueOf(type.name().replace(AT_ACCELERATOR_SUFFIX, ""));
+                type = Element.valueOf(type.name().replace(AT_ACCELERATOR_SUFFIX, ""));
             } else {
                 changeStateToAt(AT_INHIBITOR_SUFFIX);
             }
@@ -422,20 +422,20 @@ public class Bike extends PlayerHero<Field> implements State<BikeElement, Player
     private void changeStateToAt(String atSuffix) {
         if (type.name().contains(BIKE_AT_PREFIX)) {
             String substringBikeAtSomething = type.name().substring(type.name().indexOf(BIKE_AT_PREFIX) - 1);
-            type = BikeElement.valueOf(type.name().replace(substringBikeAtSomething, atSuffix));
+            type = Element.valueOf(type.name().replace(substringBikeAtSomething, atSuffix));
         } else {
-            type = BikeElement.valueOf(type.name() + atSuffix);
+            type = Element.valueOf(type.name() + atSuffix);
         }
     }
 
     @Override
-    public BikeElement state(Player player, Object... alsoAtPoint) {
+    public Element state(Player player, Object... alsoAtPoint) {
         Bike bike = player.getHero();
         return this == bike ? bike.type : this.getEnemyBikeType();
     }
 
-    private BikeElement getEnemyBikeType() {
-        return BikeElement.valueOf(OTHER_BIKE_PREFIX + "_" + type.name());
+    private Element getEnemyBikeType() {
+        return Element.valueOf(OTHER_BIKE_PREFIX + "_" + type.name());
     }
 
     @Override

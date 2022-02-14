@@ -28,9 +28,6 @@ import com.codenjoy.dojo.services.printer.CharElement;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Pavel Bobylev 7/18/2019
- */
 public interface Generator {
 
     Map<? extends CharElement, List<Shiftable>> generate();

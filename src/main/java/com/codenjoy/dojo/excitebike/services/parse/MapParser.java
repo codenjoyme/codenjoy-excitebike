@@ -23,15 +23,14 @@ package com.codenjoy.dojo.excitebike.services.parse;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.*;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.field.AbstractLevel;
 
 import java.util.List;
 
-import static com.codenjoy.dojo.games.excitebike.element.GameElement.*;
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
+import static com.codenjoy.dojo.games.excitebike.Element.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 public class MapParser extends AbstractLevel {
@@ -85,7 +84,7 @@ public class MapParser extends AbstractLevel {
         return getSpringboard(SPRINGBOARD_LEFT);
     }
 
-    private List<Springboard> getSpringboard(SpringboardElement element) {
+    private List<Springboard> getSpringboard(Element element) {
         return find(Springboard::new, element);
     }
 

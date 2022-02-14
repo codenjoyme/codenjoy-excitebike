@@ -22,9 +22,6 @@ package com.codenjoy.dojo.excitebike.services.generation;
  * #L%
  */
 
-/**
- * Created by Pavel Bobylev 7/18/2019
- */
 public enum GenerationOption {
     NOTHING,
     SINGLE_ELEMENT,

@@ -23,19 +23,19 @@ package com.codenjoy.dojo.excitebike.model.items;
  */
 
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.printer.state.State;
 
-public class Fence extends PointImpl implements State<GameElement, Player> {
+public class Fence extends PointImpl implements State<Element, Player> {
 
     public Fence(Point point) {
         super(point);
     }
 
     @Override
-    public GameElement state(Player player, Object... objects) {
-        return GameElement.FENCE;
+    public Element state(Player player, Object... objects) {
+        return Element.FENCE;
     }
 }

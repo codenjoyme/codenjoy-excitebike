@@ -23,27 +23,27 @@ package com.codenjoy.dojo.excitebike.model.items;
  */
 
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.printer.state.State;
 
-public class Springboard extends PointImpl implements State<SpringboardElement, Player>, Shiftable {
+public class Springboard extends PointImpl implements State<Element, Player>, Shiftable {
 
-    private SpringboardElement currentSpringboardType;
+    private Element type;
 
-    public Springboard(int x, int y, SpringboardElement type) {
+    public Springboard(int x, int y, Element type) {
         super(x, y);
-        this.currentSpringboardType = type;
+        this.type = type;
     }
 
-    public Springboard(Point point, SpringboardElement type) {
+    public Springboard(Point point, Element type) {
         super(point);
-        this.currentSpringboardType = type;
+        this.type = type;
     }
 
     @Override
-    public SpringboardElement state(Player player, Object... objects) {
-        return currentSpringboardType;
+    public Element state(Player player, Object... objects) {
+        return type;
     }
 }

@@ -23,12 +23,12 @@ package com.codenjoy.dojo.excitebike.model.items;
  */
 
 import com.codenjoy.dojo.excitebike.model.Player;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.printer.state.State;
 
-public class LineChanger extends PointImpl implements State<GameElement, Player>, Shiftable {
+public class LineChanger extends PointImpl implements State<Element, Player>, Shiftable {
     private boolean upper;
 
     public LineChanger(int x, int y, boolean upper) {
@@ -46,7 +46,7 @@ public class LineChanger extends PointImpl implements State<GameElement, Player>
     }
 
     @Override
-    public GameElement state(Player player, Object... objects) {
-        return isUpper() ? GameElement.LINE_CHANGER_UP : GameElement.LINE_CHANGER_DOWN;
+    public Element state(Player player, Object... objects) {
+        return isUpper() ? Element.LINE_CHANGER_UP : Element.LINE_CHANGER_DOWN;
     }
 }

@@ -23,14 +23,14 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
+import static com.codenjoy.dojo.games.excitebike.Element.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -49,7 +49,7 @@ public class SpringboardGeneratorTest {
                 expectedWidth - 2);
 
         // when
-        Map<SpringboardElement, List<Shiftable>> result = generator.generate();
+        Map<Element, List<Shiftable>> result = generator.generate();
 
         // then
         List<Shiftable> leftUps = result.get(SPRINGBOARD_LEFT_UP);
@@ -120,7 +120,7 @@ public class SpringboardGeneratorTest {
                 expectedWidth - 2);
 
         // when
-        Map<SpringboardElement, List<Shiftable>> result = generator.generate();
+        Map<Element, List<Shiftable>> result = generator.generate();
 
         // then
         List<Shiftable> leftUps = result.get(SPRINGBOARD_LEFT_UP);

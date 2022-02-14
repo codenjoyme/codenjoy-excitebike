@@ -23,7 +23,8 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
+import com.codenjoy.dojo.games.excitebike.Element;
+import com.codenjoy.dojo.games.excitebike.ElementUtils;
 import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.google.common.collect.Lists;
@@ -40,20 +41,20 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 @RunWith(Parameterized.class)
 public class SingleElementGeneratorParametrizedTest {
 
-    private GameElement expectedElementType;
+    private Element expectedElementType;
 
-    public SingleElementGeneratorParametrizedTest(GameElement expectedElementType) {
+    public SingleElementGeneratorParametrizedTest(Element expectedElementType) {
         this.expectedElementType = expectedElementType;
     }
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object> data() {
         return Lists.newArrayList(
-                GameElement.ACCELERATOR,
-                GameElement.INHIBITOR,
-                GameElement.OBSTACLE,
-                GameElement.LINE_CHANGER_UP,
-                GameElement.LINE_CHANGER_DOWN
+                Element.ACCELERATOR,
+                Element.INHIBITOR,
+                Element.OBSTACLE,
+                Element.LINE_CHANGER_UP,
+                Element.LINE_CHANGER_DOWN
         );
     }
 
@@ -64,8 +65,8 @@ public class SingleElementGeneratorParametrizedTest {
         int xSize = 10;
         int ySize = 10;
         int expectedLine = new Random().nextInt();
-        dice.whenThen(GameElement.values().length - 2,
-                Arrays.asList(GameElement.values()).indexOf(expectedElementType) - 2);
+        dice.whenThen(ElementUtils.stuff.length - 2,
+                Arrays.asList(ElementUtils.stuff).indexOf(expectedElementType) - 2);
         dice.whenThen(ySize - 2,
                 expectedLine - 1);
 

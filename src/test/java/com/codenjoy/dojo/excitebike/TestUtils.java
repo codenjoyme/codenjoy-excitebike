@@ -22,12 +22,13 @@ package com.codenjoy.dojo.excitebike;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Excitebike;
+import com.codenjoy.dojo.excitebike.model.Field;
 import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.model.items.Bike;
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.excitebike.services.GameSettings;
+import com.codenjoy.dojo.games.excitebike.Element;
+import com.codenjoy.dojo.games.excitebike.ElementUtils;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
@@ -43,18 +44,15 @@ import java.util.stream.IntStream;
 
 import static org.mockito.Mockito.mock;
 
-/**
- * Created by Pavel Bobylev 6/26/2019
- */
 public class TestUtils {
 
     private TestUtils() {
     }
 
     public static List<Bike> parseBikes(String map, int xSize) {
-        return parseAndConvertElements(map, xSize, TestUtils::newDefaultBike, Arrays.stream(BikeElement.values())
+        return parseAndConvertElements(map, xSize, TestUtils::newDefaultBike, Arrays.stream(ElementUtils.allBikes)
                 .filter(e -> !e.name().contains(Bike.OTHER_BIKE_PREFIX))
-                .toArray(BikeElement[]::new));
+                .toArray(Element[]::new));
     }
 
     private static Bike newDefaultBike(Point point) {

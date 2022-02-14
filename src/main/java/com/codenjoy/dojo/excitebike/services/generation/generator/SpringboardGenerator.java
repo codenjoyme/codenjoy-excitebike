@@ -24,7 +24,7 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
 import com.codenjoy.dojo.excitebike.model.items.Springboard;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.Dice;
 
 import java.util.EnumMap;
@@ -32,7 +32,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.games.excitebike.element.SpringboardElement.*;
+import static com.codenjoy.dojo.games.excitebike.Element.*;
 
 public class SpringboardGenerator implements Generator {
 
@@ -42,7 +42,7 @@ public class SpringboardGenerator implements Generator {
     private final int x0;
     private final int ySize;
     private int width;
-    private Map<SpringboardElement, List<Shiftable>> elements;
+    private Map<Element, List<Shiftable>> elements;
 
     public SpringboardGenerator(Dice dice, int xSize, int ySize) {
         this.x0 = xSize - 1 + CLEAR_LINES_AROUND_SPRINGBOARD;
@@ -51,8 +51,8 @@ public class SpringboardGenerator implements Generator {
     }
 
     @Override
-    public Map<SpringboardElement, List<Shiftable>> generate() {
-        elements = new EnumMap<>(SpringboardElement.class);
+    public Map<Element, List<Shiftable>> generate() {
+        elements = new EnumMap<>(Element.class);
         width = dice.next(SPRINGBOARD_TOP_MAX_WIDTH) + 2;
         generateRiseLine(ySize);
         for (int i = x0 + 1; i < x0 + width - 1; i++) {
@@ -70,7 +70,7 @@ public class SpringboardGenerator implements Generator {
         generateSpringBoardStep(SPRINGBOARD_RIGHT_UP, SPRINGBOARD_RIGHT, SPRINGBOARD_RIGHT_DOWN, x - 1, linesNumber);
     }
 
-    private void generateSpringBoardStep(SpringboardElement up, SpringboardElement middle, SpringboardElement down, int x, int lines) {
+    private void generateSpringBoardStep(Element up, Element middle, Element down, int x, int lines) {
         addNewElement(down, x, 1);
         int y = 2;
         for (; y < lines - 1; y++) {
@@ -79,7 +79,7 @@ public class SpringboardGenerator implements Generator {
         addNewElement(up, x, y);
     }
 
-    private void addNewElement(SpringboardElement type, int x, int y) {
+    private void addNewElement(Element type, int x, int y) {
         // TODO do not use map.containsKey just check that map.get() != null
         if (!elements.containsKey(type)) {
             elements.put(type, new LinkedList<>());

@@ -27,9 +27,6 @@ import com.codenjoy.dojo.services.Dice;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Pavel Bobylev 7/18/2019
- */
 public class WeightedRandomBag<T> {
 
     private List<Entry> entries = new ArrayList<>();

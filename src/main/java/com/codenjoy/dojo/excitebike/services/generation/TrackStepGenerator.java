@@ -23,11 +23,7 @@ package com.codenjoy.dojo.excitebike.services.generation;
  */
 
 import com.codenjoy.dojo.excitebike.model.items.Shiftable;
-import com.codenjoy.dojo.excitebike.services.generation.generator.EmptyGenerator;
-import com.codenjoy.dojo.excitebike.services.generation.generator.Generator;
-import com.codenjoy.dojo.excitebike.services.generation.generator.ObstacleChainGenerator;
-import com.codenjoy.dojo.excitebike.services.generation.generator.SingleElementGenerator;
-import com.codenjoy.dojo.excitebike.services.generation.generator.SpringboardGenerator;
+import com.codenjoy.dojo.excitebike.services.generation.generator.*;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.printer.CharElement;
 
@@ -35,14 +31,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.NOTHING;
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.OBSTACLE_CHAIN;
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.SINGLE_ELEMENT;
-import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.SPRINGBOARD;
+import static com.codenjoy.dojo.excitebike.services.generation.GenerationOption.*;
 
-/**
- * Created by Pavel Bobylev 7/18/2019
- */
 public class TrackStepGenerator {
 
     private final Dice dice;

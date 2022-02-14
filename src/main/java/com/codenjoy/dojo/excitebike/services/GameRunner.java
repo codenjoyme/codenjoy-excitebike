@@ -30,9 +30,7 @@ import com.codenjoy.dojo.excitebike.model.Player;
 import com.codenjoy.dojo.excitebike.services.ai.AISolver;
 import com.codenjoy.dojo.excitebike.services.parse.MapParser;
 import com.codenjoy.dojo.games.excitebike.Board;
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
+import com.codenjoy.dojo.games.excitebike.Element;
 import com.codenjoy.dojo.services.AbstractGameType;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.PlayerScores;
@@ -42,7 +40,6 @@ import com.codenjoy.dojo.services.multiplayer.GamePlayer;
 import com.codenjoy.dojo.services.multiplayer.MultiplayerType;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.settings.Parameter;
-import com.google.common.collect.ObjectArrays;
 
 import static com.codenjoy.dojo.services.settings.SimpleParameter.v;
 
@@ -67,15 +64,15 @@ public class GameRunner extends AbstractGameType<GameSettings> {
 
     protected String getMap() {
         StringBuilder sb = new StringBuilder();
-        appendElementForWholeLine(sb, GameElement.FENCE);
+        appendElementForWholeLine(sb, Element.FENCE);
         for (int i = 0; i < Y_SIZE - 2; i++) {
-            appendElementForWholeLine(sb, GameElement.NONE);
+            appendElementForWholeLine(sb, Element.NONE);
         }
-        appendElementForWholeLine(sb, GameElement.FENCE);
+        appendElementForWholeLine(sb, Element.FENCE);
         return sb.toString();
     }
 
-    private void appendElementForWholeLine(StringBuilder sb, GameElement element) {
+    private void appendElementForWholeLine(StringBuilder sb, Element element) {
         for (int i = 0; i < GameRunner.X_SIZE; i++) {
             sb.append(element);
         }
@@ -103,9 +100,7 @@ public class GameRunner extends AbstractGameType<GameSettings> {
 
     @Override
     public CharElement[] getPlots() {
-        CharElement[] result = ObjectArrays.concat(GameElement.values(), SpringboardElement.values(), CharElement.class);
-        result = ObjectArrays.concat(result, BikeElement.values(), CharElement.class);
-        return result;
+        return Element.values();
     }
 
     @Override

@@ -22,12 +22,9 @@ package com.codenjoy.dojo.excitebike.services.generation.generator;
  * #L%
  */
 
-import com.codenjoy.dojo.excitebike.model.items.Accelerator;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.excitebike.model.items.Inhibitor;
-import com.codenjoy.dojo.excitebike.model.items.LineChanger;
-import com.codenjoy.dojo.excitebike.model.items.Obstacle;
-import com.codenjoy.dojo.excitebike.model.items.Shiftable;
+import com.codenjoy.dojo.excitebike.model.items.*;
+import com.codenjoy.dojo.games.excitebike.Element;
+import com.codenjoy.dojo.games.excitebike.ElementUtils;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.google.common.collect.Lists;
@@ -36,15 +33,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.codenjoy.dojo.games.excitebike.element.GameElement.ACCELERATOR;
-import static com.codenjoy.dojo.games.excitebike.element.GameElement.INHIBITOR;
-import static com.codenjoy.dojo.games.excitebike.element.GameElement.LINE_CHANGER_DOWN;
-import static com.codenjoy.dojo.games.excitebike.element.GameElement.LINE_CHANGER_UP;
-import static com.codenjoy.dojo.games.excitebike.element.GameElement.OBSTACLE;
+import static com.codenjoy.dojo.games.excitebike.Element.*;
 
-/**
- * Created by Pavel Bobylev 7/18/2019
- */
 public class SingleElementGenerator implements Generator {
 
     private final Dice dice;
@@ -59,15 +49,15 @@ public class SingleElementGenerator implements Generator {
 
     @Override
     public Map<? extends CharElement, List<Shiftable>> generate() {
-        int rndNonFenceElementOrdinal = dice.next(GameElement.values().length - 2) + 2;
+        int rndNonFenceElementOrdinal = dice.next(ElementUtils.stuff.length - 2) + 2;
         int rndNonFenceLaneNumber = dice.next(ySize - 2) + 1;
-        CharElement randomType = GameElement.values()[rndNonFenceElementOrdinal];
+        CharElement randomType = ElementUtils.stuff[rndNonFenceElementOrdinal];
         int firstPossibleX = xSize - 1;
         return getNewElement(randomType, firstPossibleX, rndNonFenceLaneNumber);
     }
 
-    private Map<GameElement, List<Shiftable>> getNewElement(CharElement randomType, int x, int y) {
-        Map<GameElement, List<Shiftable>> map = new EnumMap<>(GameElement.class);
+    private Map<Element, List<Shiftable>> getNewElement(CharElement randomType, int x, int y) {
+        Map<Element, List<Shiftable>> map = new EnumMap<>(Element.class);
         if (ACCELERATOR.equals(randomType)) {
             map.put(ACCELERATOR, Lists.newArrayList(new Accelerator(x, y)));
         } else if (INHIBITOR.equals(randomType)) {
