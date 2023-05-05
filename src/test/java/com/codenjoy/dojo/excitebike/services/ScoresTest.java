@@ -10,12 +10,12 @@ package com.codenjoy.dojo.excitebike.services;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -23,99 +23,66 @@ package com.codenjoy.dojo.excitebike.services;
  */
 
 import com.codenjoy.dojo.excitebike.TestGameSettings;
-import com.codenjoy.dojo.services.PlayerScores;
-import com.codenjoy.dojo.services.event.Calculator;
-import com.codenjoy.dojo.services.event.ScoresImpl;
-import org.junit.Before;
+import com.codenjoy.dojo.services.event.ScoresMap;
+import com.codenjoy.dojo.utils.scorestest.AbstractScoresTest;
 import org.junit.Test;
 
-import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.LOSE_PENALTY;
-import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.WIN_SCORE;
-import static org.junit.Assert.assertEquals;
+public class ScoresTest extends AbstractScoresTest {
 
-public class ScoresTest {
-
-    private PlayerScores scores;
-    private GameSettings settings;
-
-    public void win() {
-        scores.event(Event.WIN);
+    @Override
+    public GameSettings settings() {
+        return new TestGameSettings();
     }
 
-    public void loose() {
-        scores.event(Event.LOSE);
+    @Override
+    protected Class<? extends ScoresMap<?>> scores() {
+        return Scores.class;
     }
 
-    @Before
-    public void setup() {
-        settings = new TestGameSettings();
-    }
-
-    private void givenScores(int score) {
-        scores = new ScoresImpl<>(score, new Calculator<>(new Scores(settings)));
+    @Override
+    protected Class<? extends Enum> eventTypes() {
+        return Event.class;
     }
 
     @Test
     public void shouldCollectScores() {
-        // given
-        givenScores(100);
-
-        // when
-        win();
-        win();
-        win();
-        win();
-        loose();
-
-        // then
-        assertEquals(100
-                    + 4 * settings.integer(WIN_SCORE)
-                    + settings.integer(LOSE_PENALTY),
-                scores.getScore());
+        assertEvents("140:\n" +
+                "WIN > +1 = 141\n" +
+                "WIN > +1 = 142\n" +
+                "WIN > +1 = 143\n" +
+                "WIN > +1 = 144\n" +
+                "LOSE > -1 = 143");
     }
 
     @Test
     public void shouldWin() {
-        // given
-        givenScores(100);
-
-        // when
-        win();
-        win();
-
-        // then
-        assertEquals(100
-                    + 2 * settings.integer(WIN_SCORE),
-                scores.getScore());
+        assertEvents("140:\n" +
+                "WIN > +1 = 141\n" +
+                "WIN > +1 = 142");
     }
 
     @Test
     public void shouldLose() {
-        // given
-        givenScores(100);
-
-        // when
-        loose();
-        loose();
-
-        // then
-        assertEquals(100
-                    + 2 * settings.integer(LOSE_PENALTY),
-                scores.getScore());
+        assertEvents("140:\n" +
+                "LOSE > -1 = 139\n" +
+                "LOSE > -1 = 138");
     }
 
     @Test
     public void shouldNotLessThan0() {
-        // given
-        givenScores(1);
+        assertEvents("1:\n" +
+                "LOSE > -1 = 0\n" +
+                "LOSE > +0 = 0\n" +
+                "LOSE > +0 = 0");
+    }
 
-        // when
-        loose();
-        loose();
-        loose();
-
-        // then
-        assertEquals(0,
-                scores.getScore());
+    @Test
+    public void shouldClean() {
+        assertEvents("140:\n" +
+                "WIN > +1 = 141\n" +
+                "WIN > +1 = 142\n" +
+                "(CLEAN) > -142 = 0\n" +
+                "WIN > +1 = 1\n" +
+                "WIN > +1 = 2");
     }
 }
