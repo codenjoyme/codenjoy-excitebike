@@ -27,11 +27,16 @@ import com.codenjoy.dojo.services.event.ScoresMap;
 import com.codenjoy.dojo.utils.scorestest.AbstractScoresTest;
 import org.junit.Test;
 
+import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.LOSE_PENALTY;
+import static com.codenjoy.dojo.excitebike.services.GameSettings.Keys.WIN_SCORE;
+
 public class ScoresTest extends AbstractScoresTest {
 
     @Override
     public GameSettings settings() {
-        return new TestGameSettings();
+        return new TestGameSettings()
+                .integer(WIN_SCORE, 1)
+                .integer(LOSE_PENALTY, -1);
     }
 
     @Override
@@ -56,6 +61,10 @@ public class ScoresTest extends AbstractScoresTest {
 
     @Test
     public void shouldWin() {
+        // given
+        settings.integer(WIN_SCORE, 1);
+
+        // when then
         assertEvents("140:\n" +
                 "WIN > +1 = 141\n" +
                 "WIN > +1 = 142");
@@ -63,6 +72,10 @@ public class ScoresTest extends AbstractScoresTest {
 
     @Test
     public void shouldLose() {
+        // given
+        settings.integer(LOSE_PENALTY, -1);
+
+        // when then
         assertEvents("140:\n" +
                 "LOSE > -1 = 139\n" +
                 "LOSE > -1 = 138");
