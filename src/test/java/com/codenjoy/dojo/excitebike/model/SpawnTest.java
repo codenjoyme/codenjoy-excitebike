@@ -49,20 +49,23 @@ import static org.mockito.Mockito.mock;
 @RunWith(Parameterized.class)
 public class SpawnTest {
 
-    private String init;
-    private String expected;
-    private int newPlayerNumberAfterInit;
+    @Parameterized.Parameter(0)
+    public String name;
+
+    @Parameterized.Parameter(1)
+    public int newPlayerNumberAfterInit;
+
+    @Parameterized.Parameter(2)
+    public String init;
+
+    @Parameterized.Parameter(3)
+    public String expected;
+
     private GameSettings settings = new TestGameSettings();
 
-    public SpawnTest(String name, int newPlayerNumberAfterInit, String init, String expected) {
-        this.newPlayerNumberAfterInit = newPlayerNumberAfterInit;
-        this.init = init;
-        this.expected = expected;
-    }
-
     @Parameterized.Parameters(name = "{0}")
-    public static Collection<Object> data() {
-        return Lists.newArrayList(
+    public static Object[][] data() {
+        return new Object[][]{
                 new Object[]{"1. shouldAddThreeBikesToFirstColumn",
                         3,
                         "■■■■■■■" +
@@ -301,7 +304,7 @@ public class SpawnTest {
                         "BṀˊˊˊŜḂ\n" +
                         "■■■■■■■\n"
                 }
-        );
+        };
     }
 
     @Test

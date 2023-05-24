@@ -40,15 +40,12 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 @RunWith(Parameterized.class)
 public class MapParserTest {
 
-    private CharElement element;
-
-    public MapParserTest(CharElement element) {
-        this.element = element;
-    }
+    @Parameterized.Parameter
+    public CharElement element;
 
     @Parameterized.Parameters(name = "{0}")
-    public static Collection data() {
-        return Lists.newArrayList(
+    public static Object[] data() {
+        return new Object[] {
                 FENCE,
                 ACCELERATOR,
                 INHIBITOR,
@@ -62,7 +59,7 @@ public class MapParserTest {
                 SPRINGBOARD_LEFT_UP,
                 SPRINGBOARD_LEFT_DOWN,
                 SPRINGBOARD_TOP
-        );
+        };
     }
 
     @Test

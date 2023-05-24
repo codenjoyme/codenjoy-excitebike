@@ -51,14 +51,12 @@ import static org.mockito.Mockito.when;
 @RunWith(Parameterized.class)
 public class SpawnElementsSystemParameterizedTest {
 
-    private Element element;
+    @Parameterized.Parameter
+    public Element element;
+    
     private Player player;
     private Excitebike game;
     private MockDice dice;
-
-    public SpawnElementsSystemParameterizedTest(Element element) {
-        this.element = element;
-    }
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection data() {

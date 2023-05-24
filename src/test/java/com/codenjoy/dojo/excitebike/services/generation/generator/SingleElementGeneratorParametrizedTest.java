@@ -41,21 +41,18 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 @RunWith(Parameterized.class)
 public class SingleElementGeneratorParametrizedTest {
 
-    private Element expectedElementType;
-
-    public SingleElementGeneratorParametrizedTest(Element expectedElementType) {
-        this.expectedElementType = expectedElementType;
-    }
+    @Parameterized.Parameter
+    public Element expectedElementType;
 
     @Parameterized.Parameters(name = "{0}")
-    public static Collection<Object> data() {
-        return Lists.newArrayList(
+    public static Object[] data() {
+        return new Object[] {
                 Element.ACCELERATOR,
                 Element.INHIBITOR,
                 Element.OBSTACLE,
                 Element.LINE_CHANGER_UP,
                 Element.LINE_CHANGER_DOWN
-        );
+        };
     }
 
     @Test

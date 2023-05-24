@@ -40,21 +40,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(Parameterized.class)
 public class AISolverParametrizedTest {
 
-    private MockDice dice;
-    private AISolver solver;
-    private String boardString;
-    private Direction expectedDirection;
+    private MockDice dice = new MockDice();
+    private AISolver solver = new AISolver(dice);
 
-    public AISolverParametrizedTest(String caseName, String board, Direction expectedDirection) {
-        this.boardString = board;
-        this.expectedDirection = expectedDirection;
-        dice = new MockDice();
-        solver = new AISolver(dice);
-    }
+    @Parameterized.Parameter(0)
+    public String caseName;
 
-    @Parameterized.Parameters(name = "Case: {0}, Board: {1}, expected direction: {1}")
-    public static List<Object[]> data() {
-        return Lists.newArrayList(
+    @Parameterized.Parameter(1)
+    public String boardString;
+
+    @Parameterized.Parameter(2)
+    public Direction expectedDirection;
+
+    @Parameterized.Parameters(name = "Case: {0}, Board: \"{1}\", expected direction: {2}")
+    public static Object[][] data() {
+        return new Object[][] {
                 new Object[]{"1. avoid obstacle - random choice",
                         "■■■■■" +
                         "     " +
@@ -1022,7 +1022,7 @@ public class AISolverParametrizedTest {
                         " ╚══╝" +
                         "■■■■■",
                         DOWN}
-        );
+        };
     }
 
     @Test
